@@ -24,10 +24,10 @@ const ImageForm = ({ image, handleSubmit, handleChange, cancelPath }) => (
     </div>
     <br />
     <button type="submit" className="btn btn-primary">Upload</button>
-     <Link to={cancelPath}>
-    <button className="btn btn-danger">Cancel</button>
-     </Link>
+    <Link to={cancelPath}>
+      <button className="btn btn-danger">Cancel</button>
+    </Link>
   </form>
-  )
+)
 
-  export default ImageForm
+export default ImageForm
