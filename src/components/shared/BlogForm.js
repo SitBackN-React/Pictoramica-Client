@@ -12,9 +12,9 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         onChange={handleChange}
       />
     </div>
-  <br />
-  <button type="submit" className="btn btn-primary">Submit</button>
-    <Link to={cancelPath}>
+      <br />
+      <button type="submit" className="btn btn-primary">Submit</button>
+        <Link to={cancelPath}>
       <button className="btn btn-danger">Cancel</button>
     </Link>
   </form>
