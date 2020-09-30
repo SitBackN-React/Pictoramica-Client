@@ -7,5 +7,7 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   createBlogSuccess: 'Blog created successfully',
-  createBlogFailure: 'Failed to create blog'
+  createBlogFailure: 'Failed to create blog',
+  createImageSuccess: 'Created image successfully',
+  createImageFailure: 'Failed to create image'
 }
