@@ -9,6 +9,7 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import ImageCreate from '../routes/ImageCreate'
+import BlogCreate from '../routes/BlogCreate'
 
 class App extends Component {
   constructor () {
@@ -57,6 +58,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/image' render={() => (
             <ImageCreate user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/create-blog' render={() => (
+            <BlogCreate user={user}/>
           )} />
         </main>
       </Fragment>
