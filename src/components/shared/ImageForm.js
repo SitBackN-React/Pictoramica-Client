@@ -18,7 +18,7 @@ const ImageForm = ({ image, handleSubmit, handleChange, cancelPath }) => (
       <input
         placeholder="Example: Url of the image"
         value={image.imageUrl}
-        name="url"
+        name="imageUrl"
         onChange={handleChange}
       />
     </div>
