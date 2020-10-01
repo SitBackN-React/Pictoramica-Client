@@ -9,6 +9,7 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import ImageCreate from '../routes/ImageCreate'
+import Images from '../routes/Images'
 import BlogCreate from '../routes/BlogCreate'
 import Blogs from '../routes/Blogs'
 import Blog from '../routes/Blog'
@@ -61,6 +62,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-image' render={() => (
             <ImageCreate msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/images' render={() => (
+            <Images msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
