@@ -55,7 +55,8 @@ const BlogCreate = props => {
   }
   // if blog id was created, go to specific blog
   if (createdBlogId) {
-    return <Redirect to={`/blogs/${createdBlogId}`} />
+    // return <Redirect to={`/blogs/${createdBlogId}`} />
+    return <Redirect to={'/blogs'} />
   }
   // return data from blogform as well as handle change and handle submit from form
   return (
