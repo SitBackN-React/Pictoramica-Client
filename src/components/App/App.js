@@ -10,6 +10,9 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import ImageCreate from '../routes/ImageCreate'
 import BlogCreate from '../routes/BlogCreate'
+import Blogs from '../routes/Blogs'
+import Blog from '../routes/Blog'
+import BlogEdit from '../routes/BlogEdit'
 
 class App extends Component {
   constructor () {
@@ -61,6 +64,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/blogs' render={(props) => (
+            <Blogs {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/blogs/:blogId' render={(props) => (
+            <Blog {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/blogs/:blogId/edit-blog' render={(props) => (
+            <BlogEdit {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>
