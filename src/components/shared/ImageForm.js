@@ -4,22 +4,37 @@ import { Link } from 'react-router-dom'
 const ImageForm = ({ image, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <div>
+      <label>Image Caption</label>
+      <input
+        type="text"
+        placeholder="Example: My sunset painting"
+        value={image.caption}
+        name="caption"
+        onChange={handleChange}
+        size="25"
+      />
+    </div>
+    <div>
       <label>Image Tag</label>
       <input
-        placeholder="Example: Tag names"
+        type="text"
+        placeholder="Example: #sunset #painting"
         value={image.tag}
         name="tag"
         onChange={handleChange}
+        size="25"
       />
     </div>
     <br />
     <div>
-      <label>Image url</label>
+      <label>Image Url</label>
       <input
-        placeholder="Example: Url of the image"
+        type="text"
+        placeholder="Example: /images/sunset.jpg"
         value={image.imageUrl}
         name="imageUrl"
         onChange={handleChange}
+        size="25"
       />
     </div>
     <br />
