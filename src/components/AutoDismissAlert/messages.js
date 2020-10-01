@@ -9,5 +9,7 @@ export default {
   createBlogSuccess: 'Blog created successfully',
   createBlogFailure: 'Failed to create blog',
   createImageSuccess: 'Created image successfully',
-  createImageFailure: 'Failed to create image'
+  createImageFailure: 'Failed to create image',
+  showImagesSuccess: 'You are now viewing all of your images',
+  showImagesFailure: 'Failed to show images, please try again'
 }
