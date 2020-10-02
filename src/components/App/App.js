@@ -60,22 +60,22 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/create-image' render={() => (
+          <AuthenticatedRoute user={user} exact path='/create-image' render={() => (
             <ImageCreate msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/images' render={() => (
+          <AuthenticatedRoute user={user} exact path='/images' render={() => (
             <Images msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/create-blog' render={() => (
+          <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/blogs' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/blogs' render={(props) => (
             <Blogs {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/blogs/:blogId' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId' render={(props) => (
             <Blog {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/blogs/:blogId/edit-blog' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/edit-blog' render={(props) => (
             <BlogEdit {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
