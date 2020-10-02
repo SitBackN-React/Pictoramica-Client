@@ -78,6 +78,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/edit-blog' render={(props) => (
             <BlogEdit {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts' render={(props) => (
+            <Blogs {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
         </main>
       </Fragment>
     )
