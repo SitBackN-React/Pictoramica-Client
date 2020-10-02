@@ -35,7 +35,7 @@ const Blog = (props) => {
   }, [])
   const destroy = () => {
     axios({
-      url: `${apiUrl}${props.match.params.blogId}`,
+      url: `${apiUrl}/blogs/${props.match.params.blogId}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Token token=${props.user.token}`
