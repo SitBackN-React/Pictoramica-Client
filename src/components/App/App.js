@@ -14,6 +14,9 @@ import BlogCreate from '../routes/BlogCreate'
 import Blogs from '../routes/Blogs'
 import Blog from '../routes/Blog'
 import BlogEdit from '../routes/BlogEdit'
+import PostCreate from '../routes/PostCreate'
+import Posts from '../routes/Posts'
+import Post from '../routes/Post'
 
 class App extends Component {
   constructor () {
@@ -78,8 +81,14 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/edit-blog' render={(props) => (
             <BlogEdit {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/create-post' render={(props) => (
+            <PostCreate {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts' render={(props) => (
-            <Blogs {...props} msgAlert={this.msgAlert} user={user}/>
+            <Posts {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId' render={(props) => (
+            <Post {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>

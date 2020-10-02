@@ -21,9 +21,9 @@ const PostCreate = props => {
   const handleSubmit = event => {
     event.preventDefault()
     const { msgAlert } = props
-
+    console.log(props)
     axios({
-      url: `${apiUrl}/posts`,
+      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts`,
       method: 'POST',
       headers: {
         'Authorization': `Token token=${props.user.token}`
@@ -46,7 +46,7 @@ const PostCreate = props => {
       })
   }
   if (createdPostId) {
-    return <Redirect to={'/posts'} />
+    return <Redirect to= {`/blogs/${props.match.params.id}/posts`}/>
   }
   return (
     <div>

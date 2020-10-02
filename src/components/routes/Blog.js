@@ -66,10 +66,26 @@ const Blog = (props) => {
       <Redirect to={'/blogs'} />
     )
   }
+
+  const postsJsx = blog.posts.map(post => (
+    <li key={null}>
+      <div className="post-row">
+      </div>
+      <div className="post-row">
+        <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}`}>{post.title}</Link>
+      </div>
+    </li>
+  ))
   return (
     <div className="list-style">
       <h4>{blog.title}</h4>
+      <div className="post-display">
+        {postsJsx}
+      </div>
       <div>
+        <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
+          <button className="btn btn-primary">Create Post</button>
+        </Link>
         <button className="btn btn-danger" onClick={destroy}>Delete Blog</button>
         <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
           <button className="button btn btn-warning">Edit Blog</button>
