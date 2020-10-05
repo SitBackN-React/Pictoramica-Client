@@ -10,6 +10,8 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import ImageCreate from '../routes/ImageCreate'
 import Images from '../routes/Images'
+import ImageEdit from '../routes/ImageEdit'
+import Image from '../routes/Image'
 import BlogCreate from '../routes/BlogCreate'
 import Blogs from '../routes/Blogs'
 import Blog from '../routes/Blog'
@@ -69,6 +71,12 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/images' render={() => (
             <Images msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/images/:imageId/edit-image' render={(props) => (
+            <ImageEdit {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/images/:imageId' render={(props) => (
+            <Image {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
