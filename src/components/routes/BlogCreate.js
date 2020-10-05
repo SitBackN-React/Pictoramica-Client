@@ -11,7 +11,7 @@ const BlogCreate = props => {
     title: ''
   })
   const [createdBlogId, setCreatedBlogId] = useState(null)
-  // when the a blog is created
+  // when the blogform is filled in
   const handleChange = event => {
     // get data from the blog form event
     const updatedField = { [event.target.name]: event.target.value }
