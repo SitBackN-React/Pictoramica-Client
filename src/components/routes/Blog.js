@@ -75,10 +75,13 @@ const Blog = (props) => {
   return (
     <div className="list-style">
       <h4>{blog.title}</h4>
-      <div>
+      <div className="post-display">
         {postsJsx}
       </div>
       <div>
+        <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
+          <button className="btn btn-primary">Create Post</button>
+        </Link>
         <button className="btn btn-danger" onClick={destroy}>Delete Blog</button>
         <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
           <button className="button btn btn-warning">Edit Blog</button>
