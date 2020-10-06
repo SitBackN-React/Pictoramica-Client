@@ -12,6 +12,7 @@ import ImageCreate from '../routes/ImageCreate'
 import Images from '../routes/Images'
 import ImageEdit from '../routes/ImageEdit'
 import Image from '../routes/Image'
+import ImageOther from '../routes/ImageOther'
 import BlogCreate from '../routes/BlogCreate'
 import Blogs from '../routes/Blogs'
 import Blog from '../routes/Blog'
@@ -77,6 +78,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/images/:imageId' render={(props) => (
             <Image {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/images-other' render={(props) => (
+            <ImageOther {...props} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>

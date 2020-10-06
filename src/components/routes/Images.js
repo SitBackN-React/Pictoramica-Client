@@ -23,7 +23,7 @@ const Images = (props) => {
     }, [])
       // sets the response
       .then(res => setImages(res.data.images))
-      // success message if user is viewing all images
+      // success message if user is viewing all lists
       .then(() => msgAlert({
         heading: 'Showing all of your images',
         message: messages.showImagesSuccess,
@@ -46,7 +46,6 @@ const Images = (props) => {
       </div>
       <div>
         <Link to={`/images/${image._id}`}>{image.caption}</Link>
-        <div>{image.tag}</div>
       </div>
     </div>
   ))
