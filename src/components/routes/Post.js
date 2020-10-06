@@ -70,7 +70,7 @@ const Post = props => {
 
   if (deleted) {
     return (
-      <Redirect to={`/blogs/${props.match.params.blogId}/posts`} />
+      <Redirect to={`/blogs/${props.match.params.blogId}`} />
     )
   }
 
