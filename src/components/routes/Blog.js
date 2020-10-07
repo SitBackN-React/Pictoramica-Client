@@ -86,9 +86,6 @@ const Blog = (props) => {
         <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
           <button className="button btn btn-warning">Edit Blog</button>
         </Link>
-        <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
-          <button className="button btn btn-success">Add Post</button>
-        </Link>
       </div>
       <div>
         <Link to={'/blogs'}>Back to blogs</Link>
