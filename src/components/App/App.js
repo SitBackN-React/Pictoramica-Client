@@ -19,6 +19,7 @@ import BlogEdit from '../routes/BlogEdit'
 import PostCreate from '../routes/PostCreate'
 import PostEdit from '../routes/PostEdit'
 import Post from '../routes/Post'
+import CommentCreate from '../routes/CommentCreate'
 
 class App extends Component {
   constructor () {
@@ -97,6 +98,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/edit-post' render={(props) => (
             <PostEdit {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/comment-create' render={(props) => (
+            <CommentCreate {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>
