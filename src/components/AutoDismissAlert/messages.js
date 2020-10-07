@@ -31,5 +31,13 @@ export default {
   deletePostSuccess: 'Deleted Post Successfully',
   deletePostFailure: 'Failed to delete post',
   editPostSuccess: 'Updated post successfully',
-  editPostFailure: 'Failed to update post'
+  editPostFailure: 'Failed to update post',
+  createCommentSuccess: 'Comment created successfully',
+  createCommentFailure: 'Failed to create comment',
+  showCommentsSuccess: 'You are now viewing all of your comments',
+  showCommentsFailure: 'Failed to show comments, please try again',
+  deleteCommentSuccess: 'Deleted Comment Successfully',
+  deleteCommentFailure: 'Failed to delete comment',
+  editCommentSuccess: 'Updated comment successfully',
+  editCommentFailure: 'Failed to update comment'
 }
