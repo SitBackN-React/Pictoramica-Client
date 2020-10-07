@@ -73,12 +73,24 @@ const Post = props => {
       <Redirect to={`/blogs/${props.match.params.blogId}`} />
     )
   }
+  console.log(post)
+  const commentsJsx = post.comments.map(comment => (
+    <li key={comment._id}>
+      <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${comment._id}`}>{comment.remark}</Link>
+    </li>
+  ))
 
   return (
     <div>
       <h4>{post.title}</h4>
       <p>{post.content}</p>
+      <div className="post-display">
+        {commentsJsx}
+      </div>
       <div>
+        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-create`}>
+          <button className="btn btn-primary">Add Comment</button>
+        </Link>
         <button className="btn btn-danger" onClick={destroy}>Delete Post</button>
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/edit-post`}>
           <button className="button btn btn-warning">Edit Post</button>
