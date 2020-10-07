@@ -24,16 +24,21 @@ const CommentCreate = props => {
     const { msgAlert } = props
 
     axios({
-      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
+      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments`,
       method: 'POST',
       headers: {
         'Authorization': `Token token=${props.user.token}`
       },
       data: { comment }
     })
-
       .then(res => {
-        const newCommentId = res.data.blog.post.comments[res.data.blog.post.comments.length - 1]._id
+        console.log(res)
+        return res
+      })
+      .then(res => {
+        console.log(res.data.blog.posts.comments.length)
+        const newCommentId = res.data.blog.posts.comments[res.data.blog.posts.comments.length - 1]._id
+        console.log(newCommentId)
         return newCommentId
       })
       .then(newCommentId => setCreatedCommentId(newCommentId))
@@ -51,8 +56,10 @@ const CommentCreate = props => {
         })
       })
   }
+  console.log(createdCommentId)
+  console.log(props)
   if (createdCommentId) {
-    return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`} />
+    return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`}/>
   }
 
   return (
