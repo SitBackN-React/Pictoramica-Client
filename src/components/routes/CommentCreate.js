@@ -23,6 +23,10 @@ const CommentCreate = props => {
 
     const { msgAlert } = props
 
+    console.log(props)
+    const postId = `${props.match.params.postId}`
+    console.log(postId)
+
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments`,
       method: 'POST',
@@ -32,13 +36,19 @@ const CommentCreate = props => {
       data: { comment }
     })
       .then(res => {
-        console.log(res)
-        return res
-      })
-      .then(res => {
-        console.log(res.data.blog.posts.comments.length)
-        const newCommentId = res.data.blog.posts.comments[res.data.blog.posts.comments.length - 1]._id
-        console.log(newCommentId)
+        const postArray = res.data.blog.posts
+        const findPostIndexNum = function (postArray) {
+          for (let i = 0; i < postArray.length; i++) {
+            if (postArray[i]._id === postId) {
+              return i
+            } else {
+              return -1
+            }
+          }
+        }
+        const postIndexNum = findPostIndexNum(postArray)
+        const mostRecentCommentIndexNum = res.data.blog.posts[postIndexNum].comments.length - 1
+        const newCommentId = res.data.blog.posts[postIndexNum].comments[mostRecentCommentIndexNum]._id
         return newCommentId
       })
       .then(newCommentId => setCreatedCommentId(newCommentId))
