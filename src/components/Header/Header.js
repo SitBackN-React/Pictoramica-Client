@@ -11,6 +11,7 @@ const authenticatedOptions = (
     <Nav.Link href="#blogs">View All Blogs</Nav.Link>
     <Nav.Link href="#images">View My Images</Nav.Link>
     <Nav.Link href="#images-other">View Others Images</Nav.Link>
+    <Nav.Link href="#text-editor">Text Editor</Nav.Link>
   </Fragment>
 )
 
