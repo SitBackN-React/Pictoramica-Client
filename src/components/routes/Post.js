@@ -9,6 +9,7 @@ import messages from './../AutoDismissAlert/messages'
 const Post = props => {
   const [post, setPost] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  // const [setComment] = useState(null)
   const { msgAlert } = props
 
   console.log(props)
@@ -40,6 +41,7 @@ const Post = props => {
         })
       })
   }, [])
+  console.log(props)
   const destroy = () => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
@@ -64,6 +66,61 @@ const Post = props => {
       })
   }
 
+  const remove = () => {
+    axios({
+      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
+    })
+      .then(res => {
+        const postId = `${props.match.params.postId}`
+        const postArray = res.data.blog.posts
+        const findPostIndexNum = function (postArray) {
+          for (let i = 0; i < postArray.length; i++) {
+            if (postArray[i]._id === postId) {
+              return i
+            } else {
+              return -1
+            }
+          }
+        }
+        const postIndexNum = findPostIndexNum(postArray)
+        const commentId = `${props.match.params.commentId}`
+        const commentArray = res.data.blog.postIndexNum.comments
+        const findCommentIndexNum = function () {
+          for (let i = 0; i < commentArray.length; i++) {
+            if (commentArray[i]._id === commentId) {
+              return i
+            } else {
+              return -1
+            }
+          }
+        }
+        const commentIndexNum = findCommentIndexNum(commentArray)
+        const selectedCommentId = res.data.blog.posts[commentIndexNum].comments.length - 1
+        const deletedCommentId = res.data.blog.posts[postIndexNum].comments[selectedCommentId]._id
+        // const mostRecentCommentIndexNum = res.data.blog.posts[postIndexNum].comments.length - 1
+        // const deletedCommentId = res.data.blog.posts[postIndexNum].comments[mostRecentCommentIndexNum]._id
+        return deletedCommentId
+      })
+      .then(() => setDeleted(true))
+      .then(() => msgAlert({
+        heading: 'Comment Deleted',
+        message: messages.deleteCommentSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        // setComment({ remark: '' })
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          message: messages.deleteCommentFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
   if (!post) {
     return <p>Loading...</p>
   }
@@ -77,6 +134,7 @@ const Post = props => {
   const commentsJsx = post.comments.map(comment => (
     <li key={comment._id}>
       <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${comment._id}`}>{comment.remark}</Link>
+      <button className="btn btn-danger" onClick={remove}>Delete Comment</button>
     </li>
   ))
 
