@@ -6,10 +6,10 @@ import apiUrl from './../../apiConfig'
 
 import messages from './../AutoDismissAlert/messages'
 
-const Images = (props) => {
+const MyImages = (props) => {
   // starts the image state as an empty array
   // array will hold the images
-  const [images, setImages] = useState([])
+  const [myImages, setMyImages] = useState([])
 
   const { msgAlert } = props
   // GET request to get all of the images user has created
@@ -22,7 +22,7 @@ const Images = (props) => {
       }
     }, [])
       // sets the response
-      .then(res => setImages(res.data.images))
+      .then(res => setMyImages(res.data.images))
       // success message if user is viewing all lists
       .then(() => msgAlert({
         heading: 'Showing all of your images',
@@ -30,7 +30,7 @@ const Images = (props) => {
         variant: 'primary'
       }))
       .catch(error => {
-        setImages({ tag: '', caption: '', imageUrl: '', like: 0, forSale: false })
+        setMyImages({ tag: '', caption: '', imageUrl: '', like: 0, forSale: false })
         msgAlert({
           heading: 'Failed to show your images ' + error.message,
           message: messages.showImagesFailure,
@@ -39,7 +39,7 @@ const Images = (props) => {
       })
   }, [])
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
-  const imagesJsx = images.map(image => (
+  const imagesJsx = myImages.map(image => (
     <div key={image._id}>
       <div className="image-box">
         {image.imageUrl}
@@ -66,4 +66,4 @@ const Images = (props) => {
   )
 }
 
-export default Images
+export default MyImages

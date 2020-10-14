@@ -6,36 +6,38 @@ import apiUrl from './../../apiConfig'
 
 import messages from './../AutoDismissAlert/messages'
 
-const Blogs = (props) => {
-  const [blogs, setBlogs] = useState([])
-  // get msgAlerts from props
+const MyBlogs = (props) => {
+  const [myBlogs, setMyBlogs] = useState([])
+
   const { msgAlert } = props
-  // GET request to API for all of the blogs
+
   useEffect(() => {
     axios({
-      url: `${apiUrl}/blogs`,
+      url: `${apiUrl}/my-blogs`,
       method: 'GET',
       headers: {
         'Authorization': `Token token=${props.user.token}`
       }
-    })
-      .then(res => setBlogs(res.data.blogs))
+    }, [])
+
+      .then(res => setMyBlogs(res.data.blogs))
+
       .then(() => msgAlert({
-        heading: 'Showing all blogs',
-        message: messages.showBlogsSuccess,
+        heading: 'Showing all of your blogs',
+        message: messages.showMyBlogsSuccess,
         variant: 'primary'
       }))
       .catch(error => {
-        setBlogs({ title: '' })
+        setMyBlogs({ title: '' })
         msgAlert({
-          heading: 'Failed to show all blogs ' + error.message,
-          message: messages.showBlogsFailure,
+          heading: 'Failed to show your blogs ' + error.message,
+          message: messages.showMyBlogsFailure,
           variant: 'danger'
         })
       })
   }, [])
 
-  const blogsJsx = blogs.map(blog => (
+  const blogsJsx = myBlogs.map(blog => (
     <div key={blog._id}>
       <div>
         <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
@@ -45,16 +47,17 @@ const Blogs = (props) => {
 
   return (
     <div>
-      <h1>My Blogs</h1>
-      <br />
+      <h4>My Blogs</h4>
       <div>
-        {blogsJsx}
+        <div>
+          {blogsJsx}
+        </div>
       </div>
       <Link to={'/create-blog'}>
-        <button variant="primary">Add Blog</button>
+        <button className="button btn btn-primary btn-lg">Create New Blog</button>
       </Link>
     </div>
   )
 }
 
-export default Blogs
+export default MyBlogs

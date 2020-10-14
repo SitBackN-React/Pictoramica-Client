@@ -9,14 +9,15 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import ImageCreate from '../routes/ImageCreate'
-import Images from '../routes/Images'
+import MyImages from '../routes/MyImages'
 import ImageEdit from '../routes/ImageEdit'
 import Image from '../routes/Image'
-import ImageOther from '../routes/ImageOther'
+import AllImages from '../routes/AllImages'
 import BlogCreate from '../routes/BlogCreate'
-import Blogs from '../routes/Blogs'
+import AllBlogs from '../routes/AllBlogs'
 import Blog from '../routes/Blog'
 import BlogEdit from '../routes/BlogEdit'
+import MyBlogs from '../routes/MyBlogs'
 import PostCreate from '../routes/PostCreate'
 import PostEdit from '../routes/PostEdit'
 import Post from '../routes/Post'
@@ -71,8 +72,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/create-image' render={() => (
             <ImageCreate msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/images' render={() => (
-            <Images msgAlert={this.msgAlert} user={user}/>
+          <AuthenticatedRoute user={user} exact path='/my-images' render={() => (
+            <MyImages msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/images/:imageId/edit-image' render={(props) => (
             <ImageEdit {...props} msgAlert={this.msgAlert} user={user}/>
@@ -80,17 +81,20 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/images/:imageId' render={(props) => (
             <Image {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/images-other' render={(props) => (
-            <ImageOther {...props} user={user} />
+          <AuthenticatedRoute user={user} exact path='/all-images' render={(props) => (
+            <AllImages {...props} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/blogs' render={(props) => (
-            <Blogs {...props} msgAlert={this.msgAlert} user={user}/>
+          <AuthenticatedRoute user={user} exact path='/all-blogs' render={(props) => (
+            <AllBlogs {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId' render={(props) => (
             <Blog {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/my-blogs' render={(props) => (
+            <MyBlogs {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/edit-blog' render={(props) => (
             <BlogEdit {...props} msgAlert={this.msgAlert} user={user}/>
