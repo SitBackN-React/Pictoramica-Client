@@ -4,24 +4,28 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 
-// import messages from './../AutoDismissAlert/messages'
+import messages from './../AutoDismissAlert/messages'
 
-const ImageOther = (props) => {
-  const [otherImages, setOtherImages] = useState([])
+const AllImages = (props) => {
+  const [allImages, setAllImages] = useState([])
 
-  // const { msgAlert } = props
+  const { msgAlert } = props
+
   useEffect(() => {
     axios({
-      url: `${apiUrl}/images-other`,
+      url: `${apiUrl}/all-images`,
       method: 'GET'
     }, [])
-      .then(res => {
-        return setOtherImages(res.data.images)
-      })
+      .then(res => setAllImages(res.data.images))
+      .then(() => msgAlert({
+        heading: 'Showing all images',
+        message: messages.showAllImagesSuccess,
+        variant: 'primary'
+      }))
       .catch(console.error)
-  }, [])
+  })
 
-  const imagesJsx = otherImages.map(image => (
+  const imagesJsx = allImages.map(image => (
     <div className="list-group" key={image.imageUrl}>
       <ul>
         <li className="list-group-item">
@@ -42,7 +46,7 @@ const ImageOther = (props) => {
 
   return (
     <div>
-      <h4>Others Images</h4>
+      <h4>All Images</h4>
       <div>
         {imagesJsx}
       </div>
@@ -50,4 +54,4 @@ const ImageOther = (props) => {
   )
 }
 
-export default ImageOther
+export default AllImages
