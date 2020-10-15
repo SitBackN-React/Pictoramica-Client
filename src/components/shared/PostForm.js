@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+
 const PostForm = ({ post, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <div>
@@ -17,7 +16,7 @@ const PostForm = ({ post, handleSubmit, handleChange, cancelPath }) => (
     </div>
     <div>
       <label>Post Content</label>
-      <ReactQuill
+      <input
         placeholder="Ex: I believe that..."
         value={post.content || ''}
         name="content"

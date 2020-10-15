@@ -14,7 +14,7 @@ const PostCreate = props => {
   const [createdPostId, setCreatedPostId] = useState(null)
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
-    console.log(event.target)
+
     const editedPost = Object.assign({}, post, updatedField)
     setPost(editedPost)
   }
