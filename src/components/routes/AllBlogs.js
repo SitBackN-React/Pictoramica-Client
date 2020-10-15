@@ -38,7 +38,7 @@ const AllBlogs = (props) => {
   const blogsJsx = allBlogs.map(blog => (
     <div key={blog._id}>
       <div>
-        {blog.title}
+        <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
       </div>
     </div>
   ))
