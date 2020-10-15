@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-
 const PostForm = ({ post, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <div>
@@ -18,17 +17,16 @@ const PostForm = ({ post, handleSubmit, handleChange, cancelPath }) => (
     </div>
     <div>
       <label>Post Content</label>
-      <textarea
+      <ReactQuill
         placeholder="Ex: I believe that..."
         value={post.content || ''}
         name="content"
         onChange={handleChange}
         cols="25"
         rows="10"
-      ></textarea>
+      />
     </div>
     <br />
-    <ReactQuill theme="snow" />
     <button type="submit" className="btn btn-primary">Submit</button>
     <Link to={cancelPath}>
       <button className="btn btn-danger">Cancel</button>
