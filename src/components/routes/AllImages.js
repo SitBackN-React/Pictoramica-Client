@@ -23,10 +23,10 @@ const AllImages = (props) => {
         variant: 'primary'
       }))
       .catch(console.error)
-  })
+  }, [])
 
   const imagesJsx = allImages.map(image => (
-    <div className="list-group" key={image.imageUrl}>
+    <div className="list-group" key={image._id}>
       <ul>
         <li className="list-group-item">
           {/* // <div>{`/images/${image._id}`}</div> */}
