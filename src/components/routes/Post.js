@@ -5,11 +5,12 @@ import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
+import CommentDelete from './CommentDelete'
 
 const Post = props => {
   const [post, setPost] = useState(null)
   const [deleted, setDeleted] = useState(false)
-  const [removed, setRemoved] = useState(false)
+  // const [removed, setRemoved] = useState(false)
   // const [setComment] = useState(null)
   const { msgAlert } = props
 
@@ -67,29 +68,29 @@ const Post = props => {
       })
   }
 
-  const remove = (id) => {
-    axios({
-      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${id}`,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Token token=${props.user.token}`
-      }
-    })
-      .then(() => setRemoved(true))
-      .then(() => msgAlert({
-        heading: 'Comment Deleted',
-        message: messages.deleteCommentSuccess,
-        variant: 'success'
-      }))
-      .catch(error => {
-        // setComment({ remark: '' })
-        msgAlert({
-          heading: 'Failed to delete' + error.message,
-          message: messages.deleteCommentFailure,
-          variant: 'danger'
-        })
-      })
-  }
+  // const remove = (id) => {
+  //   axios({
+  //     url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${id}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Authorization': `Token token=${props.user.token}`
+  //     }
+  //   })
+  //     .then(() => setRemoved(true))
+  //     .then(() => msgAlert({
+  //       heading: 'Comment Deleted',
+  //       message: messages.deleteCommentSuccess,
+  //       variant: 'success'
+  //     }))
+  //     .catch(error => {
+  //       // setComment({ remark: '' })
+  //       msgAlert({
+  //         heading: 'Failed to delete' + error.message,
+  //         message: messages.deleteCommentFailure,
+  //         variant: 'danger'
+  //       })
+  //     })
+  // }
 
   if (!post) {
     return <p>Loading...</p>
@@ -100,17 +101,17 @@ const Post = props => {
       <Redirect to={`/blogs/${props.match.params.blogId}`} />
     )
   }
-  if (removed) {
-    return (
-      <Redirect to={`/blogs/${props.match.params.blogId}`} />
-    )
-  }
+  // if (removed) {
+  //   return (
+  //     <Redirect to={`/blogs/${props.match.params.blogId}`} />
+  //   )
+  // }
 
   const commentsJsx = post.comments.map(comment => (
     <li key={comment._id}>
       <p>{comment.remark}</p>
       <button className="btn btn-danger" onClick={() => {
-        remove(comment._id)
+        CommentDelete(comment._id)
       }}>Delete Comment</button>
     </li>
   ))
