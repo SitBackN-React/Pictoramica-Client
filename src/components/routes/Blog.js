@@ -72,7 +72,7 @@ const Blog = (props) => {
       <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}`}>{post.title}</Link>
     </li>
   ))
-
+  console.log(blog)
   return (
     <div className="list-style">
       <h4>{blog.title}</h4>
@@ -80,13 +80,25 @@ const Blog = (props) => {
         {postsJsx}
       </div>
       <div>
-        <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
-          <button id="button" className="btn btn-primary">Create Post</button>
-        </Link>
-        <button className="btn btn-danger" onClick={destroy}>Delete Blog</button>
-        <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
-          <button className="button btn btn-warning">Edit Blog</button>
-        </Link>
+        {props.user._id === blog.owner ? (
+          <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
+            <button className="btn btn-primary" style={{ display: 'inline' }}>Create Post</button>
+          </Link>
+        ) : (
+          <button style={{ display: 'none' }}></button>
+        )}
+        {props.user._id === blog.owner ? (
+          <button className="btn btn-danger" onClick={destroy} style={{ display: 'inline' }}>Delete Blog</button>
+        ) : (
+          <button style={{ display: 'none' }}></button>
+        )}
+        {props.user._id === blog.owner ? (
+          <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
+            <button className="button btn btn-warning" style={{ display: 'inline' }}>Edit Blog</button>
+          </Link>
+        ) : (
+          <button style={{ display: 'none' }}></button>
+        )}
       </div>
       <div>
         <Link to={'/all-blogs'}>Back to blogs</Link>
