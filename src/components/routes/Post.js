@@ -107,14 +107,16 @@ const Post = props => {
   //   )
   // }
 
-  const commentsJsx = post.comments.map(comment => (
+  const commentsJsx = post.comments.map(comment =>
+    <CommentDelete {...props}
     <li key={comment._id}>
       <p>{comment.remark}</p>
       <button className="btn btn-danger" onClick={() => {
-        CommentDelete(comment._id)
+        handleClick()
       }}>Delete Comment</button>
     </li>
-  ))
+    />
+  )
 
   return (
     <div>

@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import messages from './../AutoDismissAlert/messages'
-import CommentForm from './../shared/CommentForm'
+// import messages from './../AutoDismissAlert/messages'
+// import CommentForm from './../shared/CommentForm'
 
 const CommentDelete = (props) => {
-  const { msgAlert } = props
+  // const { msgAlert } = props
   const [deleted, setDeleted] = useState({
-    remark: props.comment.remark
+    remark: props.remark
   })
-  const handleSubmit = (id) => {
+  const handleClick = (event, id) => {
     // event.preventDefault()
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${id}`,
@@ -20,11 +20,11 @@ const CommentDelete = (props) => {
       }
     })
       .then(() => setDeleted(true))
-      .then(() => msgAlert({
-        heading: 'Comment Deleted',
-        message: messages.deleteCommentSuccess,
-        variant: 'success'
-      }))
+      // .then(() => msgAlert({
+      //   heading: 'Comment Deleted',
+      //   message: messages.deleteCommentSuccess,
+      //   variant: 'success'
+      // }))
       .catch(console.error)
   }
   if (!props) {
@@ -37,13 +37,10 @@ const CommentDelete = (props) => {
     )
   }
   return (
-    <div>
-      <CommentForm
-        comment={deleted}
-        handleSubmit={handleSubmit}
-        cancelPath={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`}
-      />
-    </div>
+    <button className="btn btn-danger" onClick={(event) => {
+      handleClick(event)
+    }}>
+    </button>
   )
 }
 
