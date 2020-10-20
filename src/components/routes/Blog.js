@@ -33,6 +33,7 @@ const Blog = (props) => {
         })
       })
   }, [])
+
   const destroy = () => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}`,

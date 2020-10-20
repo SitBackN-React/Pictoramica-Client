@@ -20,7 +20,7 @@ const MyImages = (props) => {
       headers: {
         'Authorization': `Token token=${props.user.token}`
       }
-    }, [])
+    })
       // sets the response
       .then(res => setMyImages(res.data.images))
       // success message if user is viewing all lists
