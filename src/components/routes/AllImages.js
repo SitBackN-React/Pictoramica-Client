@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
+import ImageLike from './ImageLike'
 
 import messages from './../AutoDismissAlert/messages'
 
@@ -15,7 +16,7 @@ const AllImages = (props) => {
     axios({
       url: `${apiUrl}/all-images`,
       method: 'GET'
-    }, [])
+    })
       .then(res => setAllImages(res.data.images))
       .then(() => msgAlert({
         heading: 'Showing all images',
@@ -25,24 +26,7 @@ const AllImages = (props) => {
       .catch(console.error)
   }, [])
 
-  const imagesJsx = allImages.map(image => (
-    <div className="list-group" key={image._id}>
-      <ul>
-        <li className="list-group-item">
-          {/* // <div>{`/images/${image._id}`}</div> */}
-          <div>
-              Url: {image.imageUrl}
-          </div>
-          <div>
-            Caption: {image.caption}
-          </div>
-          <div>
-            Tag: {image.tag}
-          </div>
-        </li>
-      </ul>
-    </div>
-  ))
+  const imagesJsx = allImages.map(image => <ImageLike {...props} key={image._id} image={image} />)
 
   return (
     <div>

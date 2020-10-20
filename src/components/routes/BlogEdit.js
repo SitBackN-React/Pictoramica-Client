@@ -23,6 +23,7 @@ const BlogEdit = props => {
       .then(res => setBlog(res.data.blog))
       .catch(console.error)
   }, [])
+
   const handleChange = event => {
     event.persist()
     setBlog(prevBlog => {
@@ -31,6 +32,7 @@ const BlogEdit = props => {
       return editedBlog
     })
   }
+
   const handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -56,9 +58,11 @@ const BlogEdit = props => {
         })
       })
   }
+
   if (updated) {
     return <Redirect to={`/blogs/${props.match.params.blogId}`} />
   }
+
   return (
     <div>
       <BlogEditForm

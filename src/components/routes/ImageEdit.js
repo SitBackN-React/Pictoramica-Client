@@ -27,6 +27,7 @@ const ImageEdit = props => {
       .then(res => setImage(res.data.image))
       .catch(console.error)
   }, [])
+
   const handleChange = event => {
     event.persist()
     setImage(prevImage => {
@@ -35,6 +36,7 @@ const ImageEdit = props => {
       return editedImage
     })
   }
+
   const handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -66,9 +68,11 @@ const ImageEdit = props => {
         })
       })
   }
+
   if (updated) {
     return <Redirect to={`/images/${props.match.params.imageId}`} />
   }
+
   return (
     <div>
       <ImageForm

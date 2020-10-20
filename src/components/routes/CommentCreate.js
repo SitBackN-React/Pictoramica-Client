@@ -23,7 +23,6 @@ const CommentCreate = props => {
 
     const { msgAlert } = props
 
-    console.log(props)
     const postId = `${props.match.params.postId}`
     console.log(postId)
 

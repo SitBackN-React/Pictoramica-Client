@@ -18,10 +18,8 @@ const MyBlogs = (props) => {
       headers: {
         'Authorization': `Token token=${props.user.token}`
       }
-    }, [])
-
+    })
       .then(res => setMyBlogs(res.data.blogs))
-
       .then(() => msgAlert({
         heading: 'Showing all of your blogs',
         message: messages.showMyBlogsSuccess,
