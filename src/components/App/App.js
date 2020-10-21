@@ -23,6 +23,7 @@ import PostEdit from '../routes/PostEdit'
 import Post from '../routes/Post'
 import CommentCreate from '../routes/CommentCreate'
 import TextEditor from '../routes/TextEditor'
+import CommentDelete from '../routes/CommentDelete'
 
 class App extends Component {
   constructor () {
@@ -113,6 +114,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/text-editor' render={(props) => (
             <TextEditor {...props} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/comment-delete' render={(props) => (
+            <CommentDelete {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>
