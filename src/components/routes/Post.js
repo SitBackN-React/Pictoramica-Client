@@ -1,17 +1,14 @@
-
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
-import CommentDelete from './CommentDelete'
 
 const Post = props => {
   const [post, setPost] = useState(null)
   const [deleted, setDeleted] = useState(false)
-  // const [removed, setRemoved] = useState(false)
-  // const [setComment] = useState(null)
+
   const { msgAlert } = props
 
   console.log(props)
@@ -68,30 +65,6 @@ const Post = props => {
       })
   }
 
-  // const remove = (id) => {
-  //   axios({
-  //     url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${id}`,
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Authorization': `Token token=${props.user.token}`
-  //     }
-  //   })
-  //     .then(() => setRemoved(true))
-  //     .then(() => msgAlert({
-  //       heading: 'Comment Deleted',
-  //       message: messages.deleteCommentSuccess,
-  //       variant: 'success'
-  //     }))
-  //     .catch(error => {
-  //       // setComment({ remark: '' })
-  //       msgAlert({
-  //         heading: 'Failed to delete' + error.message,
-  //         message: messages.deleteCommentFailure,
-  //         variant: 'danger'
-  //       })
-  //     })
-  // }
-
   if (!post) {
     return <p>Loading...</p>
   }
@@ -101,22 +74,13 @@ const Post = props => {
       <Redirect to={`/blogs/${props.match.params.blogId}`} />
     )
   }
-  // if (removed) {
-  //   return (
-  //     <Redirect to={`/blogs/${props.match.params.blogId}`} />
-  //   )
-  // }
 
-  const commentsJsx = post.comments.map(comment =>
-    <CommentDelete {...props}
-    <li key={comment._id}>
+  const commentsJsx = post.comments.map(comment => (
+    <li className="comment-list" key={comment._id}>
+      <p>Posted By: {props.user._id}</p>
       <p>{comment.remark}</p>
-      <button className="btn btn-danger" onClick={() => {
-        handleClick()
-      }}>Delete Comment</button>
     </li>
-    />
-  )
+  ))
 
   return (
     <div>
@@ -132,6 +96,9 @@ const Post = props => {
         <button className="btn btn-danger" onClick={destroy}>Delete Post</button>
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/edit-post`}>
           <button className="button btn btn-warning">Edit Post</button>
+        </Link>
+        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-delete`}>
+          <button className="btn btn-danger">Delete Comment</button>
         </Link>
       </div>
       <div>

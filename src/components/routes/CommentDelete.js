@@ -1,17 +1,47 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
-// import messages from './../AutoDismissAlert/messages'
-// import CommentForm from './../shared/CommentForm'
 
-const CommentDelete = (props) => {
-  // const { msgAlert } = props
-  const [deleted, setDeleted] = useState({
-    remark: props.remark
-  })
-  const handleClick = (event, id) => {
-    // event.preventDefault()
+import apiUrl from '../../apiConfig'
+import messages from './../AutoDismissAlert/messages'
+
+const CommentDelete = props => {
+  const [post, setPost] = useState(null)
+  const [removed, setRemoved] = useState(false)
+
+  const { msgAlert } = props
+
+  console.log(props)
+
+  useEffect(() => {
+    axios({
+      url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
+    })
+      .then(res => {
+        console.log(res)
+        return res
+      })
+      .then(res => setPost(res.data.post))
+      .then(() => msgAlert({
+        heading: 'Showing selected post',
+        message: messages.showPostSuccess,
+        variant: 'primary'
+      }))
+      .catch(error => {
+        setPost({ title: '', content: '' })
+        msgAlert({
+          heading: 'Failed to show post' + error.message,
+          message: messages.showPostFailure,
+          variant: 'danger'
+        })
+      })
+  }, [])
+
+  const remove = (id) => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments/${id}`,
       method: 'DELETE',
@@ -19,28 +49,61 @@ const CommentDelete = (props) => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(() => setDeleted(true))
-      // .then(() => msgAlert({
-      //   heading: 'Comment Deleted',
-      //   message: messages.deleteCommentSuccess,
-      //   variant: 'success'
-      // }))
-      .catch(console.error)
+      .then(() => setRemoved(true))
+      .then(() => msgAlert({
+        heading: 'Comment Deleted',
+        message: messages.deleteCommentSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          message: messages.deleteCommentFailure,
+          variant: 'danger'
+        })
+      })
   }
-  if (!props) {
+
+  if (!post) {
     return <p>Loading...</p>
   }
 
-  if (deleted) {
+  if (removed) {
     return (
-      <Redirect to={`/blogs/${props.match.params.blogId}`} />
+      <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`} />
     )
   }
+
+  console.log(props)
+
+  const commentsJsx = post.comments.map(comment => (
+    <li className="comment-list" key={comment._id}>
+      <p>{comment.remark}</p>
+      <button className="btn btn-danger" onClick={() => {
+        remove(comment._id)
+      }}>Delete</button>
+    </li>
+  ))
+
   return (
-    <button className="btn btn-danger" onClick={(event) => {
-      handleClick(event)
-    }}>
-    </button>
+    <div>
+      <h4>{post.title}</h4>
+      <p>{post.content}</p>
+      <div className="post-display">
+        {commentsJsx}
+      </div>
+      <div>
+        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-create`}>
+          <button className="btn btn-primary">Add Comment</button>
+        </Link>
+        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/edit-post`}>
+          <button className="button btn btn-warning">Edit Post</button>
+        </Link>
+      </div>
+      <div>
+        <Link to={`/blogs/${props.match.params.blogId}`}>Back to posts</Link>
+      </div>
+    </div>
   )
 }
 

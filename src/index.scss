@@ -3,7 +3,7 @@
 .image-box {
   width: 20%;
   height: 175px;
-  border: 2px solid black;
+  border: 2px solid #000000;
 }
 
 .DraftEditor-root {
@@ -15,4 +15,12 @@
   width: 30px;
   height: 30px;
   margin: 5px 15px 2px;
+}
+
+.comment-list {
+  list-style: none;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  margin: 25px 15px;
+  width: 50%
 }
