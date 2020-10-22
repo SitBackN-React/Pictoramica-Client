@@ -67,7 +67,6 @@ const Blog = (props) => {
       <Redirect to={'/all-blogs'} />
     )
   }
-
   const postsJsx = blog.posts.map(post => (
     <li key={post._id}>
       <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}`}>{post.title}</Link>
@@ -102,7 +101,9 @@ const Blog = (props) => {
         )}
       </div>
       <div>
-        <Link to={'/all-blogs'}>Back to blogs</Link>
+        <button className="btn btn-primary" type="button" onClick={() => props.history.goBack()}>
+      Go back
+        </button>
       </div>
     </div>
   )
