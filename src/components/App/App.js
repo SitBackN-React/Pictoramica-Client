@@ -83,7 +83,7 @@ class App extends Component {
             <Image {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/all-images' render={(props) => (
-            <AllImages {...props} user={user} />
+            <AllImages {...props} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
