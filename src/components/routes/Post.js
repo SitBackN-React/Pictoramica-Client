@@ -32,7 +32,7 @@ const Post = props => {
         variant: 'primary'
       }))
       .catch(error => {
-        setPost({ title: '', content: '' })
+        setPost({ title: '', content: '', like: 0 })
         msgAlert({
           heading: 'Failed to show post' + error.message,
           message: messages.showPostFailure,
