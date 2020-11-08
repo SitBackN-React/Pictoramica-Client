@@ -6,9 +6,14 @@ import AllBlogs from './AllBlogs'
 
 const HomePage = (props) => {
   return (
-    <div>
-      <AllImages />
-    </div>
+    <React.Fragment>
+      <div>
+        <AllImages />
+      </div>
+      <div>
+        <AllBlogs />
+      </div>
+    </React.Fragment>
   )
 }
 
