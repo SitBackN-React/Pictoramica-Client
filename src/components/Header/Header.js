@@ -1,18 +1,23 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#change-password">Change Password</Nav.Link>
-    <Nav.Link href="#sign-out">Sign Out</Nav.Link>
-    <Nav.Link href="#create-image">Create Image</Nav.Link>
-    <Nav.Link href="#create-blog">Create Blog</Nav.Link>
-    <Nav.Link href="#all-blogs">View All Blogs</Nav.Link>
-    <Nav.Link href="#my-blogs">View My Blogs</Nav.Link>
-    <Nav.Link href="#my-images">View My Images</Nav.Link>
-    <Nav.Link href="#all-images">View All Images</Nav.Link>
-    <Nav.Link href="#text-editor">Text Editor</Nav.Link>
+    <DropdownButton id="dropdown-item-button" title="Menu Options">
+      <Dropdown.Item href="#home-page">Home</Dropdown.Item>
+      <Dropdown.Item href="#change-password">Change Password</Dropdown.Item>
+      <Dropdown.Item href="#sign-out">Sign Out</Dropdown.Item>
+      <Dropdown.Item href="#create-image">Create Image</Dropdown.Item>
+      <Dropdown.Item href="#create-blog">Create Blog</Dropdown.Item>
+      <Dropdown.Item href="#all-blogs">View All Blogs</Dropdown.Item>
+      <Dropdown.Item href="#my-blogs">View My Blogs</Dropdown.Item>
+      <Dropdown.Item href="#my-images">View My Images</Dropdown.Item>
+      <Dropdown.Item href="#text-editor">Text Editor</Dropdown.Item>
+    </DropdownButton>
+
   </Fragment>
 )
 
@@ -22,12 +27,12 @@ const unauthenticatedOptions = (
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
   </Fragment>
 )
-
-const alwaysOptions = (
-  <Fragment>
-    <Nav.Link to="/">Home</Nav.Link>
-  </Fragment>
-)
+//
+// const alwaysOptions = (
+//   <Fragment>
+//     <Nav.Link to="/home-page">Home</Nav.Link>
+//   </Fragment>
+// )
 
 const Header = ({ user }) => (
   <Navbar bg="primary" variant="dark" expand="md">
@@ -38,7 +43,6 @@ const Header = ({ user }) => (
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
         { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-        { alwaysOptions }
         { user ? authenticatedOptions : unauthenticatedOptions }
       </Nav>
     </Navbar.Collapse>
