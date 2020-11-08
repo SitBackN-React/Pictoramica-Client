@@ -13,11 +13,8 @@ const AllBlogs = (props) => {
   // GET request to API for all of the blogs
   useEffect(() => {
     axios({
-      url: `${apiUrl}/blogs`,
-      method: 'GET',
-      headers: {
-        'Authorization': `Token token=${props.user.token}`
-      }
+      url: `${apiUrl}/all-blogs`,
+      method: 'GET'
     })
       .then(res => setAllBlogs(res.data.blogs))
       .then(() => msgAlert({
@@ -25,14 +22,15 @@ const AllBlogs = (props) => {
         message: messages.showBlogsSuccess,
         variant: 'primary'
       }))
-      .catch(error => {
-        setAllBlogs({ title: '' })
-        msgAlert({
-          heading: 'Failed to show all blogs ' + error.message,
-          message: messages.showBlogsFailure,
-          variant: 'danger'
-        })
-      })
+      // .catch(error => {
+      //   setAllBlogs({ title: '' })
+      //   msgAlert({
+      //     heading: 'Failed to show all blogs ' + error.message,
+      //     message: messages.showBlogsFailure,
+      //     variant: 'danger'
+      //   })
+      // })
+      .catch(console.error)
   }, [])
 
   const blogsJsx = allBlogs.map(blog => (
