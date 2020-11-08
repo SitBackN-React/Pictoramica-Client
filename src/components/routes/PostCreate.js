@@ -44,7 +44,7 @@ const PostCreate = props => {
         variant: 'success'
       }))
       .catch(error => {
-        setPost({ tite: '', content: '' })
+        setPost({ tite: '', content: '', like: 0 })
         msgAlert({
           heading: 'Create post failed: ' + error.message,
           message: messages.createPostFailure,
