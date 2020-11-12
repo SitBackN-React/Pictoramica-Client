@@ -48,7 +48,7 @@ const ImageLike = (props) => {
   return (
     <div key={props.image._id}>
       <div className="image-box">
-        <Link to={`/lists/${props.image._id}`}>{props.image.imageUrl}</Link>
+        <Link to={`/images/${props.image._id}`}>{props.image.imageUrl}</Link>
       </div>
       <div>
         <p>Caption: {props.image.caption}</p>

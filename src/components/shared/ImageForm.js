@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ImageForm = ({ image, handleSubmit, handleChange, cancelPath }) => (
+const ImageForm = ({ image, handleSubmit, handleChange }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <label>Image Caption</label>
@@ -39,7 +39,7 @@ const ImageForm = ({ image, handleSubmit, handleChange, cancelPath }) => (
     </div>
     <br />
     <button type="submit" className="btn btn-primary">Upload</button>
-    <Link to={cancelPath}>
+    <Link to='/my-images'>
       <button className="btn btn-danger">Cancel</button>
     </Link>
   </form>
