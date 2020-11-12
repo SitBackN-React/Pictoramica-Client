@@ -101,9 +101,11 @@ const Blog = (props) => {
         )}
       </div>
       <div>
-        <button className="btn btn-primary" type="button" onClick={() => props.history.goBack()}>
-      Go back
-        </button>
+        {/* Link to take user back to all blogs or my blogs list */}
+        <Link to='/my-blogs'>Go to my blogs</Link>
+      </div>
+      <div>
+        <Link to='/all-blogs'>Go to all blogs</Link>
       </div>
     </div>
   )

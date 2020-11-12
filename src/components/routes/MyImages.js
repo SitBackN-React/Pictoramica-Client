@@ -15,7 +15,7 @@ const MyImages = (props) => {
   // GET request to get all of the images user has created
   useEffect(() => {
     axios({
-      url: `${apiUrl}/images`,
+      url: `${apiUrl}/my-images`,
       method: 'GET',
       headers: {
         'Authorization': `Token token=${props.user.token}`

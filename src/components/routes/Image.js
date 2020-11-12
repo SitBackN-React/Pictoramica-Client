@@ -81,9 +81,7 @@ const Image = (props) => {
   // if a image is deleted, Redirect user back to the list of all images
   if (deleted) {
     return (
-      <Redirect to={{
-        pathname: '/images', state: { msg: 'Image succesfully deleted!' }
-      }} />
+      <Redirect to={'/my-images'} />
     )
   }
 
@@ -94,14 +92,25 @@ const Image = (props) => {
       <p>{image.tag}</p>
       <p>{image.url}</p>
       {/*  button to click to delete a image */}
-      <button className="btn btn-danger" onClick={destroy}>Delete Image</button>
+      {props.user._id === image.owner ? (
+        <button className="btn btn-danger" onClick={destroy}>Delete Image</button>
+      ) : (
+        <button style={{ display: 'none' }}></button>
+      )}
       {/*  // Link to take user to the edit page once the Edit Image button is clicked */}
-      <Link to={`/images/${props.match.params.imageId}/edit-image`}>
-        <button className="button btn btn-warning">Edit Image</button>
-      </Link>
+      {props.user._id === image.owner ? (
+        <Link to={`/images/${props.match.params.imageId}/edit-image`}>
+          <button className="button btn btn-warning">Edit Image</button>
+        </Link>
+      ) : (
+        <button style={{ display: 'none' }}></button>
+      )}
       <div>
         {/* Link to take user back to all images list */}
-        <Link to='/images'>Back to all images</Link>
+        <Link to='/my-images'>Go to my images</Link>
+      </div>
+      <div>
+        <Link to='/all-images'>Go to all images</Link>
       </div>
     </div>
   )

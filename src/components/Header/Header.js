@@ -16,6 +16,7 @@ const authenticatedOptions = (
       <Dropdown.Item href="#my-blogs">View My Blogs</Dropdown.Item>
       <Dropdown.Item href="#my-images">View My Images</Dropdown.Item>
       <Dropdown.Item href="#text-editor">Text Editor</Dropdown.Item>
+      <Dropdown.Item href="#all-images">All Images</Dropdown.Item>
     </DropdownButton>
 
   </Fragment>
