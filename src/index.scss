@@ -1,9 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 .image-box {
-  width: 20%;
+  // width: 20%;
   height: 175px;
   border: 2px solid #000000;
+  padding: 5px;
 }
 
 .DraftEditor-root {
@@ -31,14 +32,28 @@
   width: 50%
 }
 
-// .float-container {
-//     border: 3px solid #fff;
-//     padding: 20px;
-// }
+.float-container {
+    position: absolute;
+    width: 85%;
+    // border: 2px solid pink;
+}
 
 .float-child {
-    width: 50%;
+    width: 40%;
     float: left;
     padding: 10px;
     border: 2px solid gray;
+    display: block;
+    margin-right: 20px;
+}
+
+.like-button {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.like-icon {
+  width: 20px;
+  height: 20px;
 }

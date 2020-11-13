@@ -1,70 +1,47 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
+
+import apiUrl from './../../apiConfig'
 
 const ImageLike = (props) => {
-  const [imageLiked, setImageLiked] = useState({
-    tag: props.image.tag,
-    caption: props.image.caption,
+  const [imageLike, setImageLike] = useState({
     imageUrl: props.image.imageUrl,
-    like: props.image.like,
-    forSale: props.image.forSale
+    like: props.image.like
   })
 
-  console.log(props)
-
-  const handleChange = (event) => setImageLiked((e) => {
-    const imageLikedCount = imageLiked + 1
-    console.log(setImageLiked)
+  const handleChange = (event) => setImageLike(() => {
     return {
-      tag: props.image.tag,
-      caption: props.image.caption,
       imageUrl: props.image.imageUrl,
-      like: imageLikedCount,
-      forSale: props.image.forSale
+      like: !imageLike.like
     }
   })
-  console.log(props)
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/image/${props.image._id}`,
+      url: `${apiUrl}/images/${props.image._id}/image-like`,
       method: 'PATCH',
-      headers: {
-        'Authorization': `Token token=${props.user.token}`
-      },
       data: { image: {
-        tag: props.image.tag,
-        caption: props.image.caption,
         imageUrl: props.image.imageUrl,
-        like: imageLiked.like,
-        forSale: props.image.forSale } }
+        like: !imageLike.like
+      } }
     })
       .catch(console.error)
   }
 
+  const likeIcon = (imageLike.like) ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
+
   return (
-    <div key={props.image._id}>
-      <div className="image-box">
-        <Link to={`/images/${props.image._id}`}>{props.image.imageUrl}</Link>
-      </div>
-      <div>
-        <p>Caption: {props.image.caption}</p>
-      </div>
-      <div>
-        <p>Tag: {props.image.tag}</p>
-      </div>
-      <div>
-        <p>Like:
-          <input className="image-like-box" type="button" value={ imageLiked.like ? '✔' : '' } onClick={(event) => {
-            handleChange(event)
-            handleSubmit(event)
-          } } />
-        </p>
-      </div>
-    </div>
+    <img
+      key={props.image._id}
+      className='like-icon'
+      src={likeIcon}
+      style={{ cursor: 'pointer' }}
+      onClick={(event) => {
+        handleChange(event)
+        handleSubmit(event)
+      }}
+    />
   )
 }
 export default ImageLike

@@ -5,6 +5,7 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 import messages from './../AutoDismissAlert/messages'
+import ImageLike from './ImageLike'
 
 const MyImages = (props) => {
   // starts the image state as an empty array
@@ -42,10 +43,15 @@ const MyImages = (props) => {
   const imagesJsx = myImages.map(image => (
     <div key={image._id}>
       <div className="image-box">
-        {image.imageUrl}
+        <Link to={`/images/${image._id}`}>{image.imageUrl}</Link>
       </div>
       <div>
-        <Link to={`/images/${image._id}`}>{image.caption}</Link>
+        {image.caption}
+      </div>
+      <div className="like-button">
+        <ImageLike
+          image={image}
+        />
       </div>
     </div>
   ))
@@ -60,7 +66,7 @@ const MyImages = (props) => {
         </div>
       </div>
       <Link to={'/create-image'}>
-        <button className="button btn btn-primary btn-lg">Log New Image</button>
+        <button className="button btn btn-primary btn-lg">Add New Image</button>
       </Link>
     </div>
   )
