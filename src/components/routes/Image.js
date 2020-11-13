@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
+import ImageLike from './ImageLike'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
@@ -91,6 +92,11 @@ const Image = (props) => {
       <h4>{image.caption}</h4>
       <p>{image.tag}</p>
       <p>{image.url}</p>
+      <div className="like-button">
+        <ImageLike
+          image={image}
+        />
+      </div>
       {/*  button to click to delete a image */}
       {props.user._id === image.owner ? (
         <button className="btn btn-danger" onClick={destroy}>Delete Image</button>

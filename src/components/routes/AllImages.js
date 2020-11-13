@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -23,10 +23,33 @@ const AllImages = (props) => {
         message: messages.showAllImagesSuccess,
         variant: 'primary'
       }))
-      .catch(console.error)
+      .catch(error => {
+        setAllImages([])
+        // message if images failed to show
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          message: messages.showAllImagesFailure,
+          variant: 'danger'
+        })
+      })
   }, [])
 
-  const imagesJsx = allImages.map(image => <ImageLike {...props} key={image._id} image={image} />)
+  const imagesJsx = allImages.map(image =>
+    <div key={image._id}>
+      <div className="image-box">
+        <Link to={`/images/${image._id}`}>{image.imageUrl}</Link>
+      </div>
+      <div>
+        <p>Caption: {image.caption}</p>
+        <p>Tag: {image.tag}</p>
+        <p className="like-button">
+          <ImageLike
+            image={image}
+          />
+        </p>
+      </div>
+    </div>
+  )
 
   return (
     <div>

@@ -8,11 +8,17 @@ const HomePage = (props) => {
   return (
     <React.Fragment>
       <h1>Pictoramica</h1>
-      <div className="float-child">
-        <AllImages />
-      </div>
-      <div className="float-child">
-        <AllBlogs />
+      <div className="float-container">
+        <div className="float-child">
+          <AllImages
+            {...props}
+          />
+        </div>
+        <div className="float-child">
+          <AllBlogs
+            {...props}
+          />
+        </div>
       </div>
     </React.Fragment>
   )
