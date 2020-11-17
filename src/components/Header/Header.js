@@ -6,10 +6,12 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const authenticatedOptions = (
   <Fragment>
-    <DropdownButton id="dropdown-item-button" title="Menu Options">
+    <DropdownButton
+      alignRight
+      title="Menu"
+      id="dropdown-menu-align-right"
+    >
       <Dropdown.Item href="#home-page">Home</Dropdown.Item>
-      <Dropdown.Item href="#change-password">Change Password</Dropdown.Item>
-      <Dropdown.Item href="#sign-out">Sign Out</Dropdown.Item>
       <Dropdown.Item href="#create-image">Create Image</Dropdown.Item>
       <Dropdown.Item href="#create-blog">Create Blog</Dropdown.Item>
       <Dropdown.Item href="#all-blogs">View All Blogs</Dropdown.Item>
@@ -17,6 +19,9 @@ const authenticatedOptions = (
       <Dropdown.Item href="#my-images">View My Images</Dropdown.Item>
       <Dropdown.Item href="#text-editor">Text Editor</Dropdown.Item>
       <Dropdown.Item href="#all-images">All Images</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item href="#change-password">Change Password</Dropdown.Item>
+      <Dropdown.Item href="#sign-out">Sign Out</Dropdown.Item>
     </DropdownButton>
 
   </Fragment>
