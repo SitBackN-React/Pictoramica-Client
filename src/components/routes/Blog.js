@@ -67,17 +67,27 @@ const Blog = (props) => {
       <Redirect to={'/all-blogs'} />
     )
   }
-  const postsJsx = blog.posts.map(post => (
+  const postsOwnerJsx = blog.posts.map(post => (
     <li key={post._id}>
       <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}`}>{post.title}</Link>
     </li>
   ))
+  const postsPublicJsx = blog.posts.map(post => (
+    <li key={post._id}>
+      <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}/post-public`}>{post.title}</Link>
+    </li>
+  ))
+
   console.log(blog)
   return (
     <div className="list-style">
       <h4>{blog.title}</h4>
       <div className="post-display">
-        {postsJsx}
+        {props.user._id === blog.owner ? (
+          postsOwnerJsx
+        ) : (
+          postsPublicJsx
+        )}
       </div>
       <div>
         {props.user._id === blog.owner ? (
@@ -101,11 +111,9 @@ const Blog = (props) => {
         )}
       </div>
       <div>
-        {/* Link to take user back to all blogs or my blogs list */}
-        <Link to='/my-blogs'>Go to my blogs</Link>
-      </div>
-      <div>
-        <Link to='/all-blogs'>Go to all blogs</Link>
+        <button className="btn btn-success" type="button" onClick={() => props.history.goBack()}>
+      Go back
+        </button>
       </div>
     </div>
   )
