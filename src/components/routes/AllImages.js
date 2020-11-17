@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './ImageLike'
+import ForSale from './ForSale'
 
 import messages from './../AutoDismissAlert/messages'
 
@@ -45,6 +46,13 @@ const AllImages = (props) => {
         <p className="like-button">
           <ImageLike
             image={image}
+            {...props}
+          />
+        </p>
+        <p>For Sale:
+          <ForSale
+            image={image}
+            {...props}
           />
         </p>
       </div>
