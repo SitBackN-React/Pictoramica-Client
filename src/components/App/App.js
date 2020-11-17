@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
+import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -26,6 +28,65 @@ import CommentCreate from '../routes/CommentCreate'
 import TextEditor from '../routes/TextEditor'
 import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
+
+const CheckoutForm = () => {
+  const stripe = useStripe()
+  const elements = useElements()
+
+  const handleSubmit = async (event) => {
+    // Block native form submission
+    event.preventDefault()
+
+    if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded
+      return
+    }
+
+    // Get a reference to a mounted CardElement.
+    const cardElement = elements.getElement(CardElement)
+
+    // Use your card Element with other Stripe.js APIs
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement
+    })
+
+    if (error) {
+      console.log('[error], error')
+    } else {
+      console.log('[PaymentMethod]', paymentMethod)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#424770',
+              '::placeholder': {
+                color: '#aab7c4'
+              }
+            },
+            invalid: {
+              color: '#9e2146'
+            }
+          }
+        }}
+      />
+      <button type="submit" disable={!stripe}>
+          Pay
+      </button>
+    </form>
+  )
+}
+
+// Call 'loadStripe' outside of the component's render to avoid recreating 'Stripe'
+// object on every render
+const stripePromise = loadStripe('pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889')
 
 class App extends Component {
   constructor () {
@@ -87,6 +148,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/all-images' render={(props) => (
             <AllImages {...props} msgAlert={this.msgAlert} user={user} />
           )} />
+          <Elements stripe={stripePromise} user={user}>
+            <CheckoutForm />
+          </Elements>
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
           )} />
