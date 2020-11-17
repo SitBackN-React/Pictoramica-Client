@@ -21,6 +21,7 @@ import MyBlogs from '../routes/MyBlogs'
 import PostCreate from '../routes/PostCreate'
 import PostEdit from '../routes/PostEdit'
 import Post from '../routes/Post'
+import PostPublic from '../routes/PostPublic'
 import CommentCreate from '../routes/CommentCreate'
 import TextEditor from '../routes/TextEditor'
 import CommentDelete from '../routes/CommentDelete'
@@ -106,6 +107,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId' render={(props) => (
             <Post {...props} token={this.state.user ? this.state.user.token : null} msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/post-public' render={(props) => (
+            <PostPublic {...props} token={this.state.user ? this.state.user.token : null} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/edit-post' render={(props) => (
             <PostEdit {...props} msgAlert={this.msgAlert} user={user}/>
