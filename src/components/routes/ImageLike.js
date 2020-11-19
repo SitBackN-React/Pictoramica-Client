@@ -1,47 +1,97 @@
 import React, { useState } from 'react'
+// import React from 'react'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 
+import messages from './../AutoDismissAlert/messages'
+
 const ImageLike = (props) => {
   const [imageLike, setImageLike] = useState({
-    imageUrl: props.image.imageUrl,
-    like: props.image.like
+    liked: false
   })
 
-  const handleChange = (event) => setImageLike(() => {
-    return {
-      imageUrl: props.image.imageUrl,
-      like: !imageLike.like
-    }
-  })
+  const { image, msgAlert } = props
+  // const { image } = props
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    axios({
-      url: `${apiUrl}/images/${props.image._id}/image-like`,
-      method: 'PATCH',
-      data: { image: {
-        imageUrl: props.image.imageUrl,
-        like: !imageLike.like
-      } }
-    })
-      .catch(console.error)
+  const handleLike = image => {
+    const activateLike = { liked: true }
+    const newLike = Object.assign({}, imageLike, activateLike)
+    setImageLike(newLike)
+    createLike(image)
   }
 
-  const likeIcon = (imageLike.like) ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
+  const createLike = image => {
+    console.log(image)
+    axios({
+      url: `${apiUrl}/images/${image._id}/imageLikes`,
+      method: 'POST',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      },
+      data: { imageLike }
+    })
+      .then(res => { setImageLike(res.data.imageLike) })
+      .then(() => msgAlert({
+        heading: 'Showing all images',
+        message: messages.likeImageSuccess,
+        variant: 'primary'
+      }))
+      .catch(error => {
+        setImageLike([])
+        // message if images failed to show
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          message: messages.likeImageFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
+  console.log(imageLike)
+
+  // const deleteLike = image => {
+  //   console.log('deleteLike!')
+  //   const likedImageId = image._id.toString()
+  //
+  //   axios({
+  //     url: `${apiUrl}/image-liked/${likedImageId}`,
+  //     method: 'POST',
+  //     headers: {
+  //       'Authorization': `Token token=${props.user.token}`
+  //     }
+  //   })
+  //     .then(() => {
+  //       setUserLikedImage([])
+  //     })
+  //     .then(() => msgAlert({
+  //       heading: 'Showing all images',
+  //       message: messages.unlikeImageSuccess,
+  //       variant: 'primary'
+  //     }))
+  //     .catch(error => {
+  //       setUserLikedImage([])
+  //       // message if images failed to show
+  //       msgAlert({
+  //         heading: 'Failed to delete' + error.message,
+  //         message: messages.unlikeImageFailure,
+  //         variant: 'danger'
+  //       })
+  //     })
+  // }
 
   return (
     <img
-      key={props.image._id}
+      key={image._id}
       className='like-icon'
-      src={likeIcon}
+      src={'./../../images/unlike-icon.png'}
       style={{ cursor: 'pointer' }}
-      onClick={(event) => {
-        handleChange(event)
-        handleSubmit(event)
+      onClick={() => {
+        handleLike(image)
+        // handleSubmit(event)
       }}
     />
   )
 }
+
 export default ImageLike
