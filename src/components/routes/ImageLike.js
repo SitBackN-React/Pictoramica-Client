@@ -8,21 +8,23 @@ import messages from './../AutoDismissAlert/messages'
 
 const ImageLike = (props) => {
   const [imageLike, setImageLike] = useState({
-    liked: false
+    liked: true
   })
 
   const { image, msgAlert } = props
   // const { image } = props
 
   const handleLike = image => {
-    const activateLike = { liked: true }
-    const newLike = Object.assign({}, imageLike, activateLike)
+    const newLike = Object.assign({}, imageLike)
     setImageLike(newLike)
     createLike(image)
+    console.log('handleLike ', imageLike)
   }
 
   const createLike = image => {
     console.log(image)
+    console.log('createLike ', imageLike)
+    event.preventDefault()
     axios({
       url: `${apiUrl}/images/${image._id}/imageLikes`,
       method: 'POST',
