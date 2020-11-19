@@ -10,23 +10,25 @@ const ImageLike = props => {
   const { image } = props
 
   const handleLike = image => {
+    // if imageLike.liked is true,
+    // go to deleteLike to make imageLike.liked false
+    // otherwise, go to createLike to make imageLike.liked true
+    imageLike.liked ? deleteLike(image) : createLike(image)
+  }
+
+  const createLike = image => {
+    console.log('CREATE LIKE')
+    // setting state with opposite value
     setImageLike((e) => { return { liked: !imageLike.liked } })
   }
-  console.log(imageLike)
 
-  // const createLike = image => {
-  //   console.log('CREATE LIKE')
-  //   setImageLike((e) => { return { liked: true } })
-  //   setDeleted(false)
-  // }
-  // console.log('imageLike after createLike ', imageLike)
-  // console.log('deleted after createLike ', deleted)
-  //
-  // const deleteLike = image => {
-  //   console.log('DELETE LIKE')
-  //   setDeleted(true)
-  // }
-  // console.log('deleted after deleteLike ', deleted)
+  const deleteLike = image => {
+    console.log('DELETE LIKE')
+    // setting state with opposite value
+    setImageLike((e) => { return { liked: !imageLike.liked } })
+  }
+
+  console.log(imageLike)
 
   const likeIcon = imageLike.liked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
   return (
