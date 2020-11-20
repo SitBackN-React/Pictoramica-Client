@@ -53,6 +53,7 @@ const AllImages = (props) => {
           <ForSale
             image={image}
             {...props}
+            user={props.user}
           />
         </p>
       </div>

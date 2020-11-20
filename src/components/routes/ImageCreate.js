@@ -25,7 +25,7 @@ const ImageCreate = (props) => {
     const { msgAlert } = props
 
     axios({
-      url: `${apiUrl}/image`,
+      url: `${apiUrl}/images`,
       method: 'POST',
       headers: {
         'Authorization': `Token token=${props.user.token}`
