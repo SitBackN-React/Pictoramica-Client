@@ -35,9 +35,6 @@ const AllImages = (props) => {
       })
   }, [])
 
-  console.log('props ', props)
-  console.log('allImages ', allImages)
-
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
       <div className="image-box">
@@ -56,6 +53,7 @@ const AllImages = (props) => {
           <ForSale
             image={image}
             {...props}
+            user={props.user}
           />
         </p>
       </div>

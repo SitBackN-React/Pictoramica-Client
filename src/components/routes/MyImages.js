@@ -51,6 +51,8 @@ const MyImages = (props) => {
       <div className="like-button">
         <ImageLike
           image={image}
+          {...props}
+          user={props.user}
         />
       </div>
     </div>

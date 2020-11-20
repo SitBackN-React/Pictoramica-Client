@@ -95,6 +95,8 @@ const Image = (props) => {
       <div className="like-button">
         <ImageLike
           image={image}
+          {...props}
+          user={props.user}
         />
       </div>
       {/*  button to click to delete a image */}
