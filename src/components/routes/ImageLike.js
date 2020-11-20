@@ -14,10 +14,10 @@ const ImageLike = props => {
   const imageLikeOwners = image.imageLikes.map(el => el.owner)
   // console.log(imageLikeOwners)
   // need to find if there is an imageLike that matches the id of the user
-  const isImageLikeOwner = imageLikeOwners.includes(props.user._id)
+  const isImageLikeOwner = imageLikeOwners.includes(user._id)
   console.log('T or F: does the user have a like on this image? ', isImageLikeOwner)
   // find the index of the owner that matches the user's id
-  const imageLikeOwnerIndex = imageLikeOwners.indexOf(props.user._id)
+  const imageLikeOwnerIndex = imageLikeOwners.indexOf(user._id)
   console.log(imageLikeOwnerIndex)
 
   const [userLiked, setUserLiked] = useState(isImageLikeOwner)
@@ -41,7 +41,7 @@ const ImageLike = props => {
       url: `${apiUrl}/images/${image._id}/imageLikes`,
       method: 'POST',
       headers: {
-        'Authorization': `Token token=${props.user.token}`
+        'Authorization': `Token token=${user.token}`
       },
       data: { imageLike: {
         liked: true
@@ -78,7 +78,7 @@ const ImageLike = props => {
       url: `${apiUrl}/images/${image._id}/imageLikes/${imageLikeId}`,
       method: 'DELETE',
       headers: {
-        'Authorization': `Token token=${props.user.token}`
+        'Authorization': `Token token=${user.token}`
       }
     })
       .then((e) => setUserLiked(false))
