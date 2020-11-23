@@ -6,11 +6,14 @@ import apiUrl from '../../apiConfig'
 import ImageForm from './../shared/ImageForm'
 import messages from './../AutoDismissAlert/messages'
 
+// import { FilePond } from 'react-filepond'
+
 const ImageCreate = (props) => {
   // state of the image starts as empty string, 0, or false
   const [image, setImage] = useState({ tag: '', caption: '', imageUrl: '', like: 0, forSale: false })
   // state starts as null, will be updated once image created
   const [createdImageId, setCreatedImageId] = useState(null)
+
   // uses handle change and passes in the event param to handle action item
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
