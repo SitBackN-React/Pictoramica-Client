@@ -10,7 +10,6 @@ const CommentCreate = props => {
   const [comment, setComment] = useState({
     remark: ''
   })
-  // const [createdCommentId, setCreatedCommentId] = useState(null)
   const [createdComment, setCreatedComment] = useState(false)
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
@@ -41,23 +40,6 @@ const CommentCreate = props => {
         console.log(res)
         return res
       })
-      // .then(res => {
-      //   const postArray = res.data.blog.posts
-      //   const findPostIndexNum = function (postArray) {
-      //     for (let i = 0; i < postArray.length; i++) {
-      //       if (postArray[i]._id === postId) {
-      //         return i
-      //       } else {
-      //         return -1
-      //       }
-      //     }
-      //   }
-      //   const postIndexNum = findPostIndexNum(postArray)
-      //   const mostRecentCommentIndexNum = res.data.blog.posts[postIndexNum].comments.length - 1
-      //   const newCommentId = res.data.blog.posts[postIndexNum].comments[mostRecentCommentIndexNum]._id
-      //   return newCommentId
-      // })
-      // .then(newCommentId => setCreatedCommentId(newCommentId))
       .then(newCommentId => setCreatedComment(true))
       .then(() => msgAlert({
         heading: 'Created comment successfully',
@@ -73,7 +55,6 @@ const CommentCreate = props => {
         })
       })
   }
-  // console.log(createdCommentId)
   console.log(props)
   if (createdComment) {
     return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`}/>
