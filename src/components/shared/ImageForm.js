@@ -37,6 +37,7 @@ const ImageForm = ({ image, handleSubmit, handleChange }) => (
         size="25"
       />
     </div>
+    <em>*Please upload Imgur direct link for successful image upload*</em>
     <br />
     <button type="submit" className="btn btn-primary">Upload</button>
     <Link to='/my-images'>
