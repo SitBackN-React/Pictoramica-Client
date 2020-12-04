@@ -37,8 +37,10 @@ const AllImages = (props) => {
 
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
-      <div>
-        <Link to={`/images/${image._id}`}><img className="image-box" src={image.imageUrl} /></Link>
+      <div className="image-box">
+        <Link to={`/images/${image._id}`}>
+          <img className="all-images" src={image.imageUrl} />
+        </Link>
       </div>
       <div>
         <p>Caption: {image.caption}</p>

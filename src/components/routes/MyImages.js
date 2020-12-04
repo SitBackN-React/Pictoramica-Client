@@ -42,7 +42,11 @@ const MyImages = (props) => {
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
     <div key={image._id}>
-      <Link to={`/images/${image._id}`}><img className="image-box" src={image.imageUrl} /></Link>
+      <div className="image-box">
+        <Link to={`/images/${image._id}`}>
+          <img className="my-images" src={image.imageUrl} />
+        </Link>
+      </div>
       <div>
         {image.caption}
       </div>
