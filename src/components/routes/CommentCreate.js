@@ -55,9 +55,9 @@ const CommentCreate = props => {
         })
       })
   }
-  console.log(props)
+  console.log(comment)
   if (createdComment) {
-    return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`}/>
+    return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`} />
   }
 
   return (
