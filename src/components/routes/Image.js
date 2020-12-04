@@ -91,7 +91,7 @@ const Image = (props) => {
     <div>
       <h4>{image.caption}</h4>
       <p>{image.tag}</p>
-      <p>{image.url}</p>
+      <img className="single-image" src={image.imageUrl} />
       <div className="like-button">
         <ImageLike
           image={image}
