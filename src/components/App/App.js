@@ -10,7 +10,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
-import ImageCreate from '../routes/ImageCreate'
+// import ImageCreate from '../routes/ImageCreate'
 import MyImages from '../routes/MyImages'
 import ImageEdit from '../routes/ImageEdit'
 import Image from '../routes/Image'
@@ -28,6 +28,7 @@ import CommentCreate from '../routes/CommentCreate'
 import TextEditor from '../routes/TextEditor'
 import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
+import UploadS3Image from '../routes/ImageCreate'
 
 const CheckoutForm = () => {
   const stripe = useStripe()
@@ -133,8 +134,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/create-image' render={() => (
-            <ImageCreate msgAlert={this.msgAlert} user={user}/>
+          <AuthenticatedRoute user={user} path='/post-image' render={(props) => (
+            <UploadS3Image
+              {...props}
+              msgAlert={this.msgAlert}
+              setImage={this.setImage}
+              user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/my-images' render={() => (
             <MyImages msgAlert={this.msgAlert} user={user}/>
