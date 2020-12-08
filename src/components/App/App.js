@@ -95,7 +95,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      msgAlerts: []
+      msgAlerts: [],
+      image: null
     }
   }
 
@@ -106,6 +107,9 @@ class App extends Component {
   msgAlert = ({ heading, message, variant }) => {
     this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
   }
+
+  setImage = image => this.setState({ image })
+  clearArt = () => this.setState({ image: null })
 
   render () {
     const { msgAlerts, user } = this.state
