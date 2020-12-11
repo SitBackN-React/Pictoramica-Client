@@ -29,7 +29,7 @@ const ImageForm = ({ image, handleSubmit, handleChange }) => (
     <div>
       <label>Image Url</label>
       <input
-        type="text"
+        type="file"
         placeholder="Example: /images/sunset.jpg"
         value={image.imageUrl}
         name="imageUrl"

@@ -12,7 +12,7 @@ const authenticatedOptions = (
       id="dropdown-menu-align-right"
     >
       <Dropdown.Item href="#home-page">Home</Dropdown.Item>
-      <Dropdown.Item href="#create-image">Create Image</Dropdown.Item>
+      <Dropdown.Item href="#post-image">Create Image</Dropdown.Item>
       <Dropdown.Item href="#create-blog">Create Blog</Dropdown.Item>
       <Dropdown.Item href="#all-blogs">View All Blogs</Dropdown.Item>
       <Dropdown.Item href="#my-blogs">View My Blogs</Dropdown.Item>
