@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+// import image from 'Image.js'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -29,6 +30,8 @@ import TextEditor from '../routes/TextEditor'
 import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
 import UploadS3Image from '../routes/ImageCreate'
+// import Application from './Checkout.js'
+
 
 const CheckoutForm = () => {
   const stripe = useStripe()
@@ -88,6 +91,30 @@ const CheckoutForm = () => {
 // Call 'loadStripe' outside of the component's render to avoid recreating 'Stripe'
 // object on every render
 const stripePromise = loadStripe('pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889')
+
+// const ProductDisplay = ({ handleClick }) => (
+//   <section>
+//     <div className="product">
+//       <img
+//         src={image.imageUrl}
+//         alt={image.caption}
+//       />
+//       <div className="description">
+//         <h3>image.caption</h3>
+//         <h5>[amount]</h5>
+//       </div>
+//     </div>
+//     <button id="checkout-button" role="link" onClick={handleClick}>
+//       Checkout
+//     </button>
+//   </section>
+// )
+//
+// const Message = ({ message }) => (
+//   <section>
+//     <p>{message}</p>
+//   </section>
+// )
 
 class App extends Component {
   constructor () {
