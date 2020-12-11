@@ -89,11 +89,11 @@ function UploadS3Image (props) {
     formData.append('tag', tag)
     formData.append('image', image)
 
-    let link = ''
+    // let imageId = ''
     const { msgAlert, history, setImage, user } = props
     uploadS3('multipart/form-data', formData, user)
       .then(res => {
-        link = res.data.image._id
+        // imageId = res.data.image._id
         setImage(res.data.image)
       })
       .then(() => msgAlert({
@@ -101,7 +101,8 @@ function UploadS3Image (props) {
         message: messages.createImageSuccess,
         variant: 'success'
       }))
-      .then(() => history.push(`/images/${link}`))
+
+      .then(() => history.push('/my-images'))
       .catch(error => {
         setCaption('')
         setTag('')
