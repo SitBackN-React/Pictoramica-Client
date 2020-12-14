@@ -35,6 +35,17 @@ const AllImages = (props) => {
       })
   }, [])
 
+  const tagArray = (imageTag) => {
+    const tags = imageTag.split(',').map(tag =>
+      <div key={tag}>
+        <Link to={`/images/${tag}`}>
+          {tag}
+        </Link>
+      </div>
+    )
+    return tags
+  }
+
   const styles = {
     imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
   }
@@ -48,7 +59,7 @@ const AllImages = (props) => {
       </div>
       <div>
         <p>Caption: {image.caption}</p>
-        <p>Tag: {image.tag}</p>
+        <p>Tag: {tagArray(image.tag)}</p>
         <p className="like-button">
           <ImageLike
             image={image}
