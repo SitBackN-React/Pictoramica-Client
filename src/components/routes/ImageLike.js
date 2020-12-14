@@ -7,9 +7,9 @@ import messages from './../AutoDismissAlert/messages'
 const ImageLike = props => {
   // Each image has a set of imageLike array with multiple imageLikes
   const { image, msgAlert, user } = props
-  console.log('user ', user)
-  console.log('image ', image)
-  console.log('imageLike ', image.imageLikes)
+  // console.log('user ', user)
+  // console.log('image ', image)
+  // console.log('imageLike ', image.imageLikes)
   // map out all owners from imageLikes array
   const imageLikeOwners = image.imageLikes.map(el => el.owner)
   // console.log(imageLikeOwners)

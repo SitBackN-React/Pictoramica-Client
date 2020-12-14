@@ -35,11 +35,15 @@ const AllImages = (props) => {
       })
   }, [])
 
+  const styles = {
+    imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
+  }
+
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
-      <div className="image-box">
+      <div style={styles.imageBox}>
         <Link to={`/images/${image._id}`}>
-          <img className="all-images" src={image.imageUrl} />
+          <img style={{ width: '100%' }} src={image.imageUrl} />
         </Link>
       </div>
       <div>

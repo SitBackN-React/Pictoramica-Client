@@ -32,7 +32,6 @@ import HomePage from '../routes/HomePage'
 import UploadS3Image from '../routes/ImageCreate'
 // import Application from './Checkout.js'
 
-
 const CheckoutForm = () => {
   const stripe = useStripe()
   const elements = useElements()

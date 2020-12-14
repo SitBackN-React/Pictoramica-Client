@@ -86,39 +86,58 @@ const Image = (props) => {
     )
   }
 
+  const styles = {
+    flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
+    imageContainer: { width: '65%' },
+    singleImage: { width: '100%', border: '2px solid #000000' },
+    textContainer: { paddingLeft: '10px' },
+    textSize: { fontSize: '25px' }
+    // floatContainer: { position: 'absolute', margin: '10px 0px 10px 0px' },
+    // floatChild: { float: 'left', display: 'block' },
+    // singleImage: { width: '40%', border: '2px solid #000000' }
+  }
+
   return (
     // shows the specified fields(all details of the image) when a image is clicked
     <div>
-      <h4>{image.caption}</h4>
-      <p>{image.tag}</p>
-      <img className="single-image" src={image.imageUrl} />
-      <div className="like-button">
-        <ImageLike
-          image={image}
-          {...props}
-          user={props.user}
-        />
-      </div>
-      {/*  button to click to delete a image */}
-      {props.user._id === image.owner ? (
-        <button className="btn btn-danger" onClick={destroy}>Delete Image</button>
-      ) : (
-        <button style={{ display: 'none' }}></button>
-      )}
-      {/*  // Link to take user to the edit page once the Edit Image button is clicked */}
-      {props.user._id === image.owner ? (
-        <Link to={`/images/${props.match.params.imageId}/edit-image`}>
-          <button className="button btn btn-warning">Edit Image</button>
-        </Link>
-      ) : (
-        <button style={{ display: 'none' }}></button>
-      )}
-      <div>
-        {/* Link to take user back to all images list */}
-        <Link to='/my-images'>Go to my images</Link>
+      <div style={styles.flexContainer}>
+        <div style={styles.imageContainer}>
+          <img style={styles.singleImage} src={image.imageUrl} />
+        </div>
+        <div style={styles.textContainer}>
+          <h1>{image.caption}</h1>
+          <p style={styles.textSize}>{image.tag}</p>
+          <div className="like-button">
+            <ImageLike
+              image={image}
+              {...props}
+              user={props.user}
+            />
+          </div>
+        </div>
       </div>
       <div>
-        <Link to='/all-images'>Go to all images</Link>
+        {/*  button to click to delete a image */}
+        {props.user._id === image.owner ? (
+          <button className="btn btn-danger" onClick={destroy}>Delete Image</button>
+        ) : (
+          <button style={{ display: 'none' }}></button>
+        )}
+        {/*  // Link to take user to the edit page once the Edit Image button is clicked */}
+        {props.user._id === image.owner ? (
+          <Link to={`/images/${props.match.params.imageId}/edit-image`}>
+            <button className="button btn btn-warning">Edit Image</button>
+          </Link>
+        ) : (
+          <button style={{ display: 'none' }}></button>
+        )}
+        <div>
+          {/* Link to take user back to all images list */}
+          <Link to='/my-images'>Go to my images</Link>
+        </div>
+        <div>
+          <Link to='/all-images'>Go to all images</Link>
+        </div>
       </div>
     </div>
   )
