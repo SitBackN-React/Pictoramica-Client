@@ -7,8 +7,11 @@ app.use(express.static('.'))
 const client = 'http://localhost:7165/checkout'
 
 app.post('/create-session', async (req, res) => {
+  // Adds an endpoint on our server that creates a checkout session
   const session = await stripe.checkout.sessions.create({
+    // Specifies payment method to be with a card
     payment_method_types: ['card'],
+    // Defines the line items (important to keep sensitive information on the server)
     line_items: [
       {
         price_data: {
@@ -22,7 +25,9 @@ app.post('/create-session', async (req, res) => {
         quantity: 1
       }
     ],
+    // Selects payment mode for one time purchases
     mode: 'payment',
+    // The URLs that Stripe should redirect to when a customer completes or cancels a session
     success_url: `${client}?success=true`,
     cancel_url: `${client}?canceled=true`
   })
