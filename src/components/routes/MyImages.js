@@ -41,12 +41,12 @@ const MyImages = (props) => {
   }, [])
 
   const styles = {
-    imageBox: { width: '65%', height: '65%', border: '2px solid #000000', padding: '5px', overflow: 'hidden' }
+    imageContainer: { width: '65%', height: '65%', border: '2px solid #000000', padding: '5px', overflow: 'hidden' }
   }
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
     <div key={image._id}>
-      <div style={ styles.imageBox }>
+      <div style={ styles.imageContainer }>
         <Link to={`/images/${image._id}`}>
           <img style={{ width: '100%' }} src={image.imageUrl} />
         </Link>
