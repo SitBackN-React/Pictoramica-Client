@@ -37,11 +37,16 @@ const AllImages = (props) => {
 
   const tagArray = (imageTag) => {
     const tags = imageTag.split(',').map(tag =>
-      <div key={tag}>
-        <Link to={`/images/${tag}`}>
+      <p key={tag}>
+        <Link to={{
+          pathname: '/all-images/tag',
+          aboutProps: {
+            tag: { tag }
+          }
+        }}>
           {tag}
         </Link>
-      </div>
+      </p>
     )
     return tags
   }
@@ -59,7 +64,7 @@ const AllImages = (props) => {
       </div>
       <div>
         <p>Caption: {image.caption}</p>
-        <p>Tag: {tagArray(image.tag)}</p>
+        <div>Tag: {tagArray(image.tag)}</div>
         <p className="like-button">
           <ImageLike
             image={image}

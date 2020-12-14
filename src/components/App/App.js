@@ -30,6 +30,7 @@ import TextEditor from '../routes/TextEditor'
 import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
 import UploadS3Image from '../routes/ImageCreate'
+import ImageTag from '../routes/ImageTag'
 // import Application from './Checkout.js'
 
 const CheckoutForm = () => {
@@ -224,6 +225,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
             <HomePage {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/all-images/tag' render={(props) => (
+            <ImageTag {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
