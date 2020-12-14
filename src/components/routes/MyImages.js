@@ -52,7 +52,8 @@ const MyImages = (props) => {
         </Link>
       </div>
       <div>
-        {image.caption}
+        <p>{image.caption}</p>
+        <p>{image.tag}</p>
       </div>
       <div className="like-button">
         <ImageLike
