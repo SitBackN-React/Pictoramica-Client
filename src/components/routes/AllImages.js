@@ -35,16 +35,36 @@ const AllImages = (props) => {
       })
   }, [])
 
+  const tagArray = (imageTag) => {
+    const tags = imageTag.split(',').map(tag =>
+      <p key={tag}>
+        <Link to={{
+          pathname: '/all-images/tag',
+          aboutProps: {
+            tag: { tag }
+          }
+        }}>
+          {tag}
+        </Link>
+      </p>
+    )
+    return tags
+  }
+
+  const styles = {
+    imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
+  }
+
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
-      <div className="image-box">
+      <div style={styles.imageBox}>
         <Link to={`/images/${image._id}`}>
-          <img className="all-images" src={image.imageUrl} />
+          <img style={{ width: '100%' }} src={image.imageUrl} />
         </Link>
       </div>
       <div>
         <p>Caption: {image.caption}</p>
-        <p>Tag: {image.tag}</p>
+        <div>Tag: {tagArray(image.tag)}</div>
         <p className="like-button">
           <ImageLike
             image={image}

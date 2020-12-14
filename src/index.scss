@@ -1,24 +1,24 @@
 @import '~bootstrap/scss/bootstrap';
 
-.image-box {
-  width: 65%;
-  // height: 175px;
-  height: 65%;
-  border: 2px solid #000000;
-  padding: 5px;
-  overflow: hidden;
-}
+// .image-box {
+//   width: 65%;
+//   // height: 175px;
+//   height: 65%;
+//   border: 2px solid #000000;
+//   padding: 5px;
+//   overflow: hidden;
+// }
 
-.all-images,
-.my-images {
-  width: 100%;
-}
+// .all-images,
+// .my-images {
+//   width: 100%;
+// }
 
-.single-image {
-  width: 50%;
-  margin: 10px 0px 10px 0px;
-  border: 2px solid #000000;
-}
+// .single-image {
+//   width: 50%;
+//   margin: 10px 0px 10px 0px;
+//   border: 2px solid #000000;
+// }
 
 .DraftEditor-root {
   height: 100px;
@@ -43,21 +43,6 @@
   border-radius: 10px;
   margin: 25px 15px;
   width: 50%
-}
-
-.float-container {
-    position: absolute;
-    width: 85%;
-    // border: 2px solid pink;
-}
-
-.float-child {
-    width: 40%;
-    float: left;
-    padding: 10px;
-    border: 2px solid gray;
-    display: block;
-    margin-right: 20px;
 }
 
 .like-button {

@@ -7,22 +7,22 @@ import messages from './../AutoDismissAlert/messages'
 const ImageLike = props => {
   // Each image has a set of imageLike array with multiple imageLikes
   const { image, msgAlert, user } = props
-  console.log('user ', user)
-  console.log('image ', image)
-  console.log('imageLike ', image.imageLikes)
+  // console.log('user ', user)
+  // console.log('image ', image)
+  // console.log('imageLike ', image.imageLikes)
   // map out all owners from imageLikes array
   const imageLikeOwners = image.imageLikes.map(el => el.owner)
   // console.log(imageLikeOwners)
   // need to find if there is an imageLike that matches the id of the user
   const isImageLikeOwner = imageLikeOwners.includes(user._id)
-  console.log('T or F: does the user have a like on this image? ', isImageLikeOwner)
+  // console.log('T or F: does the user have a like on this image? ', isImageLikeOwner)
   // find the index of the owner that matches the user's id
   const imageLikeOwnerIndex = imageLikeOwners.indexOf(user._id)
-  console.log(imageLikeOwnerIndex)
+  // console.log(imageLikeOwnerIndex)
 
   const [userLiked, setUserLiked] = useState(isImageLikeOwner)
 
-  console.log('Line 27 userLiked status ', userLiked)
+  // console.log('Line 27 userLiked status ', userLiked)
 
   const handleLike = image => {
     // console.log(userLiked)
@@ -33,7 +33,7 @@ const ImageLike = props => {
   }
 
   const createLike = image => {
-    console.log('CREATE LIKE')
+    // console.log('CREATE LIKE')
     // setting state with opposite value
 
     event.preventDefault()
@@ -48,7 +48,7 @@ const ImageLike = props => {
       } }
     })
       .then(res => {
-        console.log(res)
+        // console.log(res)
         return res
       })
       .then((e) => setUserLiked(true))
@@ -66,10 +66,10 @@ const ImageLike = props => {
         })
       })
   }
-  console.log('after create ', userLiked)
+  // console.log('after create ', userLiked)
 
   const deleteLike = image => {
-    console.log('DELETE LIKE')
+    // console.log('DELETE LIKE')
     // setting state with opposite value
 
     // get the id of the imageLike owner
