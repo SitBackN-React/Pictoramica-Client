@@ -36,7 +36,7 @@ const AllImages = (props) => {
   }, [])
 
   const tagArray = (imageTag) => {
-    const tags = imageTag.split(',').map(tag =>
+    const tags = imageTag.split(', ').map(tag =>
       <p key={tag}>
         <Link to={{
           pathname: '/all-images/tag',
