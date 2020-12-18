@@ -31,6 +31,7 @@ import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
 import UploadS3Image from '../routes/ImageCreate'
 import ImageTag from '../routes/ImageTag'
+import ProductDisplay from './Checkout'
 // import Application from './Checkout.js'
 
 const CheckoutForm = () => {
@@ -187,6 +188,8 @@ class App extends Component {
           <Elements stripe={stripePromise} user={user}>
             <CheckoutForm />
           </Elements>
+          <ProductDisplay>
+          </ProductDisplay>
           <AuthenticatedRoute user={user} exact path='/create-blog' render={() => (
             <BlogCreate msgAlert={this.msgAlert} user={user}/>
           )} />
