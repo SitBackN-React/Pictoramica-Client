@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import image from 'Image.js'
+import image from '../routes/Image'
 
 // const CheckoutForm = () => {
 //   const stripe = useStripe()
@@ -99,7 +99,7 @@ export default function Application () {
 
     if (query.get('canceled')) {
       setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+        'Order canceled -- continue to shop around and checkout when you\'re ready.'
       )
     }
   }, [])

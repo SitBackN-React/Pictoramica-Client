@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 app.use(express.static('.'))
 
-const client = 'http://localhost:7165/checkout'
+const client = 'https://localhost:7165/#/checkout'
 
 app.post('/create-session', async (req, res) => {
   // Adds an endpoint on our server that creates a checkout session
