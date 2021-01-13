@@ -80,12 +80,15 @@ function UploadS3Image (props) {
         </div>
         <br />
         <div>
-          <label>Image Url</label>
+          <button
+            onClick={() => hiddenFileInput.current.click()}
+            className="btn btn-info" type='button'>
+            Add Image
+          </button>
           <input
+            style={{ display: 'none' }}
             type='file'
             ref={hiddenFileInput}
-            placeholder="Example: /images/sunset.jpg"
-            size="25"
             onChange={e => {
               setImageCreate(e.target.files[0])
               setUrl(URL.createObjectURL(e.target.files[0]))
