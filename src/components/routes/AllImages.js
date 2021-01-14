@@ -19,11 +19,11 @@ const AllImages = (props) => {
       method: 'GET'
     })
       .then(res => setAllImages(res.data.images))
-      .then(() => msgAlert({
-        heading: 'Showing all images',
-        message: messages.showAllImagesSuccess,
-        variant: 'primary'
-      }))
+      // .then(() => msgAlert({
+      //   heading: 'Showing all images',
+      //   message: messages.showAllImagesSuccess,
+      //   variant: 'primary'
+      // }))
       .catch(error => {
         setAllImages([])
         // message if images failed to show
@@ -65,19 +65,19 @@ const AllImages = (props) => {
       <div>
         <p>Caption: {image.caption}</p>
         <div>Tag: {tagArray(image.tag)}</div>
-        <p className="like-button">
+        <div className="like-button">
           <ImageLike
             image={image}
             {...props}
           />
-        </p>
-        <p>For Sale:
+        </div>
+        <div>For Sale:
           <ForSale
             image={image}
             {...props}
             user={props.user}
           />
-        </p>
+        </div>
       </div>
     </div>
   )

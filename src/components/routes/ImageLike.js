@@ -99,15 +99,18 @@ const ImageLike = props => {
 
   const likeIcon = userLiked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
   return (
-    <img
-      key={image._id}
-      className='like-icon'
-      src={likeIcon}
-      style={{ cursor: 'pointer' }}
-      onClick={() => {
-        handleLike(image)
-      }}
-    />
+    <div>
+      <img
+        key={image._id}
+        className='like-icon'
+        src={likeIcon}
+        style={{ cursor: 'pointer' }}
+        onClick={() => {
+          handleLike(image)
+        }}
+      />
+      <p>{image.imageLikes.length}</p>
+    </div>
   )
 }
 
