@@ -7,6 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 const authenticatedOptions = (
   <Fragment>
     <DropdownButton
+      variant="dark"
       alignRight
       title="Menu"
       id="dropdown-menu-align-right"
@@ -41,7 +42,7 @@ const unauthenticatedOptions = (
 // )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar className="nav-bar" bg="none" variant="dark" expand="md">
     <Navbar.Brand href="#home-page">
       Pictoramica
     </Navbar.Brand>
