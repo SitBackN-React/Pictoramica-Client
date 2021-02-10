@@ -6,25 +6,28 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const authenticatedOptions = (
   <Fragment>
-    <DropdownButton
-      variant="dark"
-      alignRight
-      title="Menu"
-      id="dropdown-menu-align-right"
-    >
-      <Dropdown.Item href="#home-page">Home</Dropdown.Item>
-      <Dropdown.Item href="#post-image">Create Image</Dropdown.Item>
-      <Dropdown.Item href="#create-blog">Create Blog</Dropdown.Item>
-      <Dropdown.Item href="#all-blogs">View All Blogs</Dropdown.Item>
-      <Dropdown.Item href="#my-blogs">View My Blogs</Dropdown.Item>
-      <Dropdown.Item href="#my-images">View My Images</Dropdown.Item>
-      <Dropdown.Item href="#text-editor">Text Editor</Dropdown.Item>
-      <Dropdown.Item href="#all-images">All Images</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item href="#change-password">Change Password</Dropdown.Item>
-      <Dropdown.Item href="#sign-out">Sign Out</Dropdown.Item>
-    </DropdownButton>
-
+    <Nav className="container d-flex pt-2" variant="dark">
+      <Nav.Link href="#home-page">Home</Nav.Link>
+      <Nav.Link href="#all-images">All Images</Nav.Link>
+      <Nav.Link href="#all-blogs">View All Blogs</Nav.Link>
+      <Nav.Link href="#my-blogs">View My Blogs</Nav.Link>
+      <Nav.Link href="#my-images">View My Images</Nav.Link>
+      <Nav.Link href="#post-image">Create Image</Nav.Link>
+      <Nav.Link href="#create-blog">Create Blog</Nav.Link>
+    </Nav>
+    <Nav class="drop-down-nav">
+      <DropdownButton
+        variant="outline-light"
+        alignRight
+        title="Account"
+        id="dropdown-menu-align-right"
+      >
+        <Dropdown.Item href="#text-editor">Text Editor</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item href="#change-password">Change Password</Dropdown.Item>
+        <Dropdown.Item href="#sign-out">Sign Out</Dropdown.Item>
+      </DropdownButton>
+    </Nav>
   </Fragment>
 )
 
@@ -42,18 +45,23 @@ const unauthenticatedOptions = (
 // )
 
 const Header = ({ user }) => (
-  <Navbar className="nav-bar" bg="none" variant="dark" expand="md">
-    <Navbar.Brand href="#home-page">
-      Pictoramica
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-        { user ? authenticatedOptions : unauthenticatedOptions }
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+  <div>
+    <Navbar className="nav-bar" variant="dark" expand="lg" sticky="top">
+      <Navbar.Brand href="#home-page container-sm">
+        <img src="https://user-images.githubusercontent.com/64027495/107455102-36592400-6b1c-11eb-8c10-4c1cfc0d575b.png"/>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          { user && <span className="welcome-user mr-2">Welcome, {user.email}</span>}
+          { user ? authenticatedOptions : unauthenticatedOptions }
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+    <div>
+      <p>ptag</p>
+    </div>
+  </div>
 )
 
 export default Header
