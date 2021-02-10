@@ -18,7 +18,7 @@ app.post('/create-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: image.caption,
-            images: [image.imageUrl]
+            images: image.imageUrl
           },
           unit_amount: 2000
         },

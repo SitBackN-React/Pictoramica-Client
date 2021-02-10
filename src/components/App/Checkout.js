@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import image from '../routes/Image'
 
 // const CheckoutForm = () => {
 //   const stripe = useStripe()
@@ -63,21 +62,9 @@ import image from '../routes/Image'
 const stripePromise = loadStripe('pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889')
 
 const ProductDisplay = ({ handleClick }) => (
-  <section>
-    <div className="product">
-      <img
-        src={image.imageUrl}
-        alt={image.caption}
-      />
-      <div className="description">
-        <h3>image.caption</h3>
-        <h5>[amount]</h5>
-      </div>
-    </div>
-    <button id="checkout-button" role="link" onClick={handleClick}>
+  <button id="checkout-button" role="link" onClick={handleClick}>
       Checkout
-    </button>
-  </section>
+  </button>
 )
 
 const Message = ({ message }) => (
@@ -107,7 +94,7 @@ export default function Application () {
   const handleClick = async (event) => {
     const stripe = await stripePromise
 
-    const response = await fetch('/create-session', {
+    const response = await fetch('localhost:7165/#/create-session', {
       method: 'POST'
     })
 
