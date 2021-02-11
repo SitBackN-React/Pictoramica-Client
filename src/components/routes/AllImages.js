@@ -14,6 +14,7 @@ import messages from './../AutoDismissAlert/messages'
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])
+  // const [imageClicked, setImageClicked] = useState(false)
 
   const { msgAlert } = props
 
@@ -23,11 +24,11 @@ const AllImages = (props) => {
       method: 'GET'
     })
       .then(res => setAllImages(res.data.images))
-      // .then(() => msgAlert({
-      //   heading: 'Showing all images',
-      //   message: messages.showAllImagesSuccess,
-      //   variant: 'primary'
-      // }))
+      .then(() => msgAlert({
+        heading: 'Showing all images',
+        message: messages.showAllImagesSuccess,
+        variant: 'primary'
+      }))
       .catch(error => {
         setAllImages([])
         // message if images failed to show
