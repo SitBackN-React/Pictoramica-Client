@@ -1,100 +1,55 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 const ImageLike = props => {
-  // Each image has a set of imageLike array with multiple imageLikes
-  const { image, msgAlert, user } = props
-  // console.log('user ', user)
-  // console.log('image ', image)
-  // console.log('imageLike ', image.imageLikes)
-  // map out all owners from imageLikes array
-  const imageLikeOwners = image.imageLikes.map(el => el.owner)
-  // console.log(imageLikeOwners)
-  // need to find if there is an imageLike that matches the id of the user
-  const isImageLikeOwner = imageLikeOwners.includes(user._id)
-  // console.log('T or F: does the user have a like on this image? ', isImageLikeOwner)
-  // find the index of the owner that matches the user's id
-  const imageLikeOwnerIndex = imageLikeOwners.indexOf(user._id)
-  // console.log(imageLikeOwnerIndex)
+  const { image, msgAlert } = props
 
-  const [userLiked, setUserLiked] = useState(isImageLikeOwner)
+  const [imageLikeArr, setImageLikeArr] = useState(null)
 
-  // console.log('Line 27 userLiked status ', userLiked)
-
-  const handleLike = image => {
-    // console.log(userLiked)
-    // if false, go to createLike to set imageLike.liked to true
-    // if imageLike.liked is true,
-    // go to deleteLike to make imageLike.liked false
-    userLiked ? deleteLike(image) : createLike(image)
-  }
-
-  const createLike = image => {
-    // console.log('CREATE LIKE')
-    // setting state with opposite value
-
-    event.preventDefault()
+  useEffect(() => {
     axios({
-      url: `${apiUrl}/images/${image._id}/imageLikes`,
-      method: 'POST',
-      headers: {
-        'Authorization': `Token token=${user.token}`
-      },
-      data: { imageLike: {
-        liked: true
-      } }
+      url: `${apiUrl}/imageLikes`,
+      method: 'GET'
     })
-      .then(res => {
-        // console.log(res)
-        return res
-      })
-      .then((e) => setUserLiked(true))
+      .then(res => setImageLikeArr(res.data.imageLikes))
       .then(() => msgAlert({
-        heading: 'Image Liked',
-        message: messages.likeImageSuccess,
+        heading: 'Showing all imageLikes',
+        message: messages.showAllImageLikesSuccess,
         variant: 'primary'
       }))
       .catch(error => {
+        setImageLikeArr([])
         // message if images failed to show
         msgAlert({
           heading: 'Failed to delete' + error.message,
-          message: messages.likeImageFailure,
+          message: messages.showAllImageLikesFailure,
           variant: 'danger'
         })
       })
-  }
-  // console.log('after create ', userLiked)
+  }, [])
+  console.log('imageLikeArr: ', imageLikeArr) // null until completed GET request
 
-  const deleteLike = image => {
-    // console.log('DELETE LIKE')
-    // setting state with opposite value
+  // if (imageLikeArr !== null) {
+  //   console.log('imageLikeArr[0]: ', imageLikeArr[0])
+  //   console.log('imageLikeArr[0].imageId: ', imageLikeArr[0].imageId)
+  //   console.log('image._id: ', image._id)
+  //   const specOwner = imageLikeArr.filter(imageLike => imageLike.imageId === image._id).filter(owner => owner.owner === user._id)
+  //   // const specOwner = specImage.filter(owner => owner.owner === user._id)
+  //   console.log('Specific Owner Array: ', specOwner) // this shows only if ids match; otherwise it would be an empty array
+  //   if (specOwner !== undefined) { // tried to input a conditional, but it still considers undefined data
+  //     console.log('First Specific Owner: ', specOwner[0]) // if there is no specific owner array then this becomes undefined
+  //   }
+  //   // console.log(specOwner[0].liked)
+  // }
 
-    // get the id of the imageLike owner
-    const imageLikeId = image.imageLikes[imageLikeOwnerIndex]._id
-    axios({
-      url: `${apiUrl}/images/${image._id}/imageLikes/${imageLikeId}`,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Token token=${user.token}`
-      }
-    })
-      .then((e) => setUserLiked(false))
-      .then(() => msgAlert({
-        heading: 'Message Unliked',
-        message: messages.unlikeImageSuccess,
-        variant: 'primary'
-      }))
-      .catch(error => {
-        // message if images failed to show
-        msgAlert({
-          heading: 'Failed to delete' + error.message,
-          message: messages.unlikeImageFailure,
-          variant: 'danger'
-        })
-      })
+  const [userLiked] = useState(false)
+
+  const handleLike = () => {
+    console.log('handleLike')
+    // change heart color
   }
 
   const likeIcon = userLiked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
@@ -109,7 +64,7 @@ const ImageLike = props => {
           handleLike(image)
         }}
       />
-      <p>{image.imageLikes.length}</p>
+      <div></div>
     </div>
   )
 }

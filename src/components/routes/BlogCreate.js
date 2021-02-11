@@ -56,7 +56,7 @@ const BlogCreate = props => {
   // if blog id was created, go to specific blog
   if (createdBlogId) {
     // return <Redirect to={`/blogs/${createdBlogId}`} />
-    return <Redirect to={'/all-blogs'} />
+    return <Redirect to={'/my-blogs'} />
   }
   // return data from blogform as well as handle change and handle submit from form
   return (
@@ -65,7 +65,7 @@ const BlogCreate = props => {
         blog={blog}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath='/all-blogs'
+        cancelPath='/my-blogs'
       />
     </div>
   )

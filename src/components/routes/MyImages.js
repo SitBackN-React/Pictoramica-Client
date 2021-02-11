@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Figure from 'react-bootstrap/Figure'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -40,42 +41,44 @@ const MyImages = (props) => {
       })
   }, [])
 
-  const styles = {
-    imageContainer: { width: '65%', height: '65%', border: '2px solid #000000', padding: '5px', overflow: 'hidden' }
-  }
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
-    <div key={image._id}>
-      <div style={ styles.imageContainer }>
-        <Link to={`/images/${image._id}`}>
-          <img style={{ width: '100%' }} src={image.imageUrl} />
-        </Link>
-      </div>
-      <div>
-        <p>{image.caption}</p>
-        <p>{image.tag}</p>
-      </div>
-      <div className="like-button">
-        <ImageLike
-          image={image}
-          {...props}
-          user={props.user}
-        />
-      </div>
+    <div key={image._id} style={{ margin: '10px' }}>
+      <Link to={`/images/${image._id}`}>
+        <Figure>
+          <Figure.Image
+            width={180}
+            height={180}
+            alt={image.caption}
+            src={image.imageUrl}
+          />
+          <Figure.Caption style={{ color: 'white', backgroundColor: 'gray' }}>
+            <p>{image.caption}</p>
+            <p>{image.tag}</p>
+            <div className="like-button">
+              <ImageLike
+                image={image}
+                {...props}
+                user={props.user}
+              />
+            </div>
+          </Figure.Caption>
+        </Figure>
+      </Link>
     </div>
   ))
   // the imagesjsx is returned and displayed under a heading.
   // button to Log a New image will take user to create image page.
   return (
-    <div>
+    <div style={{ textAlign: 'center', color: 'white' }}>
       <h4>My Images</h4>
       <div>
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
           {imagesJsx}
         </div>
       </div>
-      <Link to={'/create-image'}>
-        <button className="button btn btn-primary btn-lg">Add New Image</button>
+      <Link to={'/post-image'}>
+        <button className="button btn btn-dark btn-lg">Add New Image</button>
       </Link>
     </div>
   )
