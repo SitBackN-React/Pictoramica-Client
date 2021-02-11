@@ -4,6 +4,7 @@ import messages from '../AutoDismissAlert/messages'
 import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LoadingButton from './../shared/LoadingButton'
+import ForSale from './ForSale'
 
 function UploadS3Image (props) {
   const [caption, setCaption] = useState('')
@@ -57,7 +58,7 @@ function UploadS3Image (props) {
   return (
     <div className='image-create-body'>
       <form onSubmit={uploadWithFormData}>
-        <div>
+        <div className="right">
           <label>Image Caption</label>
           <input
             type='text'
@@ -68,7 +69,7 @@ function UploadS3Image (props) {
           />
         </div>
         <br />
-        <div>
+        <div className="right">
           <label>Image Tag</label>
           <input
             type='text'
@@ -79,10 +80,17 @@ function UploadS3Image (props) {
           />
         </div>
         <br />
+        <div className="right">For Sale:
+          <ForSale
+            image={image}
+            {...props}
+            user={props.user}
+          />
+        </div>
         <div>
           <button
             onClick={() => hiddenFileInput.current.click()}
-            className="btn btn-info" type='button'>
+            className="btn btn-info add-image" type='button'>
             Add Image
           </button>
           <input
@@ -98,7 +106,7 @@ function UploadS3Image (props) {
         <br />
         <LoadingButton
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary share"
           isLoading={isLoading}
           onClick={() => setIsLoading(true)}
         >
