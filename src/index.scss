@@ -35,8 +35,10 @@ body {
 
 
 .DraftEditor-root {
+  background-color: rgba(0, 0, 0, 0.46);
   height: 100px;
-  border: 2px solid blue;
+  border: 2px solid white;
+  color: white;
 }
 
 .image-like-box {
@@ -97,4 +99,43 @@ body {
 
 .image-create-body {
   text-align: center;
+}
+
+.nav-bar {
+  background-color: rgba(0, 0, 0, 0.0);
+
+}
+.welcome-user {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.0);
+  align-items: left;
+  border-radius: 12px;
+  // border-style: solid;
+  // border-color: coral;
+}
+.drop-down-nav {
+   align-content: center;
+}
+
+.nav-link.active {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.43) !important;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.nav-link:hover {
+  border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.43);
+  color: white;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.nav-link {
+   color: white;
+}
+.container {
+  align-items: center;
+  width: 100%;
 }
