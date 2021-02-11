@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -35,25 +38,63 @@ const MyBlogs = (props) => {
       })
   }, [])
 
+  const bgColors = ['Primary',
+    'Secondary',
+    'Success',
+    'Danger',
+    'Warning',
+    'Info',
+    'Light',
+    'Dark'
+  ]
+  const bgRandom = Math.floor(Math.random() * 8)
+  console.log(bgColors[bgRandom])
+
   const blogsJsx = myBlogs.map(blog => (
     <div key={blog._id}>
-      <div>
-        <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
-      </div>
+      <Card border={bgColors[bgRandom].toLowerCase()} style={{ margin: '10px', borderWidth: '5px' }}>
+        <Card.Body>
+          <Card.Title>{blog.title}</Card.Title>
+          <Card.Text>
+            Blog description goes here
+          </Card.Text>
+          <Link to={`/blogs/${blog._id}`}>
+            <Button variant="outline-secondary">Read more</Button>
+          </Link>
+        </Card.Body>
+      </Card>
     </div>
   ))
 
+  // const blogCard = [
+  //   'Primary',
+  //   'Secondary',
+  //   'Success',
+  //   'Danger',
+  //   'Warning',
+  //   'Info',
+  //   'Light',
+  //   'Dark'
+  // ].map((variant, idx) => (
+  //   { blogsJsx }
+  // ))
+
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <h4>My Blogs</h4>
       <div>
         <div>
-          {blogsJsx}
+          <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {blogsJsx}
+          </CardDeck>
         </div>
       </div>
-      <Link to={'/create-blog'}>
-        <button className="button btn btn-primary btn-lg">Create New Blog</button>
-      </Link>
+      <br />
+      <div >
+        <Link to={'/create-blog'}>
+          <button className="button btn btn-dark btn-lg">Create New Blog</button>
+        </Link>
+      </div>
     </div>
   )
 }

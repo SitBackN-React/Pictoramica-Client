@@ -43,5 +43,7 @@ export default {
   deleteCommentSuccess: 'Deleted Comment Successfully',
   deleteCommentFailure: 'Failed to delete comment',
   editCommentSuccess: 'Updated comment successfully',
-  editCommentFailure: 'Failed to update comment'
+  editCommentFailure: 'Failed to update comment',
+  showImageLikesSuccess: 'Showing all imageLikes',
+  showImageLikeFailure: 'Failed to show all imageLikes'
 }
