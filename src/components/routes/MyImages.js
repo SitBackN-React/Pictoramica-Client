@@ -42,6 +42,7 @@ const MyImages = (props) => {
       })
   }, [])
 
+  // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {
       return false
@@ -55,6 +56,9 @@ const MyImages = (props) => {
     }
   }
 
+  // Looks for the imageLike id in the image
+  // if there is one that the user created, return that 'id'
+  // if not, return '0'
   const imageLikedId = image => {
     if (image.imageLikes.length === 0) {
       return '0'
@@ -69,6 +73,11 @@ const MyImages = (props) => {
     }
   }
 
+  // Determines how many imageLikes there are in total for each image
+  const imageLikedCount = image => {
+    return image.imageLikes.length
+  }
+
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
     <div key={image._id} style={{ margin: '10px' }}>
@@ -80,15 +89,14 @@ const MyImages = (props) => {
             <Card.Text>{image.tag}</Card.Text>
           </Card.Body>
         </Link>
-        <div className="like-button">
-          <ImageLike
-            image={image}
-            userLiked={checkUserLike(image)}
-            imageLikedId={imageLikedId(image)}
-            {...props}
-            user={props.user}
-          />
-        </div>
+        <ImageLike
+          image={image}
+          userLiked={checkUserLike(image)}
+          imageLikedId={imageLikedId(image)}
+          imageLikedCount={imageLikedCount(image)}
+          {...props}
+          user={props.user}
+        />
       </Card>
     </div>
   ))
