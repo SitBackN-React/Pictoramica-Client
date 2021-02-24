@@ -5,35 +5,28 @@ import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 const ImageLike = props => {
-  // Each image has a set of imageLike array with multiple imageLikes
-  const { image, msgAlert, user } = props
-  // console.log('user ', user)
-  // console.log('image ', image)
-  // console.log('imageLike ', image.imageLikes)
-  // map out all owners from imageLikes array
-  const imageLikeOwners = image.imageLikes.map(el => el.owner)
-  // console.log(imageLikeOwners)
-  // need to find if there is an imageLike that matches the id of the user
-  const isImageLikeOwner = imageLikeOwners.includes(user._id)
-  // console.log('T or F: does the user have a like on this image? ', isImageLikeOwner)
-  // find the index of the owner that matches the user's id
-  const imageLikeOwnerIndex = imageLikeOwners.indexOf(user._id)
-  // console.log(imageLikeOwnerIndex)
+  const { image, userLiked, imageLikedId, user, msgAlert } = props
 
-  const [userLiked, setUserLiked] = useState(isImageLikeOwner)
+  const [userLike, setUserLike] = useState({
+    liked: userLiked
+  })
+  console.log(imageLikedId)
 
-  // console.log('Line 27 userLiked status ', userLiked)
+  const [likeId, setLikeId] = useState({
+    imageLikedId: imageLikedId
+  })
 
-  const handleLike = image => {
-    // console.log(userLiked)
+  console.log(likeId.imageLikedId)
+  const handleLike = () => {
+    console.log(image)
     // if false, go to createLike to set imageLike.liked to true
     // if imageLike.liked is true,
     // go to deleteLike to make imageLike.liked false
-    userLiked ? deleteLike(image) : createLike(image)
+    userLike.liked ? deleteLike(image) : createLike(image)
   }
 
   const createLike = image => {
-    // console.log('CREATE LIKE')
+    console.log('CREATE LIKE')
     // setting state with opposite value
 
     event.preventDefault()
@@ -48,10 +41,17 @@ const ImageLike = props => {
       } }
     })
       .then(res => {
-        // console.log(res)
-        return res
+        console.log(res)
+        const imageLikesArr = res.data.image.imageLikes
+        const createdLike = imageLikesArr[imageLikesArr.length - 1]
+        const createdLikeId = createdLike._id
+        setLikeId({
+          imageLikedId: createdLikeId
+        })
       })
-      .then((e) => setUserLiked(true))
+      .then((e) => setUserLike({
+        liked: !userLike.liked
+      }))
       .then(() => msgAlert({
         heading: 'Image Liked',
         message: messages.likeImageSuccess,
@@ -69,19 +69,22 @@ const ImageLike = props => {
   // console.log('after create ', userLiked)
 
   const deleteLike = image => {
-    // console.log('DELETE LIKE')
-    // setting state with opposite value
+    console.log('DELETE LIKE')
 
     // get the id of the imageLike owner
-    const imageLikeId = image.imageLikes[imageLikeOwnerIndex]._id
     axios({
-      url: `${apiUrl}/images/${image._id}/imageLikes/${imageLikeId}`,
+      url: `${apiUrl}/images/${image._id}/imageLikes/${likeId.imageLikedId}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Token token=${user.token}`
       }
     })
-      .then((e) => setUserLiked(false))
+      .then((e) => setUserLike({
+        liked: !userLike.liked
+      }))
+      .then((e) => setLikeId({
+        imageLikedId: '0'
+      }))
       .then(() => msgAlert({
         heading: 'Message Unliked',
         message: messages.unlikeImageSuccess,
@@ -96,8 +99,10 @@ const ImageLike = props => {
         })
       })
   }
+  console.log('likeId.imageLikedId in ImageLike Component: ', likeId.imageLikedId)
+  console.log(user._id)
 
-  const likeIcon = userLiked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
+  const likeIcon = userLike.liked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
   return (
     <div>
       <img
@@ -105,9 +110,7 @@ const ImageLike = props => {
         className='like-icon'
         src={likeIcon}
         style={{ cursor: 'pointer' }}
-        onClick={() => {
-          handleLike(image)
-        }}
+        onClick={handleLike}
       />
       <p>{image.imageLikes.length}</p>
     </div>

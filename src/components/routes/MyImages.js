@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Figure from 'react-bootstrap/Figure'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -41,30 +42,54 @@ const MyImages = (props) => {
       })
   }, [])
 
+  const checkUserLike = image => {
+    if (image.imageLikes.length === 0) {
+      return false
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      if (findImageLike) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
+  const imageLikedId = image => {
+    if (image.imageLikes.length === 0) {
+      return '0'
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      if (findImageLike) {
+        const imageLikeId = findImageLike[0]._id
+        return imageLikeId
+      } else {
+        return '0'
+      }
+    }
+  }
+
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
     <div key={image._id} style={{ margin: '10px' }}>
-      <Link to={`/images/${image._id}`}>
-        <Figure>
-          <Figure.Image
-            width={180}
-            height={180}
-            alt={image.caption}
-            src={image.imageUrl}
+      <Card>
+        <Link to={`/images/${image._id}`}>
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
+          <Card.Body style={{ color: 'black' }}>
+            <Card.Text>{image.caption}</Card.Text>
+            <Card.Text>{image.tag}</Card.Text>
+          </Card.Body>
+        </Link>
+        <div className="like-button">
+          <ImageLike
+            image={image}
+            userLiked={checkUserLike(image)}
+            imageLikedId={imageLikedId(image)}
+            {...props}
+            user={props.user}
           />
-          <Figure.Caption style={{ color: 'white', backgroundColor: 'gray' }}>
-            <p>{image.caption}</p>
-            <p>{image.tag}</p>
-            <div className="like-button">
-              <ImageLike
-                image={image}
-                {...props}
-                user={props.user}
-              />
-            </div>
-          </Figure.Caption>
-        </Figure>
-      </Link>
+        </div>
+      </Card>
     </div>
   ))
   // the imagesjsx is returned and displayed under a heading.
@@ -73,9 +98,9 @@ const MyImages = (props) => {
     <div style={{ textAlign: 'center', color: 'white' }}>
       <h4>My Images</h4>
       <div>
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {imagesJsx}
-        </div>
+        </CardDeck>
       </div>
       <Link to={'/post-image'}>
         <button className="button btn btn-dark btn-lg">Add New Image</button>

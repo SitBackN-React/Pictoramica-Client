@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
-import ImageLike from './ImageLike'
+// import ImageLike from './ImageLike'
 import ForSale from './ForSale'
 import ProductDisplay from './../App/Checkout'
 
@@ -71,10 +71,6 @@ const AllImages = (props) => {
         <p>Caption: {image.caption}</p>
         <div>Tag: {tagArray(image.tag)}</div>
         <div className="like-button">
-          <ImageLike
-            image={image}
-            {...props}
-          />
         </div>
         <div>For Sale:
           <ForSale
