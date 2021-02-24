@@ -3,13 +3,14 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+// import ImageLike from './ImageLike'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
   const [image, setImage] = useState(null)
   // deleted starts with a state of false, to be changed once setDeleted used
   const [deleted, setDeleted] = useState(false)
+  // const [clicked, setClicked] = useState(false)
   // for messages to show, need to set them to props
   const { msgAlert } = props
   // GET to show the image with the id that matches the params in url
@@ -94,6 +95,12 @@ const Image = (props) => {
     textSize: { fontSize: '25px' }
   }
 
+  // const handleClick = () => {
+  //   console.log('Image onClick Function fired')
+  //   const click = clicked
+  //   setClicked(!click)
+  // }
+
   return (
     // shows the specified fields(all details of the image) when a image is clicked
     <div>
@@ -104,13 +111,6 @@ const Image = (props) => {
         <div style={styles.textContainer}>
           <h1>{image.caption}</h1>
           <p style={styles.textSize}>{image.tag}</p>
-          <div className="like-button">
-            <ImageLike
-              image={image}
-              {...props}
-              user={props.user}
-            />
-          </div>
           <div style={{ marginTop: '30px' }}>
             {/*  button to click to delete a image */}
             {props.user._id === image.owner ? (
