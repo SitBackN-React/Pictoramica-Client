@@ -5,10 +5,11 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './ImageLike'
-import ForSale from './ForSale'
-import ProductDisplay from './../App/Checkout'
+// import ForSale from './ForSale'
+// import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
+import Checkout from './Checkout'
 
 // const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
 
@@ -60,6 +61,12 @@ const AllImages = (props) => {
     imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
   }
 
+  // const ProductDisplay = ({ handleClick }) => (
+  //   <section>
+  //     <div className="product">
+  //       <img
+  //
+  // )
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
       <div style={styles.imageBox}>
@@ -76,18 +83,12 @@ const AllImages = (props) => {
             {...props}
           />
         </div>
-        <div>For Sale:
-          <ForSale
+        <div>
+          <Checkout
             image={image}
             {...props}
-            user={props.user}
           />
         </div>
-        <ProductDisplay
-          image={image}
-          {...props}
-          user={props.user}
-        />
       </div>
     </div>
   )
@@ -127,48 +128,3 @@ const AllImages = (props) => {
 }
 
 export default AllImages
-
-// const [message, setMessage] = useState("")
-
-//   useEffect(() => {
-//     // Check to see if this is a redirect back from Checkout
-//     const query = new URLSearchParams(window.location.search)
-//
-//     if (query.get("success")) {
-//       setMessage("Order placed! You will receive an email confirmation.")
-//     }
-//
-//     if (query.get("canceled")) {
-//       setMessage(
-//         "Order canceled -- continue to shop around and checkout when you're ready"
-//       )
-//     }
-//   }, [])
-//
-//   const handleClick = async (event) => {
-//     const stripe = await stripePromise
-//
-//     const response = await fetch("/create-checkout-session", {
-//       method: "POST"
-//     })
-//
-//     const session = await response.json()
-//
-//     // When the customer clicks on the button, redirect them to Checkout
-//     const result = await stripe.redirectToCheckout({
-//       sessionId: session.id
-//     })
-//
-//     if (result.error) {
-//       // If `redirectToCheckout` fails due to a browser or network
-//       // error, display the localized error message to your customer
-//       // using `result.error.message`
-//     }
-//   }
-//
-// //   return message ? (
-// //     <Message message={message} />
-// //   ) : (
-// //     <ProductDisplay handleClick={handleClick} />
-// //   )
-// // }
