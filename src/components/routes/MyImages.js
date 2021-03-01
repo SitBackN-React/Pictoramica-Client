@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Figure from 'react-bootstrap/Figure'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -41,30 +42,62 @@ const MyImages = (props) => {
       })
   }, [])
 
+  // Checks to see if the user has a imageLike or not in the image
+  const checkUserLike = image => {
+    if (image.imageLikes.length === 0) {
+      return false
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      if (findImageLike) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
+  // Looks for the imageLike id in the image
+  // if there is one that the user created, return that 'id'
+  // if not, return '0'
+  const imageLikedId = image => {
+    if (image.imageLikes.length === 0) {
+      return '0'
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      if (findImageLike) {
+        const imageLikeId = findImageLike[0]._id
+        return imageLikeId
+      } else {
+        return '0'
+      }
+    }
+  }
+
+  // Determines how many imageLikes there are in total for each image
+  const imageLikedCount = image => {
+    return image.imageLikes.length
+  }
+
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
   const imagesJsx = myImages.map(image => (
     <div key={image._id} style={{ margin: '10px' }}>
-      <Link to={`/images/${image._id}`}>
-        <Figure>
-          <Figure.Image
-            width={180}
-            height={180}
-            alt={image.caption}
-            src={image.imageUrl}
-          />
-          <Figure.Caption style={{ color: 'white', backgroundColor: 'gray' }}>
-            <p>{image.caption}</p>
-            <p>{image.tag}</p>
-            <div className="like-button">
-              <ImageLike
-                image={image}
-                {...props}
-                user={props.user}
-              />
-            </div>
-          </Figure.Caption>
-        </Figure>
-      </Link>
+      <Card>
+        <Link to={`/images/${image._id}`}>
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
+          <Card.Body style={{ color: 'black' }}>
+            <Card.Text>{image.caption}</Card.Text>
+            <Card.Text>{image.tag}</Card.Text>
+          </Card.Body>
+        </Link>
+        <ImageLike
+          image={image}
+          userLiked={checkUserLike(image)}
+          imageLikedId={imageLikedId(image)}
+          imageLikedCount={imageLikedCount(image)}
+          {...props}
+          user={props.user}
+        />
+      </Card>
     </div>
   ))
   // the imagesjsx is returned and displayed under a heading.
@@ -73,9 +106,9 @@ const MyImages = (props) => {
     <div style={{ textAlign: 'center', color: 'white' }}>
       <h4>My Images</h4>
       <div>
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {imagesJsx}
-        </div>
+        </CardDeck>
       </div>
       <Link to={'/post-image'}>
         <button className="button btn btn-dark btn-lg">Add New Image</button>
