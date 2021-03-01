@@ -22,7 +22,8 @@
 
 
 body {
-  background-image: url('https://user-images.githubusercontent.com/53062479/106069025-b2407e80-60cf-11eb-9607-1850867a9ff2.jpg');
+  background-image: linear-gradient((rgba(0, 0, 0, .3)), (rgba(0, 0, 0, 0))), url('/wallpaperPicto.jpg');
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
@@ -146,41 +147,39 @@ url {
 // }
 
 .nav-bar {
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: linear-gradient((rgba(0, 0, 0, .5)), (rgba(0, 0, 0, .02)));
 
 }
 .welcome-user {
   color: white;
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: hsla(0, 0%, 78%, 0.55);
   align-items: left;
   border-radius: 12px;
   // border-style: solid;
   // border-color: coral;
 }
-.drop-down-nav {
-   align-content: center;
-}
 
 .nav-link.active {
-  color: white !important;
   background-color: rgba(0, 0, 0, 0.43) !important;
-  border-radius: 40px;
+  border-color: rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0.34);
+  color: white !important;
 }
 
 .nav-link:hover {
-  border-radius: 40px;
   background-color: rgba(0, 0, 0, 0.43);
-  color: white;
-  border-style: solid;
   border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border-style: solid;
+  color: white;
 }
 .nav-link {
-   color: white;
+  border-color: rgba(255, 255, 255, 0.0);
+  border-radius: 10px;
+  border-style: solid;
+  color: white !important;
 }
-.container {
-  align-items: center;
-  width: 100%;
+.nav-links {
+  justify-content: space-evenly;
 }
-
