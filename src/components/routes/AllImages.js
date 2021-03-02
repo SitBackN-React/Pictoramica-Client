@@ -60,7 +60,7 @@ const AllImages = (props) => {
   const styles = {
     imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
   }
-  
+
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {
@@ -120,11 +120,6 @@ const AllImages = (props) => {
           userLiked={checkUserLike(image)}
           imageLikedId={imageLikedId(image)}
           imageLikedCount={imageLikedCount(image)}
-          {...props}
-          user={props.user}
-        />
-        <ProductDisplay
-          image={image}
           {...props}
           user={props.user}
         />
