@@ -64,7 +64,7 @@ const Blog = (props) => {
 
   if (deleted) {
     return (
-      <Redirect to={'/all-blogs'} />
+      <Redirect to={'/my-blogs'} />
     )
   }
   const postsOwnerJsx = blog.posts.map(post => (

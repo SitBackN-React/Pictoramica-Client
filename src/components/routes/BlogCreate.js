@@ -8,9 +8,12 @@ import messages from './../AutoDismissAlert/messages'
 
 const BlogCreate = props => {
   const [blog, setBlog] = useState({
-    title: ''
+    title: '',
+    description: '',
+    backgroundId: ''
   })
   const [createdBlogId, setCreatedBlogId] = useState(null)
+
   // when the blogform is filled in
   const handleChange = event => {
     // get data from the blog form event

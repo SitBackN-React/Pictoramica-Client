@@ -37,26 +37,26 @@ const MyBlogs = (props) => {
         })
       })
   }, [])
-
-  const bgColors = ['Primary',
-    'Secondary',
-    'Success',
-    'Danger',
-    'Warning',
-    'Info',
-    'Light',
-    'Dark'
-  ]
-  const bgRandom = Math.floor(Math.random() * 8)
-  console.log(bgColors[bgRandom])
+  console.log(myBlogs)
+  // const bgColors = ['Primary',
+  //   'Secondary',
+  //   'Success',
+  //   'Danger',
+  //   'Warning',
+  //   'Info',
+  //   'Light',
+  //   'Dark'
+  // ]
+  // const bgRandom = Math.floor(Math.random() * 8)
+  // console.log(bgColors[bgRandom])
 
   const blogsJsx = myBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={bgColors[bgRandom].toLowerCase()} style={{ margin: '10px', borderWidth: '5px' }}>
+      <Card border={blog.backgroundId} style={{ margin: '10px', borderWidth: '5px' }}>
         <Card.Body>
           <Card.Title>{blog.title}</Card.Title>
           <Card.Text>
-            Blog description goes here
+            {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>
             <Button variant="outline-secondary">Read more</Button>
