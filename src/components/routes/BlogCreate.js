@@ -10,7 +10,7 @@ const BlogCreate = props => {
   const [blog, setBlog] = useState({
     title: '',
     description: '',
-    backgroundId: ''
+    borderColor: ''
   })
   const [createdBlogId, setCreatedBlogId] = useState(null)
 

@@ -28,7 +28,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'primary'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Blue</p>
@@ -37,7 +37,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'secondary'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Gray</p>
@@ -46,7 +46,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'success'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Green</p>
@@ -55,7 +55,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'danger'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Red</p>
@@ -64,7 +64,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'warning'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Yellow</p>
@@ -73,7 +73,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'info'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Turquoise</p>
@@ -82,7 +82,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'light'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Light Gray</p>
@@ -91,7 +91,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <input
           type="radio"
           value={'dark'}
-          name="backgroundId"
+          name="borderColor"
           onChange={handleChange}
         />
         <p>Dark Gray</p>
