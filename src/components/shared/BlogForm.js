@@ -2,100 +2,106 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
-  <form onSubmit={handleSubmit} style={{ color: 'white' }}>
+  <form onSubmit={handleSubmit} style={{ color: 'white', fontSize: '20px', fontWeight: '200px' }}>
+    <label>Blog Title</label>
     <div>
-      <label>Blog Title</label>
       <input
         placeholder="Example: My thoughts"
         value={blog.title}
         name="title"
         onChange={handleChange}
+        size="50"
+        style={{ borderRadius: '5px' }}
+        autoFocus
       />
     </div>
+    <br />
+    <label>Blog Description</label>
     <div>
-      <label>Blog Description</label>
-      <input
-        placeholder="A Blog about Sustainability!"
+      <textarea
+        placeholder="Example: A Blog about Sustainability!"
         value={blog.description}
         name="description"
         onChange={handleChange}
+        rows="4"
+        cols="50"
+        style={{ borderRadius: '5px' }}
       />
     </div>
+    <br />
     <div>
-      <label>Select Blog Tile Border Color</label>
+      <label>Select Blog Border Color</label>
       <br />
-      <div>
+
+      <label className="bordercolor-choice">Blue
         <input
           type="radio"
           value={'primary'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Blue</p>
-      </div>
-      <div>
-        <input
-          type="radio"
-          value={'secondary'}
-          name="borderColor"
-          onChange={handleChange}
-        />
-        <p>Gray</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: '#3386FF' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Green
         <input
           type="radio"
           value={'success'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Green</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: '#76D52C' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Red
         <input
           type="radio"
           value={'danger'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Red</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: 'red' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Yellow
         <input
           type="radio"
           value={'warning'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Yellow</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: 'yellow' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Turquoise
         <input
           type="radio"
           value={'info'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Turquoise</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: 'turquoise' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Light Gray
         <input
           type="radio"
           value={'light'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Light Gray</p>
-      </div>
-      <div>
+        <span className="check" style={{ backgroundColor: 'lightGray' }}></span>
+      </label>
+
+      <label className="bordercolor-choice">Dark Gray
         <input
           type="radio"
           value={'dark'}
           name="borderColor"
           onChange={handleChange}
         />
-        <p>Dark Gray</p>
-      </div>
+        <span className="check" style={{ backgroundColor: '#6D6F6C' }}></span>
+      </label>
     </div>
     <br />
     <button type="submit" className="btn btn-primary">Submit</button>

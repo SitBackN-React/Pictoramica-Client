@@ -52,7 +52,7 @@ const MyBlogs = (props) => {
 
   const blogsJsx = myBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '5px' }}>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px' }}>
         <Card.Body>
           <Card.Title>{blog.title}</Card.Title>
           <Card.Text>
