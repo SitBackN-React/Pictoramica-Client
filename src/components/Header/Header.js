@@ -19,7 +19,7 @@ const authenticatedOptions = (
     <Nav>
       <NavDropdown className="dropdown" alignRight title="Account" id="basic-nav-dropdown">
         {/* <NavDropdown.Item href="#text-editor">Text Editor</NavDropdown.Item> */}
-        <NavDropdown.Divider />
+        {/* <NavDropdown.Divider /> */}
         <NavDropdown.Item href="#change-password">Change Password</NavDropdown.Item>
         <NavDropdown.Item href="#sign-out">Sign Out</NavDropdown.Item>
       </NavDropdown>
