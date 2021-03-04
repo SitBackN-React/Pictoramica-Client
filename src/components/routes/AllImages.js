@@ -59,10 +59,6 @@ const AllImages = (props) => {
     return tags
   }
 
-  // const styles = {
-  //   imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
-  // }
-
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {

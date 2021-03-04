@@ -178,6 +178,9 @@ class App extends Component {
               setImage={this.setImage}
               user={user} />
           )} />
+          <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
+            <HomePage {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
           <AuthenticatedRoute user={user} exact path='/my-images' render={() => (
             <MyImages msgAlert={this.msgAlert} user={user}/>
           )} />
@@ -225,9 +228,6 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/comment-delete' render={(props) => (
             <CommentDelete {...props} msgAlert={this.msgAlert} user={user}/>
-          )} />
-          <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
-            <HomePage {...props} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/all-images/tag' render={(props) => (
             <ImageTag {...props} msgAlert={this.msgAlert} user={user} />

@@ -42,6 +42,22 @@ const MyImages = (props) => {
       })
   }, [])
 
+  const tagArray = (imageTag) => {
+    const tags = imageTag.split(', ').map(tag =>
+      <p key={tag}>
+        <Link to={{
+          pathname: '/all-images/tag',
+          aboutProps: {
+            tag: { tag }
+          }
+        }}>
+          {tag}
+        </Link>
+      </p>
+    )
+    return tags
+  }
+
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {
@@ -84,11 +100,11 @@ const MyImages = (props) => {
       <Card>
         <Link to={`/images/${image._id}`}>
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
-          <Card.Body style={{ color: 'black' }}>
-            <Card.Text>{image.caption}</Card.Text>
-            <Card.Text>{image.tag}</Card.Text>
-          </Card.Body>
         </Link>
+        <Card.Body style={{ color: 'black' }}>
+          <Card.Text>{image.caption}</Card.Text>
+          <Card.Text>{tagArray(image.tag)}</Card.Text>
+        </Card.Body>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
