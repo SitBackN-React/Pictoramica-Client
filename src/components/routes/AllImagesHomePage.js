@@ -15,9 +15,9 @@ import Checkout from './Checkout'
 
 // const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
 
-const AllImages = (props) => {
-  const [allImages, setAllImages] = useState([])
-  // const [imageClicked, setImageClicked] = useState(false)
+const AllImagesHomePage = (props) => {
+  const [setAllImages] = useState([])
+  const [recentImages, setRecentImages] = useState([])
 
   const { msgAlert } = props
 
@@ -26,7 +26,15 @@ const AllImages = (props) => {
       url: `${apiUrl}/all-images`,
       method: 'GET'
     })
-      .then(res => setAllImages(res.data.images))
+      .then(res => {
+        // setAllImages(res.data.images)
+        if (res.data.images.length > 0) {
+          const firstRecentImage = res.data.images.shift()
+          const secondRecentImage = res.data.images.shift()
+          const recentImages = [firstRecentImage, secondRecentImage]
+          setRecentImages(recentImages)
+        }
+      })
       .then(() => msgAlert({
         heading: 'Showing all images',
         message: messages.showAllImagesSuccess,
@@ -101,7 +109,7 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
-  const imagesJsx = allImages.map(image =>
+  const imagesJsx = recentImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
         <Link to={`/images/${image._id}`}>
@@ -129,7 +137,7 @@ const AllImages = (props) => {
 
   return (
     <div style={{ textAlign: 'center', color: 'white' }}>
-      <h1>All Images</h1>
+      <h4>Recently Shared</h4>
       <div>
         <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
           {imagesJsx}
@@ -139,4 +147,4 @@ const AllImages = (props) => {
   )
 }
 
-export default AllImages
+export default AllImagesHomePage

@@ -1,8 +1,8 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 // import apiUrl from './../../apiConfig'
-import AllImages from './AllImages'
-import AllBlogs from './AllBlogs'
+import AllImagesHomePage from './AllImagesHomePage'
+import AllBlogsHomePage from './AllBlogsHomePage'
 
 const HomePage = (props) => {
   const { user } = props
@@ -24,12 +24,12 @@ const HomePage = (props) => {
       <br/>
       <div style={ styles.floatContainer }>
         <div style={ styles.floatChild }>
-          <AllImages
+          <AllImagesHomePage
             {...props}
           />
         </div>
         <div style={ styles.floatChild }>
-          <AllBlogs
+          <AllBlogsHomePage
             {...props}
           />
         </div>
