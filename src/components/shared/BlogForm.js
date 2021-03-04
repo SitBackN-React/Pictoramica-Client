@@ -19,7 +19,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
     <label>Blog Description</label>
     <div>
       <textarea
-        placeholder="Example: A Blog about Sustainability!"
+        placeholder="Example: A blog about my life experiences."
         value={blog.description}
         name="description"
         onChange={handleChange}
