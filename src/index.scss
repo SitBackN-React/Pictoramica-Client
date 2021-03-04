@@ -25,6 +25,7 @@ body {
   background-image: linear-gradient((rgba(0, 0, 0, .3)), (rgba(0, 0, 0, 0))), url('/wallpaperPicto.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
+  color: white;
 }
 
 url {
@@ -154,7 +155,8 @@ url {
   color: white;
   background-color: hsla(0, 0%, 78%, 0.55);
   align-items: left;
-  border-radius: 12px;
+  height: 20%;
+  // border-radius: 12px;
   // border-style: solid;
   // border-color: coral;
 }
@@ -211,14 +213,6 @@ url {
   border-radius: 50%;
 }
 
-.bordercolor-choice:hover input ~ .check {
-  background-color: gray;
-}
-
-.bordercolor-choice input:checked ~ .check {
-  background-color: lightblue;
-}
-
 .check:after {
   content: '';
   position: absolute;
@@ -235,5 +229,6 @@ url {
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
-	background: white;
+	background: black;
+  opacity: 0.6;
 }

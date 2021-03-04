@@ -63,9 +63,13 @@ const MyImages = (props) => {
     if (image.imageLikes.length === 0) {
       return false
     } else {
-      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
       if (findImageLike) {
-        return true
+        if (findImageLike.length === 0) {
+          return false
+        } else {
+          return true
+        }
       } else {
         return false
       }
@@ -80,7 +84,9 @@ const MyImages = (props) => {
       return '0'
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
-      if (findImageLike) {
+      if (findImageLike.length === 0) {
+        return '0'
+      } else if (findImageLike) {
         const imageLikeId = findImageLike[0]._id
         return imageLikeId
       } else {

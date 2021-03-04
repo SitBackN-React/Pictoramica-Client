@@ -158,6 +158,9 @@ class App extends Component {
             message={msgAlert.message}
           />
         ))}
+        <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
+          <HomePage {...props} msgAlert={this.msgAlert} user={user} />
+        )} />
         <main className="container">
           <Route exact path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -177,9 +180,6 @@ class App extends Component {
               msgAlert={this.msgAlert}
               setImage={this.setImage}
               user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
-            <HomePage {...props} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/my-images' render={() => (
             <MyImages msgAlert={this.msgAlert} user={user}/>

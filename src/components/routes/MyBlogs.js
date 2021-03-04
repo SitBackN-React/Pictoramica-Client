@@ -84,7 +84,7 @@ const MyBlogs = (props) => {
       <h4>My Blogs</h4>
       <div>
         <div>
-          <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
             {blogsJsx}
           </CardDeck>
         </div>

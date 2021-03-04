@@ -35,12 +35,6 @@ const unauthenticatedOptions = (
     </Nav>
   </Fragment>
 )
-
-const welcomeBar = user => (
-  <div className="welcomeContainer welcome-user py-5">
-    <div className="m-auto" style={{ fontSize: '27px', color: 'black' }}>Welcome Back, {user.email}!</div>
-  </div>
-)
 //
 // const alwaysOptions = (
 //   <Fragment>
@@ -61,7 +55,6 @@ const Header = ({ user }) => (
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    { user ? welcomeBar(user) : <div style={{ display: 'none' }}></div>}
   </div>
 )
 

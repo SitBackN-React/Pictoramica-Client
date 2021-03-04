@@ -64,9 +64,13 @@ const AllImages = (props) => {
     if (image.imageLikes.length === 0) {
       return false
     } else {
-      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
       if (findImageLike) {
-        return true
+        if (findImageLike.length === 0) {
+          return false
+        } else {
+          return true
+        }
       } else {
         return false
       }
@@ -81,7 +85,9 @@ const AllImages = (props) => {
       return '0'
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
-      if (findImageLike) {
+      if (findImageLike.length === 0) {
+        return '0'
+      } else if (findImageLike) {
         const imageLikeId = findImageLike[0]._id
         return imageLikeId
       } else {
@@ -101,8 +107,8 @@ const AllImages = (props) => {
         <Link to={`/images/${image._id}`}>
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
-        <p>Caption: {image.caption}</p>
-        <div>Tag: {tagArray(image.tag)}</div>
+        <p>{image.caption}</p>
+        <div>{tagArray(image.tag)}</div>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
@@ -125,7 +131,7 @@ const AllImages = (props) => {
     <div style={{ textAlign: 'center', color: 'white' }}>
       <h4>All Images</h4>
       <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
           {imagesJsx}
         </CardDeck>
       </div>

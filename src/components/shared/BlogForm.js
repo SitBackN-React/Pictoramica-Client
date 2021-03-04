@@ -70,7 +70,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
           name="borderColor"
           onChange={handleChange}
         />
-        <span className="check" style={{ backgroundColor: 'yellow' }}></span>
+        <span className="check" style={{ backgroundColor: '#F6E343' }}></span>
       </label>
 
       <label className="bordercolor-choice">Turquoise
@@ -80,7 +80,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
           name="borderColor"
           onChange={handleChange}
         />
-        <span className="check" style={{ backgroundColor: 'turquoise' }}></span>
+        <span className="check" style={{ backgroundColor: '#2EBEC1' }}></span>
       </label>
 
       <label className="bordercolor-choice">Light Gray
