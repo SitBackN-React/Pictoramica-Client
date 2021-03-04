@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -35,18 +38,30 @@ const AllBlogs = (props) => {
 
   const blogsJsx = allBlogs.map(blog => (
     <div key={blog._id}>
-      <div>
-        <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
-      </div>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px' }}>
+        <Card.Body>
+          <Card.Title>
+            {blog.title}
+          </Card.Title>
+          <Card.Text>
+            {blog.description}
+          </Card.Text>
+          <Link to={`/blogs/${blog._id}`}>
+            <Button variant="outline-secondary">Read more</Button>
+          </Link>
+        </Card.Body>
+      </Card>
     </div>
   ))
 
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <h1>All Blogs</h1>
       <br />
       <div>
-        {blogsJsx}
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {blogsJsx}
+        </CardDeck>
       </div>
       <Link to={'/create-blog'}>
         <button variant="primary">Add Blog</button>
