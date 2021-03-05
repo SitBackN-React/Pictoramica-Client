@@ -30,9 +30,12 @@ const AllImagesHomePage = (props) => {
         // setAllImages(res.data.images)
         if (res.data.images.length > 0) {
           const firstRecentImage = res.data.images.shift()
-          const secondRecentImage = res.data.images.shift()
-          const recentImages = [firstRecentImage, secondRecentImage]
-          setRecentImages(recentImages)
+          if (res.data.images.length > 0) {
+            const secondRecentImage = res.data.images.shift()
+            setRecentImages([firstRecentImage, secondRecentImage])
+          } else {
+            setRecentImages([firstRecentImage])
+          }
         }
       })
       .then(() => msgAlert({

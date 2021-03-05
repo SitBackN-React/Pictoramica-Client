@@ -25,11 +25,22 @@ const AllBlogsHomePage = (props) => {
         // setAllBlogs(res.data.blogs)
         if (res.data.blogs.length > 0) {
           const firstRecentBlog = res.data.blogs.shift()
-          const secondRecentBlog = res.data.blogs.shift()
-          const thirdRecentBlog = res.data.blogs.shift()
-          const fourthRecentBlog = res.data.blogs.shift()
-          const recentBlogs = [firstRecentBlog, secondRecentBlog, thirdRecentBlog, fourthRecentBlog]
-          setRecentBlogs(recentBlogs)
+          if (res.data.blogs.length > 0) {
+            const secondRecentBlog = res.data.blogs.shift()
+            if (res.data.blogs.length > 0) {
+              const thirdRecentBlog = res.data.blogs.shift()
+              if (res.data.blogs.length > 0) {
+                const fourthRecentBlog = res.data.blogs.shift()
+                setRecentBlogs([firstRecentBlog, secondRecentBlog, thirdRecentBlog, fourthRecentBlog])
+              } else {
+                setRecentBlogs([firstRecentBlog, secondRecentBlog, thirdRecentBlog])
+              }
+            } else {
+              setRecentBlogs([firstRecentBlog, secondRecentBlog])
+            }
+          } else {
+            setRecentBlogs([firstRecentBlog])
+          }
         }
       })
       .then(() => msgAlert({
