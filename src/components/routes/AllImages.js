@@ -112,7 +112,10 @@ const AllImages = (props) => {
         <div>
           <Checkout
             image={image}
+            // src={image.imageUrl}
+            // alt={image.caption}
             {...props}
+            user={props.user}
           />
         </div>
         <ImageLike

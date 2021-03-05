@@ -104,25 +104,37 @@ url {
 
 .image-create-body {
   text-align: center;
+  align-items: center;
 }
 
 
 .right {
+  display: block;
   margin-left: auto;
   margin-right: 0;
-  width: 300px;
+  width: 500px;
+  height: 500px;
+  background-color: #FFFFF0;
   border: 3px solid #73AD21;
   padding: 20px;
-  margin-top: 6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  margin: 10px;
+}
+
+.center {
+  align-items: center;
+  display: inline-flex;
 }
 
 .share {
-  display: flex;
-  align-items: flex-end;
-  margin-left: auto;
-  margin-right: 0;
+  align-items: center;
+  // margin-left: auto;
+  // margin-right: 0;
   text-align: center;
-  width: 300px;
 }
 
 .add-image {
