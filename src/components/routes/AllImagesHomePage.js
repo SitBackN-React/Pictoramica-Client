@@ -1,42 +1,51 @@
 import React, { useState, useEffect } from 'react'
+// import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
+import ImageLike from './ImageLike'
+// import ForSale from './ForSale'
+// import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+import Checkout from './Checkout'
 
-const MyImages = (props) => {
-  // starts the image state as an empty array
-  // array will hold the images
-  const [myImages, setMyImages] = useState([])
+// const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
+
+const AllImagesHomePage = (props) => {
+  const [setAllImages] = useState([])
+  const [recentImages, setRecentImages] = useState([])
 
   const { msgAlert } = props
-  // GET request to get all of the images user has created
+
   useEffect(() => {
     axios({
-      url: `${apiUrl}/my-images`,
-      method: 'GET',
-      headers: {
-        'Authorization': `Token token=${props.user.token}`
-      }
+      url: `${apiUrl}/all-images`,
+      method: 'GET'
     })
-      // sets the response
-      .then(res => setMyImages(res.data.images))
-      // success message if user is viewing all lists
+      .then(res => {
+        // setAllImages(res.data.images)
+        if (res.data.images.length > 0) {
+          const firstRecentImage = res.data.images.shift()
+          const secondRecentImage = res.data.images.shift()
+          const recentImages = [firstRecentImage, secondRecentImage]
+          setRecentImages(recentImages)
+        }
+      })
       .then(() => msgAlert({
-        heading: 'Showing all of your images',
-        message: messages.showImagesSuccess,
+        heading: 'Showing all images',
+        message: messages.showAllImagesSuccess,
         variant: 'primary'
       }))
       .catch(error => {
-        setMyImages({ tag: '', caption: '', imageUrl: '', like: 0, forSale: false })
+        setAllImages([])
+        // message if images failed to show
         msgAlert({
-          heading: 'Failed to show your images ' + error.message,
-          message: messages.showImagesFailure,
+          heading: 'Failed to delete' + error.message,
+          message: messages.showAllImagesFailure,
           variant: 'danger'
         })
       })
@@ -100,17 +109,14 @@ const MyImages = (props) => {
     return image.imageLikes.length
   }
 
-  // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
-  const imagesJsx = myImages.map(image => (
+  const imagesJsx = recentImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
         <Link to={`/images/${image._id}`}>
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
-        <Card.Body style={{ color: 'black' }}>
-          <Card.Text>{image.caption}</Card.Text>
-          <Card.Text>{tagArray(image.tag)}</Card.Text>
-        </Card.Body>
+        <p>{image.caption}</p>
+        <div>{tagArray(image.tag)}</div>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
@@ -119,24 +125,26 @@ const MyImages = (props) => {
           {...props}
           user={props.user}
         />
+        <div>
+          <Checkout
+            image={image}
+            {...props}
+          />
+        </div>
       </Card>
     </div>
-  ))
-  // the imagesjsx is returned and displayed under a heading.
-  // button to Log a New image will take user to create image page.
+  )
+
   return (
     <div style={{ textAlign: 'center', color: 'white' }}>
-      <h4>My Images</h4>
+      <h4>Recently Shared</h4>
       <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
           {imagesJsx}
         </CardDeck>
       </div>
-      <Link to={'/post-image'}>
-        <button className="button btn btn-dark btn-lg">Add New Image</button>
-      </Link>
     </div>
   )
 }
 
-export default MyImages
+export default AllImagesHomePage

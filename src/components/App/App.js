@@ -158,6 +158,9 @@ class App extends Component {
             message={msgAlert.message}
           />
         ))}
+        <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
+          <HomePage {...props} msgAlert={this.msgAlert} user={user} />
+        )} />
         <main className="container">
           <Route exact path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -225,9 +228,6 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/blogs/:blogId/posts/:postId/comment-delete' render={(props) => (
             <CommentDelete {...props} msgAlert={this.msgAlert} user={user}/>
-          )} />
-          <AuthenticatedRoute user={user} path='/home-page' render={(props) => (
-            <HomePage {...props} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/all-images/tag' render={(props) => (
             <ImageTag {...props} msgAlert={this.msgAlert} user={user} />

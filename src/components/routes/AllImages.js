@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 // import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -57,18 +59,18 @@ const AllImages = (props) => {
     return tags
   }
 
-  const styles = {
-    imageBox: { width: '60%', height: '60%', border: '2px solid #000000' }
-  }
-
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {
       return false
     } else {
-      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
       if (findImageLike) {
-        return true
+        if (findImageLike.length === 0) {
+          return false
+        } else {
+          return true
+        }
       } else {
         return false
       }
@@ -83,7 +85,9 @@ const AllImages = (props) => {
       return '0'
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
-      if (findImageLike) {
+      if (findImageLike.length === 0) {
+        return '0'
+      } else if (findImageLike) {
         const imageLikeId = findImageLike[0]._id
         return imageLikeId
       } else {
@@ -98,23 +102,13 @@ const AllImages = (props) => {
   }
 
   const imagesJsx = allImages.map(image =>
-    <div key={image._id}>
-      <div style={styles.imageBox}>
+    <div key={image._id} style={{ margin: '10px' }}>
+      <Card>
         <Link to={`/images/${image._id}`}>
-          <img style={{ width: '100%' }} src={image.imageUrl} />
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
-      </div>
-      <div>
-        <p>Caption: {image.caption}</p>
-        <div>Tag: {tagArray(image.tag)}</div>
-        <div className="like-button">
-        </div>
-        <div>
-          <Checkout
-            image={image}
-            {...props}
-          />
-        </div>
+        <p>{image.caption}</p>
+        <div>{tagArray(image.tag)}</div>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
@@ -123,15 +117,23 @@ const AllImages = (props) => {
           {...props}
           user={props.user}
         />
-      </div>
+        <div>
+          <Checkout
+            image={image}
+            {...props}
+          />
+        </div>
+      </Card>
     </div>
   )
 
   return (
-    <div>
-      <h4>All Images</h4>
+    <div style={{ textAlign: 'center', color: 'white' }}>
+      <h1>All Images</h1>
       <div>
-        {imagesJsx}
+        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
+          {imagesJsx}
+        </CardDeck>
       </div>
     </div>
   )
