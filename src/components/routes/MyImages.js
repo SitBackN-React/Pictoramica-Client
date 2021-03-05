@@ -64,6 +64,7 @@ const MyImages = (props) => {
       return false
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
+
       if (findImageLike) {
         if (findImageLike.length === 0) {
           return false
@@ -75,7 +76,6 @@ const MyImages = (props) => {
       }
     }
   }
-
   // Looks for the imageLike id in the image
   // if there is one that the user created, return that 'id'
   // if not, return '0'
@@ -84,6 +84,7 @@ const MyImages = (props) => {
       return '0'
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+
       if (findImageLike.length === 0) {
         return '0'
       } else if (findImageLike) {
@@ -94,7 +95,6 @@ const MyImages = (props) => {
       }
     }
   }
-
   // Determines how many imageLikes there are in total for each image
   const imageLikedCount = image => {
     return image.imageLikes.length

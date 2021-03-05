@@ -45,5 +45,7 @@ export default {
   editCommentSuccess: 'Updated comment successfully',
   editCommentFailure: 'Failed to update comment',
   showImageLikesSuccess: 'Showing all imageLikes',
-  showImageLikeFailure: 'Failed to show all imageLikes'
+  showImageLikeFailure: 'Failed to show all imageLikes',
+  likePostSuccess: 'post liked success',
+  likePostFailure: 'post like failed'
 }

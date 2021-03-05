@@ -20,7 +20,7 @@ const AllImages = (props) => {
   // const [imageClicked, setImageClicked] = useState(false)
 
   const { msgAlert } = props
-
+  console.log(props)
   useEffect(() => {
     axios({
       url: `${apiUrl}/all-images`,
@@ -42,7 +42,7 @@ const AllImages = (props) => {
         })
       })
   }, [])
-
+  console.log(allImages)
   const tagArray = (imageTag) => {
     const tags = imageTag.split(', ').map(tag =>
       <p key={tag}>
