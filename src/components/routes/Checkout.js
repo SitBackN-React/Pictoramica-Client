@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
-import image from './AllImages'
+import AllImages from './AllImages'
+import Image from './Image'
+// import './../../checkout.scss'
 // import './App.css'
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -10,12 +12,11 @@ const ProductDisplay = ({ handleClick }) => (
   <section>
     <div className="product">
       <img
-        key={image._id}
-        src={image.imageUrl}
-        alt={image.caption}
+        src={Image.imageUrl}
+        alt={Image.caption}
       />
       <div className="description">
-        <h3>{image.caption}</h3>
+        <h3>{Image.caption}</h3>
         <h5>$20.00</h5>
       </div>
     </div>
@@ -59,7 +60,7 @@ export default function Checkout () {
       // using `result.error.message`.
     }
   }
-  console.log({ image })
+  console.log({ AllImages })
   return message ? (
     <Message message={message} />
   ) : (

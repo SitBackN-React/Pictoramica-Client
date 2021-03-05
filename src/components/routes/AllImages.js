@@ -107,8 +107,21 @@ const AllImages = (props) => {
         <Link to={`/images/${image._id}`}>
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
-        <p>{image.caption}</p>
-        <div>{tagArray(image.tag)}</div>
+      </div>
+      <div>
+        <p>Caption: {image.caption}</p>
+        <div>Tag: {tagArray(image.tag)}</div>
+        <div className="like-button">
+        </div>
+        <div>
+          <Checkout
+            image={image}
+            // src={image.imageUrl}
+            // alt={image.caption}
+            {...props}
+            user={props.user}
+          />
+        </div>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
