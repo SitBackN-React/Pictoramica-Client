@@ -59,7 +59,7 @@ export default function Checkout () {
       // using `result.error.message`.
     }
   }
-  console.log({ image })
+  // console.log({ image })
   return message ? (
     <Message message={message} />
   ) : (

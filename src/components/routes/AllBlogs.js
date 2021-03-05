@@ -32,7 +32,7 @@ const AllBlogs = (props) => {
       // })
       .catch(console.error)
   }, [])
-
+  console.log(allBlogs)
   const blogsJsx = allBlogs.map(blog => (
     <div key={blog._id}>
       <div>

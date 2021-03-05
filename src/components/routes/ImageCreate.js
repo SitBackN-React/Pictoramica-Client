@@ -56,6 +56,7 @@ function UploadS3Image (props) {
   }
 
   return (
+
     <div className='image-create-body'>
       <form onSubmit={uploadWithFormData}>
         <div className="right">

@@ -18,7 +18,7 @@ const AllImages = (props) => {
   // const [imageClicked, setImageClicked] = useState(false)
 
   const { msgAlert } = props
-
+  console.log(props)
   useEffect(() => {
     axios({
       url: `${apiUrl}/all-images`,
@@ -40,7 +40,7 @@ const AllImages = (props) => {
         })
       })
   }, [])
-
+  console.log(allImages)
   const tagArray = (imageTag) => {
     const tags = imageTag.split(', ').map(tag =>
       <p key={tag}>
@@ -66,9 +66,18 @@ const AllImages = (props) => {
     if (image.imageLikes.length === 0) {
       return false
     } else {
-      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
+      // console.log('image: ', image)
+      // console.log('userId: ', props.user._id)
+      // console.log(findImageLike)
+      // console.log(typeof findImageLike)
+      // console.log(findImageLike ? 'yes' : 'no')
       if (findImageLike) {
-        return true
+        if (findImageLike.length === 0) {
+          return false
+        } else {
+          return true
+        }
       } else {
         return false
       }
@@ -83,7 +92,10 @@ const AllImages = (props) => {
       return '0'
     } else {
       const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
-      if (findImageLike) {
+      console.log(findImageLike)
+      if (findImageLike.length === 0) {
+        return '0'
+      } else if (findImageLike) {
         const imageLikeId = findImageLike[0]._id
         return imageLikeId
       } else {
