@@ -67,7 +67,7 @@ const Blog = (props) => {
 
   if (deleted) {
     return (
-      <Redirect to={'/all-blogs'} />
+      <Redirect to={'/my-blogs'} />
     )
   }
   // Checks to see if the user has a postLike or not in the post

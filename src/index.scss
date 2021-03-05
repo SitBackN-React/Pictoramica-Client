@@ -25,6 +25,7 @@ body {
   background-image: linear-gradient((rgba(0, 0, 0, .3)), (rgba(0, 0, 0, 0))), url('/wallpaperPicto.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
+  color: white;
 }
 
 url {
@@ -104,25 +105,37 @@ url {
 
 .image-create-body {
   text-align: center;
+  align-items: center;
 }
 
 
 .right {
+  display: block;
   margin-left: auto;
   margin-right: 0;
-  width: 300px;
+  width: 500px;
+  height: 500px;
+  background-color: #FFFFF0;
   border: 3px solid #73AD21;
   padding: 20px;
-  margin-top: 6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  margin: 10px;
+}
+
+.center {
+  align-items: center;
+  display: inline-flex;
 }
 
 .share {
-  display: flex;
-  align-items: flex-end;
-  margin-left: auto;
-  margin-right: 0;
+  align-items: center;
+  // margin-left: auto;
+  // margin-right: 0;
   text-align: center;
-  width: 300px;
 }
 
 .add-image {
@@ -154,7 +167,8 @@ url {
   color: white;
   background-color: hsla(0, 0%, 78%, 0.55);
   align-items: left;
-  border-radius: 12px;
+  height: 20%;
+  // border-radius: 12px;
   // border-style: solid;
   // border-color: coral;
 }
@@ -190,4 +204,51 @@ url {
   border-radius: 10px;
   margin: 20px;
   text-align: center;
+}
+  
+.bordercolor-choice {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+// Hide the default radio button
+.bordercolor-choice input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+// custom radio button
+.check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  // background-color: lightgray;
+  border-radius: 50%;
+}
+
+.check:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.bordercolor-choice input:checked ~ .check:after {
+  display: block;
+}
+
+.bordercolor-choice .check:after {
+ 	top: 8px;
+	left: 8px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: black;
+  opacity: 0.6;
 }

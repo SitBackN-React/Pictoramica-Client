@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
-// import ImageLike from './ImageLike'
+import ImageLike from './ImageLike'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
@@ -95,11 +95,47 @@ const Image = (props) => {
     textSize: { fontSize: '25px' }
   }
 
-  // const handleClick = () => {
-  //   console.log('Image onClick Function fired')
-  //   const click = clicked
-  //   setClicked(!click)
-  // }
+  // Checks to see if the user has a imageLike or not in the image
+  const checkUserLike = image => {
+    if (image.imageLikes.length === 0) {
+      return false
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => props.user._id === imageLike.owner)
+      if (findImageLike) {
+        if (findImageLike.length === 0) {
+          return false
+        } else {
+          return true
+        }
+      } else {
+        return false
+      }
+    }
+  }
+
+  // Looks for the imageLike id in the image
+  // if there is one that the user created, return that 'id'
+  // if not, return '0'
+  const imageLikedId = image => {
+    if (image.imageLikes.length === 0) {
+      return '0'
+    } else {
+      const findImageLike = image.imageLikes.filter(imageLike => imageLike.owner === props.user._id)
+      if (findImageLike.length === 0) {
+        return '0'
+      } else if (findImageLike) {
+        const imageLikeId = findImageLike[0]._id
+        return imageLikeId
+      } else {
+        return '0'
+      }
+    }
+  }
+
+  // Determines how many imageLikes there are in total for each image
+  const imageLikedCount = image => {
+    return image.imageLikes.length
+  }
 
   return (
     // shows the specified fields(all details of the image) when a image is clicked
@@ -111,6 +147,14 @@ const Image = (props) => {
         <div style={styles.textContainer}>
           <h1>{image.caption}</h1>
           <p style={styles.textSize}>{image.tag}</p>
+          <ImageLike
+            image={image}
+            userLiked={checkUserLike(image)}
+            imageLikedId={imageLikedId(image)}
+            imageLikedCount={imageLikedCount(image)}
+            {...props}
+            user={props.user}
+          />
           <div style={{ marginTop: '30px' }}>
             {/*  button to click to delete a image */}
             {props.user._id === image.owner ? (
