@@ -80,9 +80,6 @@ const AllBlogs = (props) => {
           {blogsJsx}
         </CardDeck>
       </div>
-      <Link to={'/create-blog'}>
-        <button variant="primary">Add Blog</button>
-      </Link>
       {paginationBasic}
     </div>
   )
