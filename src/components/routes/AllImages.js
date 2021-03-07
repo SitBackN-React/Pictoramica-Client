@@ -112,15 +112,6 @@ const AllImages = (props) => {
           <div>Tag: {tagArray(image.tag)}</div>
           <div className="like-button">
           </div>
-          <div>
-            <Checkout
-              image={image}
-              // src={image.imageUrl}
-              // alt={image.caption}
-              {...props}
-              user={props.user}
-            />
-          </div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
@@ -132,7 +123,10 @@ const AllImages = (props) => {
           <div>
             <Checkout
               image={image}
+              // src={image.imageUrl}
+              // alt={image.caption}
               {...props}
+              user={props.user}
             />
           </div>
         </div>
