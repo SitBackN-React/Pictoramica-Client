@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import apiUrl from './../../apiConfig'
 import AllImagesHomePage from './AllImagesHomePage'
 import AllBlogsHomePage from './AllBlogsHomePage'
@@ -8,13 +8,12 @@ const HomePage = (props) => {
   const { user } = props
   const styles = {
     welcomeContainer: { position: 'absolute', width: '100%' },
-    floatContainer: { position: 'absolute', width: '85%' },
-    floatChild: { width: '40%', float: 'left', padding: '10px', border: '2px solid gray', display: 'block', marginRight: '20px' }
+    floatContainer: { display: 'flex', justifyContent: 'center' }
   }
 
   const welcomeBar = user => (
-    <div className="welcomeContainer welcome-user py-5">
-      <div style={{ fontSize: '27px', color: 'black', marginLeft: '15px' }}>Welcome Back, {user.email}!</div>
+    <div className="welcomeContainer welcome-user py-4">
+      <div style={{ fontSize: '25px', color: 'black', marginLeft: '15px' }}>Welcome Back, {user.email}!</div>
     </div>
   )
 
@@ -23,15 +22,21 @@ const HomePage = (props) => {
       { user ? welcomeBar(user) : <div style={{ display: 'none' }}></div> }
       <br/>
       <div style={ styles.floatContainer }>
-        <div style={ styles.floatChild }>
+        <div style={{ display: 'block', marginLeft: '10%' }}>
           <AllImagesHomePage
             {...props}
           />
+          <Link to={'/all-images'} style={{ textAlign: 'right', color: 'white' }}>
+            <p style={{ marginRight: '20%' }}>See More</p>
+          </Link>
         </div>
-        <div style={ styles.floatChild }>
+        <div style={{ display: 'block', marginRight: '10%', justifyContent: 'center', width: '50%' }}>
           <AllBlogsHomePage
             {...props}
           />
+          <Link to={'/all-blogs'} style={{ textAlign: 'right', color: 'white' }}>
+            <p style={{ marginRight: '20%' }}>See More</p>
+          </Link>
         </div>
       </div>
     </React.Fragment>

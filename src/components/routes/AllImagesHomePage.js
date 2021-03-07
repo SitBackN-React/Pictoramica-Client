@@ -11,7 +11,7 @@ import ImageLike from './ImageLike'
 // import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
-import Checkout from './Checkout'
+// import Checkout from './Checkout'
 
 // const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
 
@@ -54,21 +54,21 @@ const AllImagesHomePage = (props) => {
       })
   }, [])
 
-  const tagArray = (imageTag) => {
-    const tags = imageTag.split(', ').map(tag =>
-      <p key={tag}>
-        <Link to={{
-          pathname: '/all-images/tag',
-          aboutProps: {
-            tag: { tag }
-          }
-        }}>
-          {tag}
-        </Link>
-      </p>
-    )
-    return tags
-  }
+  // const tagArray = (imageTag) => {
+  //   const tags = imageTag.split(', ').map(tag =>
+  //     <p key={tag}>
+  //       <Link to={{
+  //         pathname: '/all-images/tag',
+  //         aboutProps: {
+  //           tag: { tag }
+  //         }
+  //       }}>
+  //         {tag}
+  //       </Link>
+  //     </p>
+  //   )
+  //   return tags
+  // }
 
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
@@ -118,8 +118,6 @@ const AllImagesHomePage = (props) => {
         <Link to={`/images/${image._id}`}>
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
-        <p>{image.caption}</p>
-        <div>{tagArray(image.tag)}</div>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
@@ -128,21 +126,16 @@ const AllImagesHomePage = (props) => {
           {...props}
           user={props.user}
         />
-        <div>
-          <Checkout
-            image={image}
-            {...props}
-          />
-        </div>
       </Card>
     </div>
   )
 
   return (
     <div style={{ textAlign: 'center', color: 'white' }}>
-      <h4>Recently Shared</h4>
+      <h2>Recently Shared</h2>
+      <br />
       <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
+        <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
           {imagesJsx}
         </CardDeck>
       </div>

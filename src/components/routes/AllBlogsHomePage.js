@@ -79,10 +79,10 @@ const AllBlogsHomePage = (props) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Recent Content</h1>
+      <h2>Recent Content</h2>
       <br />
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+        <CardDeck style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
           {blogsJsx}
         </CardDeck>
       </div>
