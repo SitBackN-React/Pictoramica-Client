@@ -10,7 +10,6 @@ const Image = (props) => {
   const [image, setImage] = useState(null)
   // deleted starts with a state of false, to be changed once setDeleted used
   const [deleted, setDeleted] = useState(false)
-  // const [clicked, setClicked] = useState(false)
   // for messages to show, need to set them to props
   const { msgAlert } = props
   // GET to show the image with the id that matches the params in url
@@ -162,14 +161,14 @@ const Image = (props) => {
             ) : (
               <button style={{ display: 'none' }}></button>
             )}
-            {/*  // Link to take user to the edit page once the Edit Image button is clicked */}
-            {props.user._id === image.owner ? (
+            {/*  // Link to take user to the edit page once the Edit Image button is clicked - TODO for V2 */}
+            {/* }{props.user._id === image.owner ? (
               <Link to={`/images/${props.match.params.imageId}/edit-image`}>
                 <button className="button btn btn-warning">Edit Image</button>
               </Link>
             ) : (
               <button style={{ display: 'none' }}></button>
-            )}
+            )} */}
             <div>
               {/* Link to take user back to all images list */}
               <Link to='/my-images'>Go to my images</Link>
