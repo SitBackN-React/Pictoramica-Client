@@ -10,7 +10,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         value={blog.title}
         name="title"
         onChange={handleChange}
-        size="35"
+        size="50"
         style={{ borderRadius: '5px' }}
         autoFocus
       />
@@ -23,9 +23,9 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         value={blog.description}
         name="description"
         onChange={handleChange}
-        rows="2"
-        cols="35"
-        maxLength="70"
+        rows="3"
+        cols="50"
+        // maxLength="70"
         style={{ borderRadius: '5px' }}
       />
     </div>
