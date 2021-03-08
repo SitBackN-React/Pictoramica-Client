@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Pagination from './Pagination'
+import Pagination from './../shared/Pagination'
 import PublicBlogs from './PublicBlogs'
 import axios from 'axios'
 

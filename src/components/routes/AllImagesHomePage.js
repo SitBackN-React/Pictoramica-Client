@@ -6,7 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 // import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 

@@ -7,7 +7,7 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 
 const MyImages = (props) => {
   // starts the image state as an empty array

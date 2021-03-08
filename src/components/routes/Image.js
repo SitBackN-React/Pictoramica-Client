@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
