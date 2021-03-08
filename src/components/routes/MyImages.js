@@ -10,8 +10,6 @@ import messages from './../AutoDismissAlert/messages'
 import ImageLike from './../shared/ImageLike'
 
 const MyImages = (props) => {
-  // starts the image state as an empty array
-  // array will hold the images
   const [myImages, setMyImages] = useState([])
 
   const { msgAlert } = props

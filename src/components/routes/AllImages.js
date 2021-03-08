@@ -108,8 +108,8 @@ const AllImages = (props) => {
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
         <div>
-          <p>Caption: {image.caption}</p>
-          <div>Tag: {tagArray(image.tag)}</div>
+          <p style={{ wordWrap: 'break-word' }}>{image.caption}</p>
+          <div>{tagArray(image.tag)}</div>
           <div className="like-button">
           </div>
           <ImageLike
