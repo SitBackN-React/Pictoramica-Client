@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
 
-const PublicBlogs = (props) => {
+const AllBlogsPaginate = (props) => {
   const { blogs, loading } = props
 
   if (loading) {
@@ -39,4 +39,4 @@ const PublicBlogs = (props) => {
   )
 }
 
-export default PublicBlogs
+export default AllBlogsPaginate

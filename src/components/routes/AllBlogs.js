@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Pagination from './../shared/Pagination'
-import PublicBlogs from './PublicBlogs'
+import AllBlogsPaginate from './AllBlogsPaginate'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -52,7 +52,7 @@ const AllBlogs = (props) => {
   return (
     <div className="container mt-5" style={{ textAlign: 'center' }}>
       <h1>All Blogs</h1>
-      <PublicBlogs
+      <AllBlogsPaginate
         blogs={currentBlogs}
         loading={loading}
         {...props}
