@@ -22,20 +22,20 @@ const HomePage = (props) => {
       { user ? welcomeBar(user) : <div style={{ display: 'none' }}></div> }
       <br/>
       <div style={ styles.floatContainer }>
-        <div style={{ display: 'block', marginLeft: '10%' }}>
+        <div style={{ display: 'block', marginLeft: '20%' }}>
           <AllImagesHomePage
             {...props}
           />
           <Link to={'/all-images'} style={{ textAlign: 'right', color: 'white' }}>
-            <p style={{ marginRight: '20%' }}>See More</p>
+            <p style={{ marginRight: '12%' }}>See More</p>
           </Link>
         </div>
-        <div style={{ display: 'block', marginRight: '10%', justifyContent: 'center', width: '50%' }}>
+        <div style={{ display: 'block', marginRight: '10%', textAlign: 'center' }}>
           <AllBlogsHomePage
             {...props}
           />
           <Link to={'/all-blogs'} style={{ textAlign: 'right', color: 'white' }}>
-            <p style={{ marginRight: '20%' }}>See More</p>
+            <p style={{ marginRight: '26%' }}>See More</p>
           </Link>
         </div>
       </div>

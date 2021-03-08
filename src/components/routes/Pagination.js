@@ -7,12 +7,12 @@ const Pagination = ({ blogsPerPage, totalBlogs, paginate }) => {
   }
 
   return (
-    <div>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <nav>
         <ul className="pagination">
           {pageNumbers.map(number => (
             <li className="page-item" key={number}>
-              <a onClick={() => paginate(number)} href="!#/all-blogs" className="page-link">{number}</a>
+              <a onClick={() => paginate(number)} href="#all-blogs" className="page-link">{number}</a>
             </li>
           ))}
         </ul>

@@ -135,7 +135,7 @@ const AllImages = (props) => {
   )
 
   return (
-    <div style={{ textAlign: 'center', color: 'white' }}>
+    <div style={{ textAlign: 'center' }}>
       <h1>All Images</h1>
       <div>
         <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>

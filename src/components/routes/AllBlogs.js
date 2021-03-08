@@ -57,7 +57,10 @@ const AllBlogs = (props) => {
         loading={loading}
         {...props}
       />
-      <Pagination blogsPerPage={blogsPerPage} totalBlogs={allBlogs.length} paginate={paginate} />
+      <Pagination
+        blogsPerPage={blogsPerPage} totalBlogs={allBlogs.length}
+        paginate={paginate}
+      />
     </div>
   )
 }

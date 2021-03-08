@@ -54,22 +54,6 @@ const AllImagesHomePage = (props) => {
       })
   }, [])
 
-  // const tagArray = (imageTag) => {
-  //   const tags = imageTag.split(', ').map(tag =>
-  //     <p key={tag}>
-  //       <Link to={{
-  //         pathname: '/all-images/tag',
-  //         aboutProps: {
-  //           tag: { tag }
-  //         }
-  //       }}>
-  //         {tag}
-  //       </Link>
-  //     </p>
-  //   )
-  //   return tags
-  // }
-
   // Checks to see if the user has a imageLike or not in the image
   const checkUserLike = image => {
     if (image.imageLikes.length === 0) {
@@ -131,9 +115,8 @@ const AllImagesHomePage = (props) => {
   )
 
   return (
-    <div style={{ textAlign: 'center', color: 'white' }}>
+    <div style={{ textAlign: 'center' }}>
       <h2>Recently Shared</h2>
-      <br />
       <div>
         <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
           {imagesJsx}
