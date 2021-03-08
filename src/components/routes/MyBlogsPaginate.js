@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
 
-const AllBlogsPaginate = ({ blogs, loading }) => {
+const MyBlogsPaginate = ({ blogs, loading }) => {
   if (loading) {
     return <h1>Loading</h1>
   }
@@ -37,4 +37,4 @@ const AllBlogsPaginate = ({ blogs, loading }) => {
   )
 }
 
-export default AllBlogsPaginate
+export default MyBlogsPaginate

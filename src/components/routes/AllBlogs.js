@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Pagination from './../shared/Pagination'
+import AllBlogsPagination from './../shared/AllBlogsPagination'
 import AllBlogsPaginate from './AllBlogsPaginate'
 import axios from 'axios'
 
@@ -56,7 +56,7 @@ const AllBlogs = (props) => {
         blogs={currentBlogs}
         loading={loading}
       />
-      <Pagination
+      <AllBlogsPagination
         blogsPerPage={blogsPerPage} totalBlogs={allBlogs.length}
         paginate={paginate}
       />

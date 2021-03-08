@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
-import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
+import MyBlogsPagination from './../shared/MyBlogsPagination'
+import MyBlogsPaginate from './MyBlogsPaginate'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -11,6 +10,9 @@ import messages from './../AutoDismissAlert/messages'
 
 const MyBlogs = (props) => {
   const [myBlogs, setMyBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [blogsPerPage] = useState(10)
 
   const { msgAlert } = props
 
@@ -22,7 +24,10 @@ const MyBlogs = (props) => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(res => setMyBlogs(res.data.blogs))
+      .then(res => {
+        setMyBlogs(res.data.blogs)
+        setLoading(false)
+      })
       .then(() => msgAlert({
         heading: 'Showing all of your blogs',
         message: messages.showMyBlogsSuccess,
@@ -37,53 +42,30 @@ const MyBlogs = (props) => {
         })
       })
   }, [])
-  console.log(myBlogs)
-  // const bgColors = ['Primary',
-  //   'Secondary',
-  //   'Success',
-  //   'Danger',
-  //   'Warning',
-  //   'Info',
-  //   'Light',
-  //   'Dark'
-  // ]
-  // const bgRandom = Math.floor(Math.random() * 8)
-  // console.log(bgColors[bgRandom])
 
-  const blogsJsx = myBlogs.map(blog => (
-    <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '170px' }}>
-        <Card.Body>
-          <Card.Title className="text">
-            {blog.title}
-          </Card.Title>
-          <Card.Text className="text">
-            {blog.description}
-          </Card.Text>
-          <Link to={`/blogs/${blog._id}`}>
-            <Button variant="outline-secondary">Read more</Button>
-          </Link>
-        </Card.Body>
-      </Card>
-    </div>
-  ))
+  // Get current blogs
+  const indexOfLastBlog = currentPage * blogsPerPage
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage
+  const currentBlogs = myBlogs.slice(indexOfFirstBlog, indexOfLastBlog)
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h4>My Blogs</h4>
-      <div>
-        <div>
-          <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
-            {blogsJsx}
-          </CardDeck>
-        </div>
-      </div>
-      <br />
-      <div >
-        <Link to={'/create-blog'}>
-          <button className="button btn btn-dark btn-lg">Create New Blog</button>
-        </Link>
-      </div>
+    <div className="container mt-5" style={{ textAlign: 'center' }}>
+      <h1>All Blogs</h1>
+      <MyBlogsPaginate
+        blogs={currentBlogs}
+        loading={loading}
+        href={'#my-blogs'}
+      />
+      <MyBlogsPagination
+        blogsPerPage={blogsPerPage} totalBlogs={myBlogs.length}
+        paginate={paginate}
+      />
+      <Link to={'/create-blog'}>
+        <button className="button btn btn-dark btn-lg">Create New Blog</button>
+      </Link>
     </div>
   )
 }

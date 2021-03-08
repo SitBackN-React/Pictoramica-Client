@@ -63,7 +63,7 @@ const AllBlogsHomePage = (props) => {
     <div key={blog._id}>
       <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '224px', height: '224px', color: 'black' }}>
         <Card.Body>
-          <Card.Title className="text">
+          <Card.Title className="title">
             {blog.title}
           </Card.Title>
           <Card.Text className="text">
