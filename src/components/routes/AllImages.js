@@ -101,6 +101,8 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
+  console.log(allImages)
+
   const imagesJsx = allImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
@@ -110,8 +112,6 @@ const AllImages = (props) => {
         <div>
           <p style={{ wordWrap: 'break-word' }}>{image.caption}</p>
           <div>{tagArray(image.tag)}</div>
-          <div className="like-button">
-          </div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
@@ -120,6 +120,7 @@ const AllImages = (props) => {
             {...props}
             user={props.user}
           />
+          {image.forSale === true ? <div style={{ textAlign: 'center' }}>For Sale</div> : <div style={{ display: 'none' }}></div>}
           <div>
             <Checkout
               image={image}
