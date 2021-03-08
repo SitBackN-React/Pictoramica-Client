@@ -4,13 +4,14 @@ import messages from '../AutoDismissAlert/messages'
 import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LoadingButton from './../shared/LoadingButton'
-import ForSale from './ForSale'
+// import ForSale from './ForSale'
 
 function UploadS3Image (props) {
   const [caption, setCaption] = useState('')
   const [tag, setTag] = useState('')
   const [image, setImageCreate] = useState('')
   const [url, setUrl] = useState('')
+  const [forSale, setForSale] = useState(false)
   const [price, setPrice] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -30,6 +31,7 @@ function UploadS3Image (props) {
     formData.append('caption', caption)
     formData.append('tag', tag)
     formData.append('image', image)
+    formData.append('forSale', forSale)
     formData.append('price', price)
 
     const { msgAlert, history, setImage, user } = props
@@ -48,6 +50,7 @@ function UploadS3Image (props) {
         setCaption('')
         setTag('')
         setPrice('')
+        setForSale(false)
         setImageCreate(null)
         setIsLoading(false)
         msgAlert({
@@ -103,12 +106,19 @@ function UploadS3Image (props) {
               />
             </div>
             <br />
-            <div>For Sale:
-              <ForSale
+            <div style={{ color: 'black' }}>
+              <label>For Sale:</label>
+              <input
+                type='checkbox'
+                value={forSale}
+                onChange={e => setForSale(true)}
+              />
+              {/* <ForSale
                 image={image}
                 {...props}
                 user={props.user}
-              />
+              /> */}
+
             </div>
             <br />
             <div>

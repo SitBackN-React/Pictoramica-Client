@@ -7,11 +7,9 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 
 const MyImages = (props) => {
-  // starts the image state as an empty array
-  // array will hold the images
   const [myImages, setMyImages] = useState([])
 
   const { msgAlert } = props
@@ -43,7 +41,7 @@ const MyImages = (props) => {
   }, [])
 
   const tagArray = (imageTag) => {
-    const tags = imageTag.split(', ').map(tag =>
+    const tags = imageTag.split(' ').map(tag =>
       <p key={tag}>
         <Link to={{
           pathname: '/all-images/tag',
@@ -51,7 +49,7 @@ const MyImages = (props) => {
             tag: { tag }
           }
         }}>
-          {tag}
+          #{tag}
         </Link>
       </p>
     )

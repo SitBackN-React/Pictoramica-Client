@@ -23,8 +23,9 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         value={blog.description}
         name="description"
         onChange={handleChange}
-        rows="4"
+        rows="3"
         cols="50"
+        // maxLength="70"
         style={{ borderRadius: '5px' }}
       />
     </div>
@@ -81,16 +82,6 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
           onChange={handleChange}
         />
         <span className="check" style={{ backgroundColor: '#2EBEC1' }}></span>
-      </label>
-
-      <label className="bordercolor-choice">Light Gray
-        <input
-          type="radio"
-          value={'light'}
-          name="borderColor"
-          onChange={handleChange}
-        />
-        <span className="check" style={{ backgroundColor: 'lightGray' }}></span>
       </label>
 
       <label className="bordercolor-choice">Dark Gray

@@ -3,14 +3,13 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
   const [image, setImage] = useState(null)
   // deleted starts with a state of false, to be changed once setDeleted used
   const [deleted, setDeleted] = useState(false)
-  // const [clicked, setClicked] = useState(false)
   // for messages to show, need to set them to props
   const { msgAlert } = props
   // GET to show the image with the id that matches the params in url
@@ -89,10 +88,26 @@ const Image = (props) => {
 
   const styles = {
     flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
-    imageContainer: { width: '60%' },
-    singleImage: { width: '100%', height: '100%', border: '2px solid #000000' },
+    imageContainer: { width: '40%' },
+    singleImage: { width: '100%', height: 'auto', border: '2px solid #000000' },
     textContainer: { paddingLeft: '10px' },
     textSize: { fontSize: '25px' }
+  }
+
+  const tagArray = (imageTag) => {
+    const tags = imageTag.split(' ').map(tag =>
+      <p key={tag}>
+        <Link to={{
+          pathname: '/all-images/tag',
+          aboutProps: {
+            tag: { tag }
+          }
+        }}>
+          #{tag}
+        </Link>
+      </p>
+    )
+    return tags
   }
 
   // Checks to see if the user has a imageLike or not in the image
@@ -146,7 +161,7 @@ const Image = (props) => {
         </div>
         <div style={styles.textContainer}>
           <h1>{image.caption}</h1>
-          <p style={styles.textSize}>{image.tag}</p>
+          <div style={styles.textSize}>{tagArray(image.tag)}</div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
@@ -155,6 +170,7 @@ const Image = (props) => {
             {...props}
             user={props.user}
           />
+          {image.forSale === true ? <div>For Sale</div> : <div style={{ display: 'none' }}></div>}
           <div style={{ marginTop: '30px' }}>
             {/*  button to click to delete a image */}
             {props.user._id === image.owner ? (
@@ -162,14 +178,14 @@ const Image = (props) => {
             ) : (
               <button style={{ display: 'none' }}></button>
             )}
-            {/*  // Link to take user to the edit page once the Edit Image button is clicked */}
-            {props.user._id === image.owner ? (
+            {/*  // Link to take user to the edit page once the Edit Image button is clicked - TODO for V2 */}
+            {/* }{props.user._id === image.owner ? (
               <Link to={`/images/${props.match.params.imageId}/edit-image`}>
                 <button className="button btn btn-warning">Edit Image</button>
               </Link>
             ) : (
               <button style={{ display: 'none' }}></button>
-            )}
+            )} */}
             <div>
               {/* Link to take user back to all images list */}
               <Link to='/my-images'>Go to my images</Link>
