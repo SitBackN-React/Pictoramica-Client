@@ -4,6 +4,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 const ImageTag = props => {
+  console.log('props in imageTag', props)
   const [allImages, setAllImages] = useState([])
 
   const selectedTagName = props.location.aboutProps.tag.tag
@@ -36,7 +37,7 @@ const ImageTag = props => {
   const tagMatch = (image) => {
     const imageTag = image.tag
     const lowercaseTags = imageTag.toLowerCase()
-    const tags = lowercaseTags.split(', ')
+    const tags = lowercaseTags.split(' ')
     const checkTags = tags.includes(lowercaseSelectedTagName)
 
     if (checkTags) {
@@ -52,9 +53,7 @@ const ImageTag = props => {
 
   return (
     <div>
-      <h1>HELLO You have reached the Image Tag Page</h1>
-      <p>The tag that you have clicked on is <strong><u>{selectedTagName}</u></strong></p>
-      <p>Images with the same tag name will appear here</p>
+      <h1>#{selectedTagName}</h1>
       <div>{imagesJsx}</div>
     </div>
   )
