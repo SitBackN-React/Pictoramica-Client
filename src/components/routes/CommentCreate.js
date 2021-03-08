@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
@@ -7,6 +7,7 @@ import CommentForm from './../shared/CommentForm'
 import messages from './../AutoDismissAlert/messages'
 
 const CommentCreate = props => {
+  const { addedComment } = props
   const [comment, setComment] = useState({
     remark: ''
   })
@@ -56,17 +57,18 @@ const CommentCreate = props => {
       })
   }
   console.log(comment)
-  if (createdComment) {
-    return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`} />
-  }
-
+  // if (createdComment) {
+  //   return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`} />
+  // }
+  console.log(createdComment)
   return (
     <div>
       <CommentForm
         comment={comment}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`}
+        onClick={addedComment}
+        cancelPath={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`}
       />
     </div>
   )

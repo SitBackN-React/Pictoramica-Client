@@ -4,15 +4,13 @@ import { Link } from 'react-router-dom'
 const CommentForm = ({ comment, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <div>
-      <label>Comment</label>
       <textarea
-        placeholder="Ex: I believe that..."
+        placeholder="Add comment here..."
         value={comment.remark || ''}
         name="remark"
         onChange={handleChange}
-        cols="25"
-        rows="10"
-        autoFocus
+        cols="50"
+        rows="5"
       ></textarea>
     </div>
     <br />
