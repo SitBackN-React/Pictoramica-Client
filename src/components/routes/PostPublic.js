@@ -4,6 +4,8 @@ import axios from 'axios'
 import PostLike from './PostLike'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import CommentCreate from './CommentCreate'
 
 const PostPublic = props => {
   const [post, setPost] = useState(null)
@@ -90,22 +92,29 @@ const PostPublic = props => {
   }
   return (
     <div>
-      <h4>{post.title}</h4>
-      <p>{post.content}</p>
-      <div className="post-display">
+      <Jumbotron fluid>
+        <div className="blabla">
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
+          <div className="postlikeonpost">
+            <PostLike
+              post={post}
+              userLiked={checkUserLike(post)}
+              postLikedId={postLikedId(post)}
+              postLikedCount={postLikedCount(post)}
+              {...props}
+              user={props.user}
+            />
+          </div>
+        </div>
+      </Jumbotron>
+      <div className="comments-display">
+        <p>Comments</p>
         {commentsJsx}
       </div>
       <div>
-        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-create`}>
-          <button className="btn btn-primary">Add Comment now</button>
-        </Link>
-        <PostLike
-          post={post}
-          userLiked={checkUserLike(post)}
-          postLikedId={postLikedId(post)}
-          postLikedCount={postLikedCount(post)}
+        <CommentCreate
           {...props}
-          user={props.user}
         />
       </div>
       <div>

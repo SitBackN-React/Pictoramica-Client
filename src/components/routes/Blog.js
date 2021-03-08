@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+
 import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 import PostLike from './PostLike'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 const Blog = (props) => {
   const [blog, setBlog] = useState(null)
   // const [userLiked, setUserLiked] = useState([])
@@ -110,74 +111,65 @@ const Blog = (props) => {
   const postLikedCount = post => {
     return post.postLikes.length
   }
-  const bgColors = ['Primary',
-    'Secondary',
-    'Success',
-    'Danger',
-    'Warning',
-    'Info',
-    'Light',
-    'Dark'
-  ]
-  const bgRandom = Math.floor(Math.random() * 8)
   // if user owns the post
 
   const postsOwnerJsx = blog.posts.map(post => (
-    <div key={post._id}>
-      <Card border={bgColors[bgRandom].toLowerCase()} style={{ margin: '10px', borderWidth: '5px' }}>
-        <Card.Body>
-          <Card.Title>{post.title}</Card.Title>
-          <Card.Text>
-            {post.content}
-          </Card.Text>
+    <li style={{ width: '100%' }} key={post._id}>
+      <Jumbotron>
+        <div className="blabla">
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
+
           <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}`}>
             <Button variant="outline-secondary">Read more</Button>
           </Link>
-          <PostLike
-            post={post}
-            userLiked={checkUserLike(post)}
-            postLikedId={postLikedId(post)}
-            postLikedCount={postLikedCount(post)}
-            {...props}
-            user={props.user}
-          />
-        </Card.Body>
-      </Card>
-    </div>
+          <div>
+            <PostLike
+              post={post}
+              userLiked={checkUserLike(post)}
+              postLikedId={postLikedId(post)}
+              postLikedCount={postLikedCount(post)}
+              {...props}
+              user={props.user}
+            />
+          </div>
+        </div>
+      </Jumbotron>
+    </li>
   ))
 
   // if user does not own the post
   const postsPublicJsx = blog.posts.map(post => (
-    <div key={post._id}>
-      <Card border={bgColors[bgRandom].toLowerCase()} style={{ margin: '10px', borderWidth: '5px' }}>
-        <Card.Body>
-          <Card.Title>{post.title}</Card.Title>
-          <Card.Text>
-            {post.content}
-          </Card.Text>
+    <li style={{ width: '100%' }} key={post._id}>
+      <Jumbotron>
+        <div className="blabla">
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
+          <div className="postlikeonpost">
+            <PostLike
+              post={post}
+              userLiked={checkUserLike(post)}
+              postLikedId={postLikedId(post)}
+              postLikedCount={postLikedCount(post)}
+              {...props}
+              user={props.user}
+            />
+          </div>
           <Link to={`/blogs/${props.match.params.blogId}/posts/${post._id}/post-public`}>
             <Button variant="outline-secondary">Read more</Button>
           </Link>
-          <PostLike
-            post={post}
-            userLiked={checkUserLike(post)}
-            postLikedId={postLikedId(post)}
-            postLikedCount={postLikedCount(post)}
-            {...props}
-            user={props.user}
-          />
-        </Card.Body>
-      </Card>
-    </div>
+        </div>
+      </Jumbotron>
+    </li>
   ))
 
   console.log(blog.posts, 'the blog')
   //  final return
   return (
     <div style={{ textAlign: 'center' }}>
-      <h4>{blog.title}</h4>
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <h3>Blog Name: {blog.title}</h3>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <CardDeck >
           {props.user._id === blog.owner ? (
             postsOwnerJsx
           ) : (

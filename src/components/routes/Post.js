@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import PostLike from './PostLike'
+import Comments from './Comments'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 const Post = props => {
   const [post, setPost] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  const [createComment, setCreatedComment] = useState(false)
 
   const { msgAlert } = props
 
@@ -39,7 +41,7 @@ const Post = props => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [createComment])
 
   const destroy = () => {
     axios({
@@ -121,19 +123,39 @@ const Post = props => {
   const postLikedCount = post => {
     return post.postLikes.length
   }
+  const createdComment = () => {
+    setCreatedComment(true)
+  }
   return (
     <div>
       <Jumbotron fluid>
-        <h1>{post.title}</h1>
-        <p>{post.content}</p>
+        <div className="blabla">
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
+          <div className="postlikeonpost">
+            <PostLike
+              post={post}
+              userLiked={checkUserLike(post)}
+              postLikedId={postLikedId(post)}
+              postLikedCount={postLikedCount(post)}
+              {...props}
+              user={props.user}
+            />
+          </div>
+        </div>
       </Jumbotron>
       <div className="post-display">
+        <p>Comments</p>
         {commentsJsx}
       </div>
       <div>
-        <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-create`}>
-          <button className="btn btn-primary">Add Comment</button>
-        </Link>
+        <Comments
+          {...props}
+          post={post}
+          addedComment={createdComment}
+        />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', margin: 20 }}>
         <button className="btn btn-danger" onClick={destroy}>Delete Post</button>
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/edit-post`}>
           <button className="button btn btn-warning">Edit Post</button>
@@ -141,14 +163,6 @@ const Post = props => {
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-delete`}>
           <button className="btn btn-danger">Delete Comment</button>
         </Link>
-        <PostLike
-          post={post}
-          userLiked={checkUserLike(post)}
-          postLikedId={postLikedId(post)}
-          postLikedCount={postLikedCount(post)}
-          {...props}
-          user={props.user}
-        />
       </div>
       <div>
         <Link to={`/blogs/${props.match.params.blogId}`}>Back to posts</Link>
