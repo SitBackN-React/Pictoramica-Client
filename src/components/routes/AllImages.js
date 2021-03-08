@@ -6,7 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
-import ImageLike from './ImageLike'
+import ImageLike from './../shared/ImageLike'
 // import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 
@@ -44,7 +44,7 @@ const AllImages = (props) => {
   }, [])
   console.log(allImages)
   const tagArray = (imageTag) => {
-    const tags = imageTag.split(', ').map(tag =>
+    const tags = imageTag.split(' ').map(tag =>
       <p key={tag}>
         <Link to={{
           pathname: '/all-images/tag',
@@ -52,7 +52,7 @@ const AllImages = (props) => {
             tag: { tag }
           }
         }}>
-          {tag}
+          #{tag}
         </Link>
       </p>
     )
@@ -101,6 +101,8 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
+  console.log(allImages)
+
   const imagesJsx = allImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
@@ -108,10 +110,17 @@ const AllImages = (props) => {
           <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
         </Link>
         <div>
-          <p>Caption: {image.caption}</p>
-          <div>Tag: {tagArray(image.tag)}</div>
-          <div className="like-button">
-          </div>
+          <p style={{ wordWrap: 'break-word' }}>{image.caption}</p>
+          <div>{tagArray(image.tag)}</div>
+          <ImageLike
+            image={image}
+            userLiked={checkUserLike(image)}
+            imageLikedId={imageLikedId(image)}
+            imageLikedCount={imageLikedCount(image)}
+            {...props}
+            user={props.user}
+          />
+          {image.forSale === true ? <div style={{ textAlign: 'center' }}>For Sale</div> : <div style={{ display: 'none' }}></div>}
           <div>
             <Checkout
               image={image}
@@ -121,27 +130,13 @@ const AllImages = (props) => {
               user={props.user}
             />
           </div>
-          <ImageLike
-            image={image}
-            userLiked={checkUserLike(image)}
-            imageLikedId={imageLikedId(image)}
-            imageLikedCount={imageLikedCount(image)}
-            {...props}
-            user={props.user}
-          />
-          <div>
-            <Checkout
-              image={image}
-              {...props}
-            />
-          </div>
         </div>
       </Card>
     </div>
   )
 
   return (
-    <div style={{ textAlign: 'center', color: 'white' }}>
+    <div style={{ textAlign: 'center' }}>
       <h1>All Images</h1>
       <div>
         <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>

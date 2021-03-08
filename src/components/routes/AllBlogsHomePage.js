@@ -25,11 +25,22 @@ const AllBlogsHomePage = (props) => {
         // setAllBlogs(res.data.blogs)
         if (res.data.blogs.length > 0) {
           const firstRecentBlog = res.data.blogs.shift()
-          const secondRecentBlog = res.data.blogs.shift()
-          const thirdRecentBlog = res.data.blogs.shift()
-          const fourthRecentBlog = res.data.blogs.shift()
-          const recentBlogs = [firstRecentBlog, secondRecentBlog, thirdRecentBlog, fourthRecentBlog]
-          setRecentBlogs(recentBlogs)
+          if (res.data.blogs.length > 0) {
+            const secondRecentBlog = res.data.blogs.shift()
+            if (res.data.blogs.length > 0) {
+              const thirdRecentBlog = res.data.blogs.shift()
+              if (res.data.blogs.length > 0) {
+                const fourthRecentBlog = res.data.blogs.shift()
+                setRecentBlogs([firstRecentBlog, secondRecentBlog, thirdRecentBlog, fourthRecentBlog])
+              } else {
+                setRecentBlogs([firstRecentBlog, secondRecentBlog, thirdRecentBlog])
+              }
+            } else {
+              setRecentBlogs([firstRecentBlog, secondRecentBlog])
+            }
+          } else {
+            setRecentBlogs([firstRecentBlog])
+          }
         }
       })
       .then(() => msgAlert({
@@ -50,12 +61,12 @@ const AllBlogsHomePage = (props) => {
 
   const blogsJsx = recentBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', color: 'black' }}>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '224px', height: '224px', color: 'black' }}>
         <Card.Body>
-          <Card.Title>
+          <Card.Title className="title">
             {blog.title}
           </Card.Title>
-          <Card.Text>
+          <Card.Text className="text">
             {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>
@@ -67,11 +78,10 @@ const AllBlogsHomePage = (props) => {
   ))
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>Recent Content</h1>
-      <br />
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div>
+      <h2>Recent Content</h2>
+      <div style={{ margin: 'auto', width: '480px' }}>
+        <CardDeck style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
           {blogsJsx}
         </CardDeck>
       </div>

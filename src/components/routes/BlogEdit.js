@@ -7,7 +7,9 @@ import messages from './../AutoDismissAlert/messages'
 
 const BlogEdit = props => {
   const [blog, setBlog] = useState({
-    title: ''
+    title: '',
+    description: '',
+    borderColor: ''
   })
   const [updated, setUpdated] = useState(false)
   const { msgAlert } = props
@@ -50,7 +52,9 @@ const BlogEdit = props => {
         variant: 'success'
       }))
       .catch(error => {
-        setUpdated({ title: '' })
+        setUpdated({ title: '',
+          description: '',
+          borderColor: '' })
         msgAlert({
           heading: 'Failed to update blog ' + error.message,
           message: messages.editBlogFailure,
