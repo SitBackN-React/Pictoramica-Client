@@ -13,7 +13,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 // import ImageCreate from '../routes/ImageCreate'
 import MyImages from '../routes/MyImages'
-import ImageEdit from '../routes/ImageEdit'
+import EditS3Image from '../routes/ImageEdit'
 import Image from '../routes/Image'
 import AllImages from '../routes/AllImages'
 import BlogCreate from '../routes/BlogCreate'
@@ -185,7 +185,7 @@ class App extends Component {
             <MyImages msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/images/:imageId/edit-image' render={(props) => (
-            <ImageEdit {...props} msgAlert={this.msgAlert} user={user}/>
+            <EditS3Image {...props} msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/images/:imageId' render={(props) => (
             <Image {...props} msgAlert={this.msgAlert} user={user}/>
