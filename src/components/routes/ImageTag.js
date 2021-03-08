@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
@@ -47,7 +48,9 @@ const ImageTag = props => {
 
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
-      <img style={{ width: '40%', marginBottom: '10px' }} src={tagMatch(image)} />
+      <Link to={`/images/${image._id}`}>
+        <img style={{ width: '40%', marginBottom: '10px' }} src={tagMatch(image)} />
+      </Link>
     </div>
   )
 

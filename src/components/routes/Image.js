@@ -88,10 +88,26 @@ const Image = (props) => {
 
   const styles = {
     flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
-    imageContainer: { width: '60%' },
-    singleImage: { width: '100%', height: '100%', border: '2px solid #000000' },
+    imageContainer: { width: '40%' },
+    singleImage: { width: '100%', height: 'auto', border: '2px solid #000000' },
     textContainer: { paddingLeft: '10px' },
     textSize: { fontSize: '25px' }
+  }
+
+  const tagArray = (imageTag) => {
+    const tags = imageTag.split(' ').map(tag =>
+      <p key={tag}>
+        <Link to={{
+          pathname: '/all-images/tag',
+          aboutProps: {
+            tag: { tag }
+          }
+        }}>
+          #{tag}
+        </Link>
+      </p>
+    )
+    return tags
   }
 
   // Checks to see if the user has a imageLike or not in the image
@@ -145,7 +161,7 @@ const Image = (props) => {
         </div>
         <div style={styles.textContainer}>
           <h1>{image.caption}</h1>
-          <p style={styles.textSize}>{image.tag}</p>
+          <p style={styles.textSize}>{tagArray(image.tag)}</p>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
