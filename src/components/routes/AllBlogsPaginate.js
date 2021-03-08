@@ -5,9 +5,7 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
 
-const AllBlogsPaginate = (props) => {
-  const { blogs, loading } = props
-
+const AllBlogsPaginate = ({ blogs, loading }) => {
   if (loading) {
     return <h1>Loading</h1>
   }

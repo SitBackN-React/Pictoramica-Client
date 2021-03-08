@@ -55,7 +55,6 @@ const AllBlogs = (props) => {
       <AllBlogsPaginate
         blogs={currentBlogs}
         loading={loading}
-        {...props}
       />
       <Pagination
         blogsPerPage={blogsPerPage} totalBlogs={allBlogs.length}
