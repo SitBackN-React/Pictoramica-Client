@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 
 const PublicBlogs = (props) => {
   const { blogs, loading } = props
@@ -12,17 +13,18 @@ const PublicBlogs = (props) => {
   }
 
   const blogsJsx = blogs.map(blog => (
-    <li key={blog.id}>
+    <li key={blog._id}>
       <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', color: 'black' }}>
         <Card.Body>
           <Card.Title>
-            <Link to={`/blogs/${blog._id}`}>
-              {blog.title}
-            </Link>
+            {blog.title}
           </Card.Title>
           <Card.Text>
             {blog.description}
           </Card.Text>
+          <Link to={`/blogs/${blog._id}`}>
+            <Button variant="outline-secondary">Read more</Button>
+          </Link>
         </Card.Body>
       </Card>
     </li>

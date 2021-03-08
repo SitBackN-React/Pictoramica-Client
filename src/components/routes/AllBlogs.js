@@ -40,7 +40,6 @@ const AllBlogs = (props) => {
       })
       .catch(console.error)
   }, [])
-  console.log(allBlogs)
 
   // Get current blogs
   const indexOfLastBlog = currentPage * blogsPerPage
