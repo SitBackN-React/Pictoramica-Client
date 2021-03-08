@@ -50,8 +50,8 @@ const AllBlogs = (props) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div className="container mt-5">
-      <h1 style={{ textAlign: 'center' }}>All Blogs</h1>
+    <div className="container mt-5" style={{ textAlign: 'center' }}>
+      <h1>All Blogs</h1>
       <PublicBlogs
         blogs={currentBlogs}
         loading={loading}

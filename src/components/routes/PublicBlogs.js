@@ -14,12 +14,12 @@ const PublicBlogs = (props) => {
 
   const blogsJsx = blogs.map(blog => (
     <li key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', color: 'black' }}>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '170px' }}>
         <Card.Body>
-          <Card.Title>
+          <Card.Title className="text">
             {blog.title}
           </Card.Title>
-          <Card.Text>
+          <Card.Text className="text">
             {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>

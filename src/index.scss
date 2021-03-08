@@ -252,3 +252,9 @@ url {
 	background: black;
   opacity: 0.6;
 }
+
+.text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

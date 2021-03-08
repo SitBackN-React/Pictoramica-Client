@@ -52,10 +52,12 @@ const MyBlogs = (props) => {
 
   const blogsJsx = myBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px' }}>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '170px' }}>
         <Card.Body>
-          <Card.Title>{blog.title}</Card.Title>
-          <Card.Text>
+          <Card.Title className="text">
+            {blog.title}
+          </Card.Title>
+          <Card.Text className="text">
             {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>
@@ -65,19 +67,6 @@ const MyBlogs = (props) => {
       </Card>
     </div>
   ))
-
-  // const blogCard = [
-  //   'Primary',
-  //   'Secondary',
-  //   'Success',
-  //   'Danger',
-  //   'Warning',
-  //   'Info',
-  //   'Light',
-  //   'Dark'
-  // ].map((variant, idx) => (
-  //   { blogsJsx }
-  // ))
 
   return (
     <div style={{ textAlign: 'center' }}>
