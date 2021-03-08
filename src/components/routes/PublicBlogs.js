@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const PublicBlogs = ({ blogs, loading }) => {
+const PublicBlogs = (props) => {
+  const { blogs, loading } = props
+
   if (loading) {
     return <h1>Loading</h1>
   }
@@ -18,11 +21,17 @@ const PublicBlogs = ({ blogs, loading }) => {
   //   </div>
   // )
 
+  const blogsJsx = blogs.map(blog => (
+    <li key={blog.id} className="list-group-item">
+      <Link to={`/blogs/${blog._id}`}>
+        {blog.title}
+      </Link>
+    </li>
+  ))
+
   return (
     <ul className="list-group mb-3" style={{ color: 'black' }}>
-      {blogs.map(blog => (
-        <li key={blog.id} className="list-group-item">{blog.title}</li>
-      ))}
+      {blogsJsx}
     </ul>
   )
 }
