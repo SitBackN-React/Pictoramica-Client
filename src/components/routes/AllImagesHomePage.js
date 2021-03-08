@@ -100,7 +100,7 @@ const AllImagesHomePage = (props) => {
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
         <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '224px', height: '180px' }} />
         </Link>
         <ImageLike
           image={image}

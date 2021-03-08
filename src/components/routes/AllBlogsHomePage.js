@@ -61,7 +61,7 @@ const AllBlogsHomePage = (props) => {
 
   const blogsJsx = recentBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '170px', color: 'black' }}>
+      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '224px', height: '224px', color: 'black' }}>
         <Card.Body>
           <Card.Title className="text">
             {blog.title}
@@ -80,7 +80,7 @@ const AllBlogsHomePage = (props) => {
   return (
     <div>
       <h2>Recent Content</h2>
-      <div style={{ width: '60%', margin: 'auto' }}>
+      <div style={{ margin: 'auto', width: '480px' }}>
         <CardDeck style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
           {blogsJsx}
         </CardDeck>
