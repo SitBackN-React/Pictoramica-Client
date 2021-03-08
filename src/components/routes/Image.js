@@ -161,7 +161,7 @@ const Image = (props) => {
         </div>
         <div style={styles.textContainer}>
           <h1>{image.caption}</h1>
-          <p style={styles.textSize}>{tagArray(image.tag)}</p>
+          <div style={styles.textSize}>{tagArray(image.tag)}</div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
@@ -170,6 +170,7 @@ const Image = (props) => {
             {...props}
             user={props.user}
           />
+          {image.forSale === true ? <div>For Sale</div> : <div style={{ display: 'none' }}></div>}
           <div style={{ marginTop: '30px' }}>
             {/*  button to click to delete a image */}
             {props.user._id === image.owner ? (
