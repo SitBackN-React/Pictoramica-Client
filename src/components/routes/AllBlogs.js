@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import Card from 'react-bootstrap/Card'
-// import CardDeck from 'react-bootstrap/CardDeck'
-// import Button from 'react-bootstrap/Button'
 import Pagination from './Pagination'
-// import { Link } from 'react-router-dom'
 import PublicBlogs from './PublicBlogs'
 import axios from 'axios'
 
@@ -13,11 +9,12 @@ import messages from './../AutoDismissAlert/messages'
 
 const AllBlogs = (props) => {
   const [allBlogs, setAllBlogs] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
   const [blogsPerPage] = useState(10)
-  // get msgAlerts from props
+
   const { msgAlert } = props
+
   // GET request to API for all of the blogs
   useEffect(() => {
     axios({
@@ -49,24 +46,6 @@ const AllBlogs = (props) => {
   const indexOfLastBlog = currentPage * blogsPerPage
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage
   const currentBlogs = allBlogs.slice(indexOfFirstBlog, indexOfLastBlog)
-  //
-  // const blogsJsx = currentBlogs.map(blog => (
-  //   <div key={blog._id}>
-  //     <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', color: 'black' }}>
-  //       <Card.Body>
-  //         <Card.Title>
-  //           {blog.title}
-  //         </Card.Title>
-  //         <Card.Text>
-  //           {blog.description}
-  //         </Card.Text>
-  //         <Link to={`/blogs/${blog._id}`}>
-  //           <Button variant="outline-secondary">Read more</Button>
-  //         </Link>
-  //       </Card.Body>
-  //     </Card>
-  //   </div>
-  // ))
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
