@@ -61,7 +61,10 @@ const AllBlogsHomePage = (props) => {
 
   const blogsJsx = recentBlogs.map(blog => (
     <div key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '224px', height: '224px', color: 'black' }}>
+      <Card
+        bg={blog.borderColor}
+        text={(blog.borderColor === 'light' || blog.borderColor === 'warning') ? 'dark' : 'white'}
+        style={{ margin: '10px', borderWidth: '5px', width: '224px', height: '224px', borderRadius: '20px' }}>
         <Card.Body>
           <Card.Title className="title">
             {blog.title}

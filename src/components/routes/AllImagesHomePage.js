@@ -98,11 +98,11 @@ const AllImagesHomePage = (props) => {
 
   const imagesJsx = recentImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
-      <Card style={{ border: '1px solid black' }}>
+      <Card style={{ margin: '0px', borderRadius: '20px', border: '5px solid black' }}>
         <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '190px', height: '180px', display: 'flex', justifyContent: 'center', alignItems: 'center', overFlow: 'hidden', flexShrink: 0 }} alt={image.caption} />
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '190px', height: '180px', borderRadius: '15px 15px 0px 0px' }} alt={image.caption} />
         </Link>
-        <Card.Body style={{ backgroundColor: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end' }}>
+        <Card.Body style={{ backgroundColor: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end', borderRadius: '0px 0px 14px 14px' }}>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
