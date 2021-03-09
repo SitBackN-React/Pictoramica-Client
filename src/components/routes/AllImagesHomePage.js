@@ -98,18 +98,20 @@ const AllImagesHomePage = (props) => {
 
   const imagesJsx = recentImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
-      <Card>
+      <Card style={{ border: '1px solid black' }}>
         <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '224px', height: '180px' }} />
+          <Card.Img variant="top" src={image.imageUrl} style={{ width: '190px', height: '180px', display: 'flex', justifyContent: 'center', alignItems: 'center', overFlow: 'hidden', flexShrink: 0 }} alt={image.caption} />
         </Link>
-        <ImageLike
-          image={image}
-          userLiked={checkUserLike(image)}
-          imageLikedId={imageLikedId(image)}
-          imageLikedCount={imageLikedCount(image)}
-          {...props}
-          user={props.user}
-        />
+        <Card.Body style={{ backgroundColor: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end' }}>
+          <ImageLike
+            image={image}
+            userLiked={checkUserLike(image)}
+            imageLikedId={imageLikedId(image)}
+            imageLikedCount={imageLikedCount(image)}
+            {...props}
+            user={props.user}
+          />
+        </Card.Body>
       </Card>
     </div>
   )
@@ -118,7 +120,7 @@ const AllImagesHomePage = (props) => {
     <div style={{ textAlign: 'center' }}>
       <h2>Recently Shared</h2>
       <div>
-        <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
+        <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {imagesJsx}
         </CardDeck>
       </div>
