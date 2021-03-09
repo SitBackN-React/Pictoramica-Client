@@ -7,11 +7,11 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './../shared/ImageLike'
+import AddToCart from './AddToCart'
 // import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
-import Checkout from './Checkout'
 
 // const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
 
@@ -42,7 +42,7 @@ const AllImages = (props) => {
         })
       })
   }, [])
-  console.log(allImages)
+
   const tagArray = (imageTag) => {
     const tags = imageTag.split(' ').map(tag =>
       <p key={tag}>
@@ -101,8 +101,6 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
-  console.log(allImages)
-
   const imagesJsx = allImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
@@ -122,12 +120,9 @@ const AllImages = (props) => {
           />
           {image.forSale === true ? <div style={{ textAlign: 'center' }}>For Sale</div> : <div style={{ display: 'none' }}></div>}
           <div>
-            <Checkout
-              image={image}
-              // src={image.imageUrl}
-              // alt={image.caption}
+            <AddToCart
+              selectedItem={image}
               {...props}
-              user={props.user}
             />
           </div>
         </div>
