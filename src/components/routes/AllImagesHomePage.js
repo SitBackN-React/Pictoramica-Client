@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 // import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+// import Card from 'react-bootstrap/Card'
+// import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -97,32 +97,28 @@ const AllImagesHomePage = (props) => {
   }
 
   const imagesJsx = recentImages.map(image =>
-    <div key={image._id} style={{ margin: '10px' }}>
-      <Card style={{ margin: '0px', borderRadius: '20px', border: '5px solid black' }}>
-        <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '190px', height: '180px', borderRadius: '15px 15px 0px 0px' }} alt={image.caption} />
-        </Link>
-        <Card.Body style={{ backgroundColor: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end', borderRadius: '0px 0px 14px 14px' }}>
-          <ImageLike
-            image={image}
-            userLiked={checkUserLike(image)}
-            imageLikedId={imageLikedId(image)}
-            imageLikedCount={imageLikedCount(image)}
-            {...props}
-            user={props.user}
-          />
-        </Card.Body>
-      </Card>
+    <div key={image._id} style={{ margin: '10px', borderRadius: '20px', border: '2px solid black' }}>
+      <Link to={`/images/${image._id}`} style={{ margin: '0px' }}>
+        <img src={image.imageUrl} style={{ width: '190px', height: '180px', borderRadius: '15px 15px 0px 0px' }} alt={image.caption} />
+      </Link>
+      <div style={{ backgroundColor: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end', borderRadius: '0px 0px 14px 14px' }}>
+        <ImageLike
+          image={image}
+          userLiked={checkUserLike(image)}
+          imageLikedId={imageLikedId(image)}
+          imageLikedCount={imageLikedCount(image)}
+          {...props}
+          user={props.user}
+        />
+      </div>
     </div>
   )
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Recently Shared</h2>
-      <div>
-        <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          {imagesJsx}
-        </CardDeck>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        {imagesJsx}
       </div>
     </div>
   )
