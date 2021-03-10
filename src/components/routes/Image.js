@@ -156,7 +156,7 @@ const Image = (props) => {
 
   const forSale = image => (
     <div>
-      For Sale
+      <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
       <AddToCart
         selectedItem={image}
         {...props}

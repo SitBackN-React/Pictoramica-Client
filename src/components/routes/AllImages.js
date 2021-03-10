@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './../shared/ImageLike'
-import AddToCart from './AddToCart'
+// import AddToCart from './AddToCart'
 // import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 
@@ -50,7 +50,7 @@ const AllImages = (props) => {
             tag: { tag }
           }
         }}
-        style={{ color: 'white' }}>
+        style={{ color: 'black', fontSize: '14px' }}>
           #{tag}
         </Link>
       </p>
@@ -100,27 +100,31 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
+  // const forSale = image => (
+  //   <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
+  //     For Sale
+  //     <AddToCart
+  //       selectedItem={image}
+  //       {...props}
+  //       price={image.price}
+  //     />
+  //   </div>
+  // )
+
   const forSale = image => (
-    <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
-      For Sale
-      <AddToCart
-        selectedItem={image}
-        {...props}
-        price={image.price}
-      />
-    </div>
+    <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
   )
-  console.log(allImages)
+
   const imagesJsx = allImages.map(image =>
-    <div key={image._id} style={{ margin: '10px' }}>
-      <Link to={`/images/${image._id}`}>
-        <img src={image.imageUrl} style={{ width: '180px', height: '180px', borderRadius: '20px 20px 0px 0px', border: '2px solid black' }} />
+    <div key={image._id} style={{ margin: '10px', borderRadius: '20px', border: '2px solid black' }}>
+      <Link to={`/images/${image._id}`} style={{ margin: '0px' }}>
+        <img src={image.imageUrl} style={{ width: '180px', height: '180px', borderRadius: '20px 20px 0px 0px' }} />
       </Link>
-      <div style={{ borderRadius: '0px 0px 20px 20px', background: 'black', width: '180px', color: 'white' }}>
-        <p><strong>{image.caption}</strong></p>
+      <div style={{ background: 'white', color: 'black', width: '180px', borderRadius: '0px 0px 20px 20px' }}>
+        <h6 style={{ paddingTop: '10px' }}>{image.caption}</h6>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-          {image.forSale === true ? forSale(image) : <div></div>}
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', color: 'black' }}>
+          <div>{image.forSale === true ? forSale(image) : <div></div>}</div>
           <div>
             <ImageLike
               image={image}
