@@ -15,7 +15,7 @@ const MyBlogsPaginate = ({ blogs, loading }) => {
       <Card
         bg={blog.borderColor}
         text={(blog.borderColor === 'light' || blog.borderColor === 'warning') ? 'dark' : 'white'}
-        style={{ margin: '10px', borderWidth: '8px', width: '180px', height: '180px', borderRadius: '20px' }}
+        style={{ margin: '10px', borderWidth: '2px', width: '180px', height: '180px', borderRadius: '20px' }}
       >
         <Card.Body>
           <Card.Title className="title">

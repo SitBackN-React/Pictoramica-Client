@@ -64,7 +64,7 @@ const AllBlogsHomePage = (props) => {
       <Card
         bg={blog.borderColor}
         text={(blog.borderColor === 'light' || blog.borderColor === 'warning') ? 'dark' : 'white'}
-        style={{ margin: '10px', borderWidth: '5px', width: '224px', height: '224px', borderRadius: '20px' }}>
+        style={{ margin: '10px', borderWidth: '2px', width: '224px', height: '224px', borderRadius: '20px' }}>
         <Card.Body>
           <Card.Title className="title">
             {blog.title}
@@ -73,7 +73,7 @@ const AllBlogsHomePage = (props) => {
             {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>
-            <Button variant="outline-secondary">Read more</Button>
+            <Button variant={(blog.borderColor === 'dark') ? 'outline-light' : 'outline-dark'}>Read more</Button>
           </Link>
         </Card.Body>
       </Card>
