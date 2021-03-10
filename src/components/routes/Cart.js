@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Checkout from './Checkout'
+import CartItemDelete from './CartItemDelete'
 
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
@@ -19,7 +20,10 @@ const Cart = (props) => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(res => setCart(res.data.cartItems))
+      .then(res => {
+        setCart(res.data.cartItems)
+        console.log(res)
+      })
       .then(() => msgAlert({
         heading: 'Showing all of the items in your cart',
         variant: 'primary'
@@ -33,7 +37,7 @@ const Cart = (props) => {
       })
   }, [])
 
-  if (cart.length > 1) {
+  if (cart.length > 0) {
     console.log(cart)
     console.log(cart[0])
     console.log(cart[0].createdAt)
@@ -43,15 +47,22 @@ const Cart = (props) => {
   }
 
   const cartJsx = cart.map(cartItem => (
-    <div key={cartItem._id} >
-      <Link to={`/images/${cartItem.item[0]._id}`} style={{ display: 'flex', flexDirection: 'row', margin: '10px', color: 'white' }} >
-        <div style={{ marginRight: '10px' }}>
+    <div key={cartItem._id} style={{ backgroundColor: 'white', margin: '10px', borderRadius: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', margin: '10px', color: 'black' }} >
+        <Link to={`/images/${cartItem.item[0]._id}`} style={{ marginRight: '10px' }}>
           <img src={cartItem.item[0].imageUrl} style={{ width: '150px', height: '150px', border: '2px solid black', borderRadius: '20px' }} />
+        </Link>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'black' }}>
+          <Link to={`/images/${cartItem.item[0]._id}`} style={{ color: 'black' }}>
+            <h4>{cartItem.item[0].caption}</h4>
+          </Link>
+          <CartItemDelete
+            cartItem={cartItem}
+            cartItemId={cartItem._id}
+            {...props}
+          />
         </div>
-        <div>
-          <h4>{cartItem.item[0].caption}</h4>
-        </div>
-      </Link>
+      </div>
       <div>
         <p>{cartItem.item[0].price}</p>
       </div>
@@ -61,7 +72,7 @@ const Cart = (props) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
-        {(cart.length > 1) ? cartJsx : <div>No items in your cart</div>}
+        {(cart.length > 0) ? cartJsx : <div>No items in your cart</div>}
       </div>
       <Checkout
         // src={image.imageUrl}
