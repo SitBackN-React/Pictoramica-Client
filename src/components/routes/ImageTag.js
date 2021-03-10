@@ -42,22 +42,24 @@ const ImageTag = props => {
     const checkTags = tags.includes(lowercaseSelectedTagName)
 
     if (checkTags) {
-      return image.imageUrl
+      return (
+        <Link to={`/images/${image._id}`} style={{ margin: '2px' }}>
+          <img style={{ width: '180px', height: '180px', marginBottom: '10px', borderRadius: '20px', border: '2px solid black' }} src={image.imageUrl} />
+        </Link>
+      )
     }
   }
 
   const imagesJsx = allImages.map(image =>
     <div key={image._id}>
-      <Link to={`/images/${image._id}`}>
-        <img style={{ width: '40%', marginBottom: '10px' }} src={tagMatch(image)} />
-      </Link>
+      {tagMatch(image)}
     </div>
   )
 
   return (
     <div>
       <h1>#{selectedTagName}</h1>
-      <div>{imagesJsx}</div>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>{imagesJsx}</div>
     </div>
   )
 }
