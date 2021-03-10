@@ -43,7 +43,7 @@ const ImageTag = props => {
 
     if (checkTags) {
       return (
-        <Link to={`/images/${image._id}`} style={{ margin: '2px' }}>
+        <Link to={`/images/${image._id}`} style={{ margin: '10px' }}>
           <img style={{ width: '180px', height: '180px', marginBottom: '10px', borderRadius: '20px', border: '2px solid black' }} src={image.imageUrl} />
         </Link>
       )
@@ -59,7 +59,7 @@ const ImageTag = props => {
   return (
     <div>
       <h1>#{selectedTagName}</h1>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>{imagesJsx}</div>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>{imagesJsx}</div>
     </div>
   )
 }
