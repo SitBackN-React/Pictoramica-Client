@@ -9,11 +9,11 @@ const authenticatedOptions = (
   <Fragment>
     <Nav className="container nav-links m-auto" variant="dark">
       <Nav.Link className="nav-link" href="#home-page">Home</Nav.Link>
-      <Nav.Link className="nav-link" href="#all-images">All Images</Nav.Link>
-      <Nav.Link className="nav-link" href="#all-blogs">View All Blogs</Nav.Link>
-      <Nav.Link className="nav-link" href="#my-blogs">View My Blogs</Nav.Link>
+      <Nav.Link className="nav-link" href="#all-images">View All Images</Nav.Link>
       <Nav.Link className="nav-link" href="#my-images">View My Images</Nav.Link>
       <Nav.Link className="nav-link" href="#post-image">Create Image</Nav.Link>
+      <Nav.Link className="nav-link" href="#all-blogs">View All Blogs</Nav.Link>
+      <Nav.Link className="nav-link" href="#my-blogs">View My Blogs</Nav.Link>
       <Nav.Link className="nav-link" href="#create-blog">Create Blog</Nav.Link>
       <Nav.Link className="nav-link" href="#cart">Cart</Nav.Link>
     </Nav>
