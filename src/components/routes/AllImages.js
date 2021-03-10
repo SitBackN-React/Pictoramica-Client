@@ -101,6 +101,16 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
+  const forSale = image => (
+    <div style={{ textAlign: 'center' }}>
+      For Sale
+      <AddToCart
+        selectedItem={image}
+        {...props}
+      />
+    </div>
+  )
+  console.log(allImages)
   const imagesJsx = allImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
       <Card>
@@ -118,13 +128,7 @@ const AllImages = (props) => {
             {...props}
             user={props.user}
           />
-          {image.forSale === true ? <div style={{ textAlign: 'center' }}>For Sale</div> : <div style={{ display: 'none' }}></div>}
-          <div>
-            <AddToCart
-              selectedItem={image}
-              {...props}
-            />
-          </div>
+          {image.forSale === true ? forSale(image) : <div style={{ display: 'none' }}></div>}
         </div>
       </Card>
     </div>
