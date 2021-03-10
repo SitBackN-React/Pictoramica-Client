@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -51,7 +49,8 @@ const AllImages = (props) => {
           aboutProps: {
             tag: { tag }
           }
-        }}>
+        }}
+        style={{ color: 'white' }}>
           #{tag}
         </Link>
       </p>
@@ -102,7 +101,7 @@ const AllImages = (props) => {
   }
 
   const forSale = image => (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
       For Sale
       <AddToCart
         selectedItem={image}
@@ -113,34 +112,34 @@ const AllImages = (props) => {
   console.log(allImages)
   const imagesJsx = allImages.map(image =>
     <div key={image._id} style={{ margin: '10px' }}>
-      <Card>
-        <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
-        </Link>
-        <div>
-          <p style={{ wordWrap: 'break-word' }}>{image.caption}</p>
-          <div>{tagArray(image.tag)}</div>
-          <ImageLike
-            image={image}
-            userLiked={checkUserLike(image)}
-            imageLikedId={imageLikedId(image)}
-            imageLikedCount={imageLikedCount(image)}
-            {...props}
-            user={props.user}
-          />
-          {image.forSale === true ? forSale(image) : <div style={{ display: 'none' }}></div>}
+      <Link to={`/images/${image._id}`}>
+        <img src={image.imageUrl} style={{ width: '180px', height: '180px', borderRadius: '20px 20px 0px 0px', border: '2px solid black' }} />
+      </Link>
+      <div style={{ borderRadius: '0px 0px 20px 20px', background: 'black', width: '180px', color: 'white' }}>
+        <p><strong>{image.caption}</strong></p>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+          {image.forSale === true ? forSale(image) : <div></div>}
+          <div>
+            <ImageLike
+              image={image}
+              userLiked={checkUserLike(image)}
+              imageLikedId={imageLikedId(image)}
+              imageLikedCount={imageLikedCount(image)}
+              {...props}
+              user={props.user}
+            />
+          </div>
         </div>
-      </Card>
+      </div>
     </div>
   )
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>All Images</h1>
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
-          {imagesJsx}
-        </CardDeck>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', color: 'black' }}>
+        {imagesJsx}
       </div>
     </div>
   )

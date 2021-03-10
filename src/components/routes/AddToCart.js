@@ -51,6 +51,7 @@ const AddToCart = (props) => {
     <div>
       <button
         onClick={handleAdd}
+        style={{ borderRadius: '0.25rem' }}
       >
         Add to Cart
       </button>
