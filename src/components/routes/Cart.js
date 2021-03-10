@@ -9,6 +9,9 @@ import apiUrl from './../../apiConfig'
 
 const Cart = (props) => {
   const [cart, setCart] = useState([])
+  const [refresh, setRefresh] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  // const [totalPrice, setTotalPrice] = useState(0)
 
   const { msgAlert } = props
 
@@ -22,7 +25,7 @@ const Cart = (props) => {
     })
       .then(res => {
         setCart(res.data.cartItems)
-        console.log(res)
+        setIsLoading(false)
       })
       .then(() => msgAlert({
         heading: 'Showing all of the items in your cart',
@@ -35,51 +38,68 @@ const Cart = (props) => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [refresh])
 
-  if (cart.length > 0) {
-    console.log(cart)
-    console.log(cart[0])
-    console.log(cart[0].createdAt)
-    console.log(cart[0].item)
-    console.log(cart[0].item[0])
-    console.log(cart[0].item[0].caption)
-  }
+  // if (cart.length > 0) {
+  //   console.log(cart)
+  //   console.log(cart[0])
+  //   console.log(cart[0].createdAt)
+  //   console.log(cart[0].item)
+  //   console.log(cart[0].item[0])
+  //   console.log(cart[0].item[0].caption)
+  // }
 
   const cartJsx = cart.map(cartItem => (
-    <div key={cartItem._id} style={{ backgroundColor: 'white', margin: '10px', borderRadius: '20px' }}>
-      <div style={{ display: 'flex', flexDirection: 'row', margin: '10px', color: 'black' }} >
-        <Link to={`/images/${cartItem.item[0]._id}`} style={{ marginRight: '10px' }}>
-          <img src={cartItem.item[0].imageUrl} style={{ width: '150px', height: '150px', border: '2px solid black', borderRadius: '20px' }} />
-        </Link>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'black' }}>
-          <Link to={`/images/${cartItem.item[0]._id}`} style={{ color: 'black' }}>
-            <h4>{cartItem.item[0].caption}</h4>
+    <div key={cartItem._id} style={{ backgroundColor: 'white', margin: '10px', borderRadius: '20px', width: '500px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', margin: '10px', color: 'black', justifyContent: 'space-between' }} >
+        <div style={{ display: 'flex', flexDirection: 'row', margin: '10px' }}>
+          <Link to={`/images/${cartItem.item[0]._id}`} style={{ marginRight: '10px' }}>
+            <img src={cartItem.item[0].imageUrl} style={{ width: '150px', height: '150px', border: '2px solid black', borderRadius: '20px' }} />
           </Link>
-          <CartItemDelete
-            cartItem={cartItem}
-            cartItemId={cartItem._id}
-            {...props}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'black' }}>
+            <Link to={`/images/${cartItem.item[0]._id}`} style={{ color: 'black' }}>
+              <h4>{cartItem.item[0].caption}</h4>
+            </Link>
+            <CartItemDelete
+              cartItem={cartItem}
+              cartItemId={cartItem._id}
+              {...props}
+              refresh={refresh}
+              setRefresh={setRefresh}
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <p>{cartItem.item[0].price}</p>
+        <div style={{ margin: '10px' }}>
+          <h4>${cartItem.price}</h4>
+        </div>
       </div>
     </div>
   ))
 
-  return (
+  const itemPrice = cart.map(cartItem => cartItem.price)
+  let totalAmount = 0
+  for (let i = 0; i < itemPrice.length; i++) {
+    totalAmount = totalAmount + itemPrice[i]
+  }
+
+  const cartDisplay = (
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
         {(cart.length > 0) ? cartJsx : <div>No items in your cart</div>}
       </div>
+      <h4>Total: ${totalAmount}</h4>
       <Checkout
         // src={image.imageUrl}
         // alt={image.caption}
         {...props}
         user={props.user}
       />
+    </div>
+  )
+
+  return (
+    <div>
+      {isLoading ? <div>Loading Cart</div> : cartDisplay}
     </div>
   )
 }

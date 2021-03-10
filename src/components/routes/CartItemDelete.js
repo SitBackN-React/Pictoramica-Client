@@ -17,10 +17,13 @@ const CartItemDelete = (props) => {
         'Authorization': `Token token=${user.token}`
       }
     })
-      .then(() => msgAlert({
-        heading: 'Item Removed',
-        variant: 'success'
-      }))
+      .then(() => {
+        msgAlert({
+          heading: 'Item Removed',
+          variant: 'success'
+        })
+        props.setRefresh(!props.refresh)
+      })
       .catch(error => {
         msgAlert({
           heading: 'Failed to Remove Item' + error.message,
@@ -31,7 +34,7 @@ const CartItemDelete = (props) => {
 
   return (
     <div>
-      <p onClick={destroy} style={{ color: 'black' }}>
+      <p className="delete-item-button" onClick={destroy} style={{ color: 'black', cursor: 'pointer' }}>
         delete
       </p>
     </div>

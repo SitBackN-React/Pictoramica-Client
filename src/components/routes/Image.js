@@ -160,6 +160,7 @@ const Image = (props) => {
       <AddToCart
         selectedItem={image}
         {...props}
+        price={image.price}
       />
     </div>
   )
@@ -173,7 +174,9 @@ const Image = (props) => {
         </div>
         <div style={{ paddingLeft: '10px' }}>
           <h1>{image.caption}</h1>
-          <div style={{ fontSize: '25px' }}>{tagArray(image.tag)}</div>
+          <div style={{ fontSize: '25px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            {tagArray(image.tag)}
+          </div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}

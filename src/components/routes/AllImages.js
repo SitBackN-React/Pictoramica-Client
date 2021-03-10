@@ -106,6 +106,7 @@ const AllImages = (props) => {
       <AddToCart
         selectedItem={image}
         {...props}
+        price={image.price}
       />
     </div>
   )

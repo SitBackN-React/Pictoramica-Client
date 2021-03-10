@@ -3,9 +3,12 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 const AddToCart = (props) => {
-  const { selectedItem, msgAlert, user } = props
+  const { selectedItem, price, msgAlert, user } = props
 
-  const [item, setItem] = useState(selectedItem)
+  const [item, setItem] = useState({
+    item: selectedItem,
+    price: price
+  })
   const [addItem, setAddItem] = useState(false)
   const [itemAdded, setItemAdded] = useState([])
 
@@ -22,7 +25,8 @@ const AddToCart = (props) => {
         'Authorization': `Token token=${user.token}`
       },
       data: { cartItem: {
-        item: item
+        item: item.item,
+        price: item.price
       } }
     })
       .then(res => setItemAdded(res.data.cartItem))
@@ -32,7 +36,10 @@ const AddToCart = (props) => {
         variant: 'success'
       }))
       .catch(error => {
-        setItem([])
+        setItem({
+          item: [],
+          price: 0
+        })
         msgAlert({
           heading: 'Failed to add to cart ' + error.message,
           variant: 'danger'
