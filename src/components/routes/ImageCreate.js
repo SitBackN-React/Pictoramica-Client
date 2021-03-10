@@ -12,7 +12,7 @@ function UploadS3Image (props) {
   const [image, setImageCreate] = useState('')
   const [url, setUrl] = useState('')
   const [forSale, setForSale] = useState(false)
-  const [price, setPrice] = useState('')
+  const [price, setPrice] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
   const hiddenFileInput = React.useRef(null)
@@ -49,7 +49,7 @@ function UploadS3Image (props) {
       .catch(error => {
         setCaption('')
         setTag('')
-        setPrice('')
+        setPrice(0)
         setForSale(false)
         setImageCreate(null)
         setIsLoading(false)
@@ -60,6 +60,12 @@ function UploadS3Image (props) {
         })
       })
   }
+
+  // const handlePrice = e => {
+  //   const number = parseInt(e.target.value)
+  //   console.log(number)
+  //   setPrice(number)
+  // }
 
   return (
 
@@ -83,31 +89,32 @@ function UploadS3Image (props) {
             />
           </div>
           <br />
-          <div className="right">
+          <div className="right" style={{ color: 'black' }}>
             <div>
-              <label>Image Caption</label>
+              <label>Image Caption: </label>
               <input
                 type='text'
                 value={caption}
                 onChange={e => { setCaption(e.target.value) }}
-                placeholder='Example: My sunset painting'
+                placeholder='My sunset painting'
+                size="25"
+                autoFocus
+              />
+            </div>
+            <br />
+            <div>
+              <label>Image Tag: </label>
+              <input
+                type='text'
+                value={tag}
+                onChange={e => setTag(e.target.value)}
+                placeholder='sunset painting'
                 size="25"
               />
             </div>
             <br />
             <div>
-              <label>Image Tag</label>
-              <input
-                type='text'
-                value={tag}
-                onChange={e => setTag(e.target.value)}
-                placeholder='Example: #sunset #painting'
-                size="25"
-              />
-            </div>
-            <br />
-            <div style={{ color: 'black' }}>
-              <label>For Sale:</label>
+              <label>For Sale: </label>
               <input
                 type='checkbox'
                 value={forSale}
@@ -122,12 +129,12 @@ function UploadS3Image (props) {
             </div>
             <br />
             <div>
-              <label>Price</label>
+              <label>Price: $</label>
               <input
                 type='number'
                 value={price}
-                onChange={e => setPrice(e.target.value)}
-                placeholder='Example: $20'
+                onChange={event => setPrice(+event.target.value)}
+                placeholder='20'
                 size="25"
               />
             </div>

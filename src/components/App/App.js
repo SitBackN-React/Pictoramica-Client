@@ -31,6 +31,7 @@ import CommentDelete from '../routes/CommentDelete'
 import HomePage from '../routes/HomePage'
 import UploadS3Image from '../routes/ImageCreate'
 import ImageTag from '../routes/ImageTag'
+import Cart from '../routes/Cart'
 // import Application from './Checkout.js'
 
 // const Message = ({ message }) => (
@@ -231,6 +232,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/all-images/tag' render={(props) => (
             <ImageTag {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/cart' render={(props) => (
+            <Cart {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

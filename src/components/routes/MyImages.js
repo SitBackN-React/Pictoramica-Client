@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+// import AddToCart from './AddToCart'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -48,7 +47,8 @@ const MyImages = (props) => {
           aboutProps: {
             tag: { tag }
           }
-        }}>
+        }}
+        style={{ color: 'black', fontSize: '14px' }}>
           #{tag}
         </Link>
       </p>
@@ -98,37 +98,42 @@ const MyImages = (props) => {
     return image.imageLikes.length
   }
 
+  const forSale = image => (
+    <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
+  )
+
   // returns the image caption, caption is a link so user can click that directly to get more information other than caption on image (refer to Image.js)
-  const imagesJsx = myImages.map(image => (
-    <div key={image._id} style={{ margin: '10px' }}>
-      <Card>
-        <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
-        </Link>
-        <Card.Body style={{ color: 'black' }}>
-          <Card.Text>{image.caption}</Card.Text>
-          <Card.Text>{tagArray(image.tag)}</Card.Text>
-        </Card.Body>
-        <ImageLike
-          image={image}
-          userLiked={checkUserLike(image)}
-          imageLikedId={imageLikedId(image)}
-          imageLikedCount={imageLikedCount(image)}
-          {...props}
-          user={props.user}
-        />
-      </Card>
+  const imagesJsx = myImages.map(image =>
+    <div key={image._id} style={{ margin: '10px', borderRadius: '20px', border: '2px solid black' }}>
+      <Link to={`/images/${image._id}`} style={{ margin: '0px' }}>
+        <img src={image.imageUrl} style={{ width: '180px', height: '180px', borderRadius: '20px 20px 0px 0px' }} />
+      </Link>
+      <div style={{ background: 'white', color: 'black', width: '180px', borderRadius: '0px 0px 20px 20px' }}>
+        <h6 style={{ paddingTop: '10px' }}>{image.caption}</h6>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', color: 'black' }}>
+          <div>{image.forSale === true ? forSale(image) : <div></div>}</div>
+          <div>
+            <ImageLike
+              image={image}
+              userLiked={checkUserLike(image)}
+              imageLikedId={imageLikedId(image)}
+              imageLikedCount={imageLikedCount(image)}
+              {...props}
+              user={props.user}
+            />
+          </div>
+        </div>
+      </div>
     </div>
-  ))
+  )
   // the imagesjsx is returned and displayed under a heading.
   // button to Log a New image will take user to create image page.
   return (
-    <div style={{ textAlign: 'center', color: 'white' }}>
-      <h4>My Images</h4>
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {imagesJsx}
-        </CardDeck>
+    <div style={{ textAlign: 'center' }}>
+      <h1>My Images</h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', color: 'black' }}>
+        {imagesJsx}
       </div>
       <Link to={'/post-image'}>
         <button className="button btn btn-dark btn-lg">Add New Image</button>

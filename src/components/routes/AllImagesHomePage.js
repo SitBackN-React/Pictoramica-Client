@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 // import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+// import Card from 'react-bootstrap/Card'
+// import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
@@ -97,11 +97,11 @@ const AllImagesHomePage = (props) => {
   }
 
   const imagesJsx = recentImages.map(image =>
-    <div key={image._id} style={{ margin: '10px' }}>
-      <Card>
-        <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '224px', height: '180px' }} />
-        </Link>
+    <div key={image._id} style={{ margin: '10px', borderRadius: '20px', border: '2px solid black' }}>
+      <Link to={`/images/${image._id}`} style={{ margin: '0px' }}>
+        <img src={image.imageUrl} style={{ width: '190px', height: '180px', borderRadius: '20px 20px 0px 0px' }} alt={image.caption} />
+      </Link>
+      <div style={{ backgroundColor: 'white', color: 'black', height: '44px', padding: '2px', display: 'flex', justifyContent: 'flex-end', borderRadius: '0px 0px 20px 20px' }}>
         <ImageLike
           image={image}
           userLiked={checkUserLike(image)}
@@ -110,17 +110,15 @@ const AllImagesHomePage = (props) => {
           {...props}
           user={props.user}
         />
-      </Card>
+      </div>
     </div>
   )
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Recently Shared</h2>
-      <div>
-        <CardDeck style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
-          {imagesJsx}
-        </CardDeck>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        {imagesJsx}
       </div>
     </div>
   )

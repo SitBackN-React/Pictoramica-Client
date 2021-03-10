@@ -117,7 +117,7 @@ const ImageLike = props => {
   const likeIcon = userLike.liked ? './../../images/like-icon.png' : './../../images/unlike-icon.png'
   const likeCount = imageLikeCount.imageLikedCount
   return (
-    <div className="like-button" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}>
+    <div className="like-button">
       <img
         key={image._id}
         className='like-icon'
@@ -125,7 +125,7 @@ const ImageLike = props => {
         style={{ cursor: 'pointer' }}
         onClick={handleLike}
       />
-      <p className="like-count" style={{ color: 'black' }}>{likeCount}</p>
+      <p className="like-count">{likeCount}</p>
     </div>
   )
 }

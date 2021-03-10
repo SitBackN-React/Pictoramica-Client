@@ -71,19 +71,18 @@ url {
 
 .like-button {
   display: flex;
-
-  justify-content: flex-end;
-  padding: 10px;
-  margin: 20px;
+  flex-direction: row;
+  // background-color: rgba(0,0,0,0.7);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
 .like-icon {
   width: 17px;
   height: 17px;
-  margin-left: 10px;
-  margin-right: 10px;
-  justify-content: flex-start;
-  padding: 10px;
 }
 
 .like-count {

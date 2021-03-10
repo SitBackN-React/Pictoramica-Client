@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 import ImageLike from './../shared/ImageLike'
+import AddToCart from './AddToCart'
 
 const Image = (props) => {
   // single image starts with a state of null, to be changed once setImage used
@@ -86,13 +87,13 @@ const Image = (props) => {
     )
   }
 
-  const styles = {
-    flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
-    imageContainer: { width: '40%' },
-    singleImage: { width: '100%', height: 'auto', border: '2px solid #000000' },
-    textContainer: { paddingLeft: '10px' },
-    textSize: { fontSize: '25px' }
-  }
+  // const styles = {
+  //   flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
+  //   imageContainer: { width: '40%' },
+  //   singleImage: { width: '100%', height: 'auto', border: '2px solid #000000' },
+  //   textContainer: { paddingLeft: '10px' },
+  //   textSize: { fontSize: '25px' }
+  // }
 
   const tagArray = (imageTag) => {
     const tags = imageTag.split(' ').map(tag =>
@@ -102,7 +103,8 @@ const Image = (props) => {
           aboutProps: {
             tag: { tag }
           }
-        }}>
+        }}
+        style={{ color: 'white' }}>
           #{tag}
         </Link>
       </p>
@@ -152,16 +154,29 @@ const Image = (props) => {
     return image.imageLikes.length
   }
 
+  const forSale = image => (
+    <div>
+      <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
+      <AddToCart
+        selectedItem={image}
+        {...props}
+        price={image.price}
+      />
+    </div>
+  )
+
   return (
     // shows the specified fields(all details of the image) when a image is clicked
     <div>
-      <div style={styles.flexContainer}>
-        <div style={styles.imageContainer}>
-          <img style={styles.singleImage} src={image.imageUrl} />
+      <div style={{ display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' }}>
+        <div style={{ width: '40%', marginRight: '20px' }}>
+          <img style={{ width: '100%', height: 'auto', border: '2px solid #000000', overflow: 'none', borderRadius: '20px' }} src={image.imageUrl} />
         </div>
-        <div style={styles.textContainer}>
+        <div style={{ paddingLeft: '10px' }}>
           <h1>{image.caption}</h1>
-          <div style={styles.textSize}>{tagArray(image.tag)}</div>
+          <div style={{ fontSize: '25px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            {tagArray(image.tag)}
+          </div>
           <ImageLike
             image={image}
             userLiked={checkUserLike(image)}
@@ -170,7 +185,9 @@ const Image = (props) => {
             {...props}
             user={props.user}
           />
-          {image.forSale === true ? <div>For Sale</div> : <div style={{ display: 'none' }}></div>}
+
+          {image.forSale === true ? forSale(image) : <div style={{ display: 'none' }}></div>}
+
           <div style={{ marginTop: '30px' }}>
             {/*  button to click to delete a image */}
             {props.user._id === image.owner ? (
@@ -188,10 +205,10 @@ const Image = (props) => {
             )} */}
             <div>
               {/* Link to take user back to all images list */}
-              <Link to='/my-images'>Go to my images</Link>
+              <Link to='/my-images' style={{ color: 'white' }}>Go to my images</Link>
             </div>
             <div>
-              <Link to='/all-images'>Go to all images</Link>
+              <Link to='/all-images' style={{ color: 'white' }}>Go to all images</Link>
             </div>
           </div>
         </div>

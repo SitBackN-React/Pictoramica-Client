@@ -11,9 +11,10 @@ const HomePage = (props) => {
     floatContainer: { display: 'flex', justifyContent: 'center' }
   }
 
+  console.log(user)
   const welcomeBar = user => (
     <div className="welcomeContainer welcome-user py-4">
-      <div style={{ fontSize: '25px', color: 'black', marginLeft: '15px' }}>Welcome Back, {user.email}!</div>
+      <div style={{ fontSize: '25px', color: 'black', marginLeft: '15px' }}>Welcome Back, {user.username ? user.username : user.email }!</div>
     </div>
   )
 
