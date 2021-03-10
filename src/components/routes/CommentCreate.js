@@ -7,11 +7,9 @@ import CommentForm from './../shared/CommentForm'
 import messages from './../AutoDismissAlert/messages'
 
 const CommentCreate = props => {
-  const { addedComment } = props
   const [comment, setComment] = useState({
     remark: ''
   })
-  const [createdComment, setCreatedComment] = useState(false)
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
 
@@ -41,12 +39,16 @@ const CommentCreate = props => {
         console.log(res)
         return res
       })
-      .then(newCommentId => setCreatedComment(true))
-      .then(() => msgAlert({
-        heading: 'Created comment successfully',
-        message: messages.createCommentSuccess,
-        variant: 'success'
-      }))
+      .then(() => {
+        msgAlert({
+          heading: 'Created comment successfully',
+          variant: 'success'
+        })
+      })
+      .then(() => {
+        props.setRefresh(!props.refresh)
+      })
+      .then(setComment({ remark: '' }))
       .catch(error => {
         setComment({ remark: '' })
         msgAlert({
@@ -60,14 +62,12 @@ const CommentCreate = props => {
   // if (createdComment) {
   //   return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`} />
   // }
-  console.log(createdComment)
   return (
     <div>
       <CommentForm
         comment={comment}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        onClick={addedComment}
         cancelPath={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`}
       />
     </div>

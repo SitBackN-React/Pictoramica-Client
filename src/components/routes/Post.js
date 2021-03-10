@@ -9,7 +9,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 const Post = props => {
   const [post, setPost] = useState(null)
   const [deleted, setDeleted] = useState(false)
-  const [createComment, setCreatedComment] = useState(false)
 
   const { msgAlert } = props
 
@@ -41,7 +40,7 @@ const Post = props => {
           variant: 'danger'
         })
       })
-  }, [createComment])
+  }, [])
 
   const destroy = () => {
     axios({
@@ -78,12 +77,12 @@ const Post = props => {
   }
   console.log(post)
 
-  const commentsJsx = post.comments.map(comment => (
-    <li className="comment-list" key={comment._id}>
-      <p>Posted By: {comment.commenter}</p>
-      <p>{comment.remark}</p>
-    </li>
-  ))
+  // const commentsJsx = post.comments.map(comment => (
+  //   <li className="comment-list" key={comment._id}>
+  //     <p>Posted By: {comment.commenter}</p>
+  //     <p>{comment.remark}</p>
+  //   </li>
+  // ))
   // Checks to see if the user has a postLike or not in the post
   const checkUserLike = post => {
     if (post.postLikes.length === 0) {
@@ -123,9 +122,7 @@ const Post = props => {
   const postLikedCount = post => {
     return post.postLikes.length
   }
-  const createdComment = () => {
-    setCreatedComment(true)
-  }
+
   return (
     <div>
       <Jumbotron fluid>
@@ -144,15 +141,10 @@ const Post = props => {
           </div>
         </div>
       </Jumbotron>
-      <div className="post-display">
-        <p>Comments</p>
-        {commentsJsx}
-      </div>
       <div>
         <Comments
           {...props}
           post={post}
-          addedComment={createdComment}
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', margin: 20 }}>

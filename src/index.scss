@@ -82,8 +82,16 @@ url {
   height: 17px;
   margin-left: 10px;
   margin-right: 10px;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: 10px;
+}
+
+.like-icon-post {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: flex-start;
 }
 
 .like-count {

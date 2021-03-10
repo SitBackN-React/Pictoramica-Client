@@ -115,8 +115,8 @@ const Blog = (props) => {
 
   const postsOwnerJsx = blog.posts.map(post => (
     <li style={{ width: '100%' }} key={post._id}>
-      <Jumbotron>
-        <div className="blabla">
+      <Jumbotron fluid>
+        <div style={{ width: '100%', padding: 50 }}>
           <h1>{post.title}</h1>
           <p>{post.content}</p>
 
@@ -141,8 +141,8 @@ const Blog = (props) => {
   // if user does not own the post
   const postsPublicJsx = blog.posts.map(post => (
     <li style={{ width: '100%' }} key={post._id}>
-      <Jumbotron>
-        <div className="blabla">
+      <Jumbotron fluid>
+        <div style={{ width: '100%', padding: 50 }}>
           <h1>{post.title}</h1>
           <p>{post.content}</p>
           <div className="postlikeonpost">

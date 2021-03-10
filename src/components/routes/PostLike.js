@@ -123,7 +123,7 @@ const PostLike = props => {
     <div className="like-button">
       <img
         key={post._id}
-        className='like-icon'
+        className='like-icon-post'
         src={likeIcon}
         style={{ cursor: 'pointer' }}
         onClick={handleLike}
