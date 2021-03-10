@@ -5,8 +5,6 @@ import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './../shared/ImageLike'
-// import AddToCart from './AddToCart'
-// import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
@@ -15,7 +13,6 @@ import messages from './../AutoDismissAlert/messages'
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])
-  // const [imageClicked, setImageClicked] = useState(false)
 
   const { msgAlert } = props
   console.log(props)
@@ -99,17 +96,6 @@ const AllImages = (props) => {
   const imageLikedCount = image => {
     return image.imageLikes.length
   }
-
-  // const forSale = image => (
-  //   <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
-  //     For Sale
-  //     <AddToCart
-  //       selectedItem={image}
-  //       {...props}
-  //       price={image.price}
-  //     />
-  //   </div>
-  // )
 
   const forSale = image => (
     <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
