@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Checkout from './Checkout'
 
 import axios from 'axios'
@@ -42,13 +43,15 @@ const Cart = (props) => {
   }
 
   const cartJsx = cart.map(cartItem => (
-    <div key={cartItem._id} style={{ display: 'flex', flexDirection: 'row', margin: '10px' }}>
-      <div style={{ marginRight: '10px' }}>
-        <img src={cartItem.item[0].imageUrl} style={{ width: '150px', height: '150px', border: '2px solid black', borderRadius: '20px' }} />
-      </div>
-      <div>
-        <h4>{cartItem.item[0].caption}</h4>
-      </div>
+    <div key={cartItem._id} >
+      <Link to={`/images/${cartItem.item[0]._id}`} style={{ display: 'flex', flexDirection: 'row', margin: '10px', color: 'white' }} >
+        <div style={{ marginRight: '10px' }}>
+          <img src={cartItem.item[0].imageUrl} style={{ width: '150px', height: '150px', border: '2px solid black', borderRadius: '20px' }} />
+        </div>
+        <div>
+          <h4>{cartItem.item[0].caption}</h4>
+        </div>
+      </Link>
       <div>
         <p>{cartItem.item[0].price}</p>
       </div>
