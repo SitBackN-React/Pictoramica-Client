@@ -46,7 +46,7 @@ const unauthenticatedOptions = (
 const Header = ({ user }) => (
   <div>
     <Navbar className="nav-bar" variant="dark" expand="lg" sticky="top">
-      <Navbar.Brand href="#home-page container-sm">
+      <Navbar.Brand href="#home-page">
         <img src="https://user-images.githubusercontent.com/64027495/107455102-36592400-6b1c-11eb-8c10-4c1cfc0d575b.png"/>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
