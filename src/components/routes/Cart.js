@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Checkout from './Checkout'
+// import Checkout from './Checkout'
 import CartItemDelete from './CartItemDelete'
 
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-// import messages from './../AutoDismissAlert/messages'
 
 const Cart = (props) => {
   const [cart, setCart] = useState([])
   const [refresh, setRefresh] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  // const [totalPrice, setTotalPrice] = useState(0)
 
   const { msgAlert } = props
 
@@ -82,18 +80,25 @@ const Cart = (props) => {
     totalAmount = totalAmount + itemPrice[i]
   }
 
+  // const checkOut = cart.map(cartItem => (
+  //   <div key={cartItem._id}>
+  //     <Checkout
+  //       src={cartItem.item[0].imgUrl}
+  //       alt={cartItem.item[0].caption}
+  //       {...props}
+  //       user={props.user}
+  //       price={cartItem.price}
+  //     />
+  //   </div>
+  // ))
+
   const cartDisplay = (
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
         {(cart.length > 0) ? cartJsx : <div>No items in your cart</div>}
       </div>
       <h4>Total: ${totalAmount}</h4>
-      <Checkout
-        // src={image.imageUrl}
-        // alt={image.caption}
-        {...props}
-        user={props.user}
-      />
+      {/* {checkOut} */}
     </div>
   )
 
