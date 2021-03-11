@@ -84,6 +84,16 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         <span className="check" style={{ backgroundColor: '#2EBEC1' }}></span>
       </label>
 
+      <label className="bordercolor-choice">Light Gray
+        <input
+          type="radio"
+          value={'light'}
+          name="borderColor"
+          onChange={handleChange}
+        />
+        <span className="check" style={{ backgroundColor: 'lightGray' }}></span>
+      </label>
+
       <label className="bordercolor-choice">Dark Gray
         <input
           type="radio"

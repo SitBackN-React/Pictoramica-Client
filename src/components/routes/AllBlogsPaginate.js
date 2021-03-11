@@ -12,7 +12,9 @@ const AllBlogsPaginate = ({ blogs, loading }) => {
 
   const blogsJsx = blogs.map(blog => (
     <li key={blog._id}>
-      <Card border={blog.borderColor} style={{ margin: '10px', borderWidth: '8px', width: '180px', height: '180px' }}>
+      <Card
+        border={blog.borderColor} style={{ margin: '7px', borderWidth: '8px', width: '200px', height: '200px', borderRadius: '20px' }}
+      >
         <Card.Body>
           <Card.Title className="title">
             {blog.title}
@@ -21,7 +23,9 @@ const AllBlogsPaginate = ({ blogs, loading }) => {
             {blog.description}
           </Card.Text>
           <Link to={`/blogs/${blog._id}`}>
-            <Button variant="outline-secondary">Read more</Button>
+            <Button
+              variant='outline-dark'
+            >Read more</Button>
           </Link>
         </Card.Body>
       </Card>

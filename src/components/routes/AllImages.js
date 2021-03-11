@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react'
 // import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
 import axios from 'axios'
 
 import apiUrl from './../../apiConfig'
 import ImageLike from './../shared/ImageLike'
-// import ForSale from './ForSale'
 // import ProductDisplay from './../App/Checkout'
 
 import messages from './../AutoDismissAlert/messages'
-import Checkout from './Checkout'
 
 // const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])
-  // const [imageClicked, setImageClicked] = useState(false)
 
   const { msgAlert } = props
   console.log(props)
@@ -42,7 +37,7 @@ const AllImages = (props) => {
         })
       })
   }, [])
-  console.log(allImages)
+
   const tagArray = (imageTag) => {
     const tags = imageTag.split(' ').map(tag =>
       <p key={tag}>
@@ -51,7 +46,8 @@ const AllImages = (props) => {
           aboutProps: {
             tag: { tag }
           }
-        }}>
+        }}
+        style={{ color: 'black', fontSize: '14px' }}>
           #{tag}
         </Link>
       </p>
@@ -101,47 +97,40 @@ const AllImages = (props) => {
     return image.imageLikes.length
   }
 
-  console.log(allImages)
+  const forSale = image => (
+    <p style={{ margin: '10px' }}><strong>${image.price}</strong></p>
+  )
 
   const imagesJsx = allImages.map(image =>
-    <div key={image._id} style={{ margin: '10px' }}>
-      <Card>
-        <Link to={`/images/${image._id}`}>
-          <Card.Img variant="top" src={image.imageUrl} style={{ width: '180px', height: '180px' }} />
-        </Link>
-        <div>
-          <p style={{ wordWrap: 'break-word' }}>{image.caption}</p>
-          <div>{tagArray(image.tag)}</div>
-          <ImageLike
-            image={image}
-            userLiked={checkUserLike(image)}
-            imageLikedId={imageLikedId(image)}
-            imageLikedCount={imageLikedCount(image)}
-            {...props}
-            user={props.user}
-          />
-          {image.forSale === true ? <div style={{ textAlign: 'center' }}>For Sale</div> : <div style={{ display: 'none' }}></div>}
+    <div key={image._id} style={{ margin: '10px', borderRadius: '20px', border: '2px solid black' }}>
+      <Link to={`/images/${image._id}`} style={{ margin: '0px' }}>
+        <img src={image.imageUrl} style={{ width: '180px', height: '180px', borderRadius: '20px 20px 0px 0px' }} />
+      </Link>
+      <div style={{ background: 'white', color: 'black', width: '180px', borderRadius: '0px 0px 20px 20px' }}>
+        <h6 style={{ paddingTop: '10px' }}>{image.caption}</h6>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', color: 'black' }}>
+          <div>{image.forSale === true ? forSale(image) : <div></div>}</div>
           <div>
-            <Checkout
+            <ImageLike
               image={image}
-              // src={image.imageUrl}
-              // alt={image.caption}
+              userLiked={checkUserLike(image)}
+              imageLikedId={imageLikedId(image)}
+              imageLikedCount={imageLikedCount(image)}
               {...props}
               user={props.user}
             />
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   )
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>All Images</h1>
-      <div>
-        <CardDeck style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black' }}>
-          {imagesJsx}
-        </CardDeck>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', color: 'black' }}>
+        {imagesJsx}
       </div>
     </div>
   )

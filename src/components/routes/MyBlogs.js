@@ -53,7 +53,7 @@ const MyBlogs = (props) => {
 
   return (
     <div className="container mt-5" style={{ textAlign: 'center' }}>
-      <h1>All Blogs</h1>
+      <h1>My Blogs</h1>
       <MyBlogsPaginate
         blogs={currentBlogs}
         loading={loading}
