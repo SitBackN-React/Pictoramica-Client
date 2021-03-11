@@ -5,7 +5,7 @@ import PostLike from './PostLike'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 import Jumbotron from 'react-bootstrap/Jumbotron'
-import CommentCreate from './CommentCreate'
+import Comments from './Comments'
 
 const PostPublic = props => {
   const [post, setPost] = useState(null)
@@ -45,12 +45,7 @@ const PostPublic = props => {
   if (!post) {
     return <p>Loading...</p>
   }
-  const commentsJsx = post.comments.map(comment => (
-    <li className="comment-list" key={comment._id}>
-      <p>Posted By: {props.user._id}</p>
-      <p>{comment.remark}</p>
-    </li>
-  ))
+
   // Checks to see if the user has a postLike or not in the post
   const checkUserLike = post => {
     if (post.postLikes.length === 0) {
@@ -108,12 +103,8 @@ const PostPublic = props => {
           </div>
         </div>
       </Jumbotron>
-      <div className="comments-display">
-        <p>Comments</p>
-        {commentsJsx}
-      </div>
       <div>
-        <CommentCreate
+        <Comments
           {...props}
         />
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CommentForm = ({ comment, handleSubmit, handleChange, cancelPath }) => (
-  <form onSubmit={handleSubmit}>
+  <form className="comment-list" onSubmit={handleSubmit}>
     <div>
       <textarea
         placeholder="Add comment here..."
