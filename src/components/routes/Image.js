@@ -100,7 +100,7 @@ const Image = (props) => {
             tag: { tag }
           }
         }}
-        style={{ color: 'white' }}>
+        style={{ color: 'white', margin: '7px' }}>
           #{tag}
         </Link>
       </p>

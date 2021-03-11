@@ -18,7 +18,7 @@ const ImagesPaginate = (props) => {
             tag: { tag }
           }
         }}
-        style={{ color: 'black', fontSize: '14px' }}>
+        style={{ color: 'black', fontSize: '14px', margin: '7px' }}>
           #{tag}
         </Link>
       </p>
@@ -79,7 +79,7 @@ const ImagesPaginate = (props) => {
       </Link>
       <div style={{ background: 'white', color: 'black', width: '180px', borderRadius: '0px 0px 20px 20px' }}>
         <h6 style={{ paddingTop: '10px' }}>{image.caption}</h6>
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>{tagArray(image.tag)}</div>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', color: 'black' }}>
           <div>{image.forSale === true ? forSale(image) : <div></div>}</div>
           <div>
