@@ -6,17 +6,13 @@ import AllImages from './AllImages'
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889')
-const ProductDisplay = ({ handleClick, src, alt, price }) => (
+const ProductDisplay = ({ handleClick, totalAmount }) => (
   // Creates order preview page
   <section>
     <div className="product">
-      <img
-        src={src}
-        alt={alt}
-      />
       <div className="description">
-        <h3>{alt}</h3>
-        <h5>${price}</h5>
+        <h3>Total</h3>
+        <h5>${totalAmount}</h5>
       </div>
     </div>
     <button type="button" id="checkout-button" role="link" onClick={handleClick}>
@@ -29,7 +25,7 @@ const Message = ({ message }) => (
     <p>{message}</p>
   </section>
 )
-export default function Checkout ({ src, alt, user, price }) {
+export default function Checkout ({ user, totalAmount }) {
   const [message, setMessage] = useState('')
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -67,6 +63,6 @@ export default function Checkout ({ src, alt, user, price }) {
   return message ? (
     <Message message={message} />
   ) : (
-    <ProductDisplay handleClick={handleClick} src={src} alt={alt} price={price}/>
+    <ProductDisplay handleClick={handleClick} totalAmount={totalAmount}/>
   )
 }
