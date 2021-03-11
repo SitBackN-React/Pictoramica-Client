@@ -12,7 +12,6 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      email: '',
       username: '',
       password: ''
     }
@@ -46,14 +45,14 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, username, password } = this.state
+    const { username, password } = this.state
 
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId="email">
+            {/* <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
@@ -63,11 +62,11 @@ class SignIn extends Component {
                 placeholder="Enter email"
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group controlId="username">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                // required
+                required
                 type="text"
                 name="username"
                 value={username}
