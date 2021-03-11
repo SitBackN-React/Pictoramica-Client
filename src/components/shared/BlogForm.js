@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
-  <form onSubmit={handleSubmit} style={{ color: 'white', fontSize: '20px', fontWeight: '200px' }}>
+  <form onSubmit={handleSubmit} style={{ color: 'white', fontSize: '20px', fontWeight: '200px', paddingLeft: '100px' }}>
     <label>Blog Title</label>
     <div>
       <input
-        placeholder="Example: My thoughts"
+        placeholder="My thoughts"
         value={blog.title}
         name="title"
         onChange={handleChange}
@@ -19,7 +19,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
     <label>Blog Description</label>
     <div>
       <textarea
-        placeholder="Example: A blog about my life experiences."
+        placeholder="A blog about my life experiences."
         value={blog.description}
         name="description"
         onChange={handleChange}
@@ -30,7 +30,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
     </div>
     <br />
     <div>
-      <label>Select Blog Border Color</label>
+      <label>Select Background Color</label>
       <br />
 
       <label className="bordercolor-choice">Blue
@@ -104,7 +104,7 @@ const BlogForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
       </label>
     </div>
     <br />
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-primary" style={{ margin: '7px' }}>Submit</button>
     <Link to={cancelPath}>
       <button className="btn btn-danger">Cancel</button>
     </Link>

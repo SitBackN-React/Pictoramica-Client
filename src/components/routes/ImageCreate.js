@@ -70,8 +70,10 @@ function UploadS3Image (props) {
           <div className="left">
             <button
               onClick={() => hiddenFileInput.current.click()}
-              className="btn btn-info add-image" type='button'>
+              className="btn btn-info add-image" type='button'
+              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRadius: '20px' }}>
               Add Image
+              <Image className='img-preview' src={url} />
             </button>
             <input
               style={{ display: 'none' }}
@@ -84,7 +86,7 @@ function UploadS3Image (props) {
             />
           </div>
           <br />
-          <div className="right" style={{ color: 'black' }}>
+          <div className="right">
             <div>
               <label>Image Caption: </label>
               <input
@@ -136,12 +138,11 @@ function UploadS3Image (props) {
               Upload
             </LoadingButton>
             <Link to='/my-images'>
-              <button className="btn btn-danger">Cancel</button>
+              <button className="btn btn-danger" style={{ margin: '7px' }}>Cancel</button>
             </Link>
           </div>
         </div>
         <br />
-        <Image className='img-preview' src={url} />
       </form>
     </div>
   )
