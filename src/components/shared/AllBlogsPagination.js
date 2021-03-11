@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pagination = ({ blogsPerPage, totalBlogs, paginate }) => {
+const AllBlogsPagination = ({ blogsPerPage, totalBlogs, paginate }) => {
   const pageNumbers = []
   for (let i = 1; i <= Math.ceil(totalBlogs / blogsPerPage); i++) {
     pageNumbers.push(i)
@@ -21,4 +21,4 @@ const Pagination = ({ blogsPerPage, totalBlogs, paginate }) => {
   )
 }
 
-export default Pagination
+export default AllBlogsPagination
