@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import AddToCart from './AddToCart'
+
 import axios from 'axios'
-
 import apiUrl from './../../apiConfig'
-
 import messages from './../AutoDismissAlert/messages'
+
 import ImageLike from './../shared/ImageLike'
 
 const MyImages = (props) => {
@@ -74,6 +73,7 @@ const MyImages = (props) => {
       }
     }
   }
+
   // Looks for the imageLike id in the image
   // if there is one that the user created, return that 'id'
   // if not, return '0'
@@ -93,6 +93,7 @@ const MyImages = (props) => {
       }
     }
   }
+
   // Determines how many imageLikes there are in total for each image
   const imageLikedCount = image => {
     return image.imageLikes.length
@@ -127,6 +128,7 @@ const MyImages = (props) => {
       </div>
     </div>
   )
+
   // the imagesjsx is returned and displayed under a heading.
   // button to Log a New image will take user to create image page.
   return (

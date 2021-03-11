@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
+
 import ImageLike from './../shared/ImageLike'
 import AddToCart from './AddToCart'
 
@@ -76,24 +78,18 @@ const Image = (props) => {
         })
       })
   }
+
   // if there's no image to show where user clicked, show "loading..."
   if (!image) {
     return <p>Loading...</p>
   }
+
   // if a image is deleted, Redirect user back to the list of all images
   if (deleted) {
     return (
       <Redirect to={'/my-images'} />
     )
   }
-
-  // const styles = {
-  //   flexContainer: { display: 'flex', flexDirection: 'row', margin: '10px 0px 10px 0px' },
-  //   imageContainer: { width: '40%' },
-  //   singleImage: { width: '100%', height: 'auto', border: '2px solid #000000' },
-  //   textContainer: { paddingLeft: '10px' },
-  //   textSize: { fontSize: '25px' }
-  // }
 
   const tagArray = (imageTag) => {
     const tags = imageTag.split(' ').map(tag =>

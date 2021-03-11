@@ -44,7 +44,6 @@ const ImageLike = props => {
       } }
     })
       .then(res => {
-        console.log(res)
         // find the newest imageLike value created and gets its id
         const imageLikesArr = res.data.image.imageLikes
         const createdLike = imageLikesArr[imageLikesArr.length - 1]
@@ -78,7 +77,7 @@ const ImageLike = props => {
   }
 
   const deleteLike = image => {
-    console.log('DELETE LIKE')
+    event.preventDefault()
 
     axios({
       url: `${apiUrl}/images/${image._id}/imageLikes/${likeId.imageLikedId}`,

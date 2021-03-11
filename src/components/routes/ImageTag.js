@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 const ImageTag = props => {
-  console.log('props in imageTag', props)
   const [allImages, setAllImages] = useState([])
 
   const selectedTagName = props.location.aboutProps.tag.tag

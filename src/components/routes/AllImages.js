@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react'
-// import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
+
 import axios from 'axios'
-
 import apiUrl from './../../apiConfig'
-import ImageLike from './../shared/ImageLike'
-// import ProductDisplay from './../App/Checkout'
-
 import messages from './../AutoDismissAlert/messages'
 
-// const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
+import ImageLike from './../shared/ImageLike'
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])
 
   const { msgAlert } = props
-  console.log(props)
+
   useEffect(() => {
     axios({
       url: `${apiUrl}/all-images`,

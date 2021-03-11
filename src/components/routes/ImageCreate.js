@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { uploadS3 } from './../../api/s3upload.js'
-import messages from '../AutoDismissAlert/messages'
 import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
+import messages from '../AutoDismissAlert/messages'
+
 import LoadingButton from './../shared/LoadingButton'
-// import ForSale from './ForSale'
 
 function UploadS3Image (props) {
   const [caption, setCaption] = useState('')
@@ -61,12 +62,6 @@ function UploadS3Image (props) {
       })
   }
 
-  // const handlePrice = e => {
-  //   const number = parseInt(e.target.value)
-  //   console.log(number)
-  //   setPrice(number)
-  // }
-
   return (
 
     <div className='image-create-body'>
@@ -120,12 +115,6 @@ function UploadS3Image (props) {
                 value={forSale}
                 onChange={e => setForSale(true)}
               />
-              {/* <ForSale
-                image={image}
-                {...props}
-                user={props.user}
-              /> */}
-
             </div>
             <br />
             <div>

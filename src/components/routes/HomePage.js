@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import apiUrl from './../../apiConfig'
+
 import AllImagesHomePage from './AllImagesHomePage'
 import AllBlogsHomePage from './AllBlogsHomePage'
 
@@ -11,7 +11,6 @@ const HomePage = (props) => {
     floatContainer: { display: 'flex', justifyContent: 'center' }
   }
 
-  console.log(user)
   const welcomeBar = user => (
     <div className="welcomeContainer welcome-user py-4">
       <div style={{ fontSize: '25px', color: 'black', marginLeft: '15px' }}>Welcome Back, {user.username ? user.username : user.email }!</div>

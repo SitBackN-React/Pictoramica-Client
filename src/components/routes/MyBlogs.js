@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import axios from 'axios'
+import apiUrl from './../../apiConfig'
+import messages from './../AutoDismissAlert/messages'
+
 import MyBlogsPagination from './../shared/MyBlogsPagination'
 import MyBlogsPaginate from './MyBlogsPaginate'
-import axios from 'axios'
-
-import apiUrl from './../../apiConfig'
-
-import messages from './../AutoDismissAlert/messages'
 
 const MyBlogs = (props) => {
   const [myBlogs, setMyBlogs] = useState([])

@@ -25,7 +25,6 @@ const BlogEditForm = ({ blog, handleSubmit, handleChange, cancelPath }) => (
         onChange={handleChange}
         rows="3"
         cols="50"
-        // maxLength="70"
         style={{ borderRadius: '5px' }}
       />
     </div>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Checkout from './Checkout'
-import CartItemDelete from './CartItemDelete'
 
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
+
+import Checkout from './Checkout'
+import CartItemDelete from './CartItemDelete'
 
 const Cart = (props) => {
   const [cart, setCart] = useState([])
@@ -37,15 +38,6 @@ const Cart = (props) => {
         })
       })
   }, [refresh])
-
-  // if (cart.length > 0) {
-  //   console.log(cart)
-  //   console.log(cart[0])
-  //   console.log(cart[0].createdAt)
-  //   console.log(cart[0].item)
-  //   console.log(cart[0].item[0])
-  //   console.log(cart[0].item[0].caption)
-  // }
 
   const cartJsx = cart.map(cartItem => (
     <div key={cartItem._id} style={{ backgroundColor: 'white', margin: '10px', borderRadius: '20px', width: '500px' }}>
