@@ -5,7 +5,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 import AllImagesPagination from './../shared/AllImagesPagination'
-import ImagesPaginate from './ImagesPaginate'
+import ImagesPaginate from './../shared/ImagesPaginate'
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])

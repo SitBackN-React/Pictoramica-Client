@@ -5,7 +5,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 import AllBlogsPagination from './../shared/AllBlogsPagination'
-import BlogsPaginate from './BlogsPaginate'
+import BlogsPaginate from './../shared/BlogsPaginate'
 
 const AllBlogs = (props) => {
   const [allBlogs, setAllBlogs] = useState([])
