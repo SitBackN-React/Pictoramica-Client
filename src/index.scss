@@ -313,3 +313,22 @@ url {
   text-overflow: ellipsis;
   display: -webkit-box;
 }
+
+#checkout-button {
+  background: #556cd6;
+  border-radius: 0 0 6px 6px;
+  border: 0;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  letter-spacing: 0.6;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+#checkout-button:hover {
+  opacity: 0.8;
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
-import AllImages from './AllImages'
 // import './../../checkout.scss'
-// import './App.css'
+
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889')
+
 const ProductDisplay = ({ handleClick, totalAmount }) => (
   // Creates order preview page
   <section>
@@ -18,6 +18,7 @@ const ProductDisplay = ({ handleClick, totalAmount }) => (
     <button type="button" id="checkout-button" role="link" onClick={handleClick}>
       Checkout
     </button>
+    <p>Note: Checkout page coming soon!</p>
   </section>
 )
 const Message = ({ message }) => (
@@ -25,6 +26,7 @@ const Message = ({ message }) => (
     <p>{message}</p>
   </section>
 )
+
 export default function Checkout ({ user, totalAmount }) {
   const [message, setMessage] = useState('')
   useEffect(() => {
@@ -39,26 +41,27 @@ export default function Checkout ({ user, totalAmount }) {
       )
     }
   }, [])
+
   const handleClick = async (event) => {
     const stripe = await stripePromise
+
     const response = await fetch('/create-checkout-session', {
       method: 'POST'
     })
+
     const session = await response.json()
+
     // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({
       sessionId: session.id
     })
+
     if (result.error) {
       // If `redirectToCheckout` fails due to a browser or network
       // error, display the localized error message to your customer
       // using `result.error.message`.
     }
   }
-
-  // console.log({ image })
-
-  console.log({ AllImages })
 
   return message ? (
     <Message message={message} />
