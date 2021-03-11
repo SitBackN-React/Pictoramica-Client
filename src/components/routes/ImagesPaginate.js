@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import ImageLike from './../shared/ImageLike'
 
-const AllImagesPaginate = (props) => {
+const ImagesPaginate = (props) => {
   const { images, loading } = props
   if (loading) {
     return <h1>Loading</h1>
@@ -99,7 +99,6 @@ const AllImagesPaginate = (props) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>All Images</h1>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', color: 'black' }}>
         {imagesJsx}
       </div>
@@ -107,4 +106,4 @@ const AllImagesPaginate = (props) => {
   )
 }
 
-export default AllImagesPaginate
+export default ImagesPaginate

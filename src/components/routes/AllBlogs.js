@@ -5,7 +5,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 import AllBlogsPagination from './../shared/AllBlogsPagination'
-import AllBlogsPaginate from './AllBlogsPaginate'
+import BlogsPaginate from './BlogsPaginate'
 
 const AllBlogs = (props) => {
   const [allBlogs, setAllBlogs] = useState([])
@@ -51,7 +51,7 @@ const AllBlogs = (props) => {
   return (
     <div className="container mt-5" style={{ textAlign: 'center' }}>
       <h1>All Blogs</h1>
-      <AllBlogsPaginate
+      <BlogsPaginate
         blogs={currentBlogs}
         loading={loading}
       />

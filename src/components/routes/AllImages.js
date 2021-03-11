@@ -5,7 +5,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 import AllImagesPagination from './../shared/AllImagesPagination'
-import AllImagesPaginate from './AllImagesPaginate'
+import ImagesPaginate from './ImagesPaginate'
 
 const AllImages = (props) => {
   const [allImages, setAllImages] = useState([])
@@ -47,9 +47,9 @@ const AllImages = (props) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div>
+    <div className="container mt-5" style={{ textAlign: 'center' }}>
       <h1>All Images</h1>
-      <AllImagesPaginate
+      <ImagesPaginate
         images={currentImages}
         loading={loading}
         {...props}

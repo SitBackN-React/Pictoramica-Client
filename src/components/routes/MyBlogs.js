@@ -6,7 +6,7 @@ import apiUrl from './../../apiConfig'
 import messages from './../AutoDismissAlert/messages'
 
 import MyBlogsPagination from './../shared/MyBlogsPagination'
-import MyBlogsPaginate from './MyBlogsPaginate'
+import BlogsPaginate from './BlogsPaginate'
 
 const MyBlogs = (props) => {
   const [myBlogs, setMyBlogs] = useState([])
@@ -54,10 +54,9 @@ const MyBlogs = (props) => {
   return (
     <div className="container mt-5" style={{ textAlign: 'center' }}>
       <h1>My Blogs</h1>
-      <MyBlogsPaginate
+      <BlogsPaginate
         blogs={currentBlogs}
         loading={loading}
-        href={'#my-blogs'}
       />
       <MyBlogsPagination
         blogsPerPage={blogsPerPage} totalBlogs={myBlogs.length}
