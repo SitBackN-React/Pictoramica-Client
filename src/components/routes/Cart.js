@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import Checkout from './Checkout'
-import CartItemDelete from './CartItemDelete'
 
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
+
+import Checkout from './Checkout'
+import CartItemDelete from './CartItemDelete'
 
 const Cart = (props) => {
   const [cart, setCart] = useState([])
@@ -37,15 +38,6 @@ const Cart = (props) => {
         })
       })
   }, [refresh])
-
-  // if (cart.length > 0) {
-  //   console.log(cart)
-  //   console.log(cart[0])
-  //   console.log(cart[0].createdAt)
-  //   console.log(cart[0].item)
-  //   console.log(cart[0].item[0])
-  //   console.log(cart[0].item[0].caption)
-  // }
 
   const cartJsx = cart.map(cartItem => (
     <div key={cartItem._id} style={{ backgroundColor: 'white', margin: '10px', borderRadius: '20px', width: '500px' }}>
@@ -80,31 +72,24 @@ const Cart = (props) => {
     totalAmount = totalAmount + itemPrice[i]
   }
 
-  // const checkOut = cart.map(cartItem => (
-  //   <div key={cartItem._id}>
-  //     <Checkout
-  //       src={cartItem.item[0].imgUrl}
-  //       alt={cartItem.item[0].caption}
-  //       {...props}
-  //       user={props.user}
-  //       price={cartItem.price}
-  //     />
-  //   </div>
-  // ))
-
   const cartDisplay = (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+    <div>
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
         {(cart.length > 0) ? cartJsx : <div>No items in your cart</div>}
       </div>
-      <h4>Total: ${totalAmount}</h4>
-      {/* {checkOut} */}
     </div>
   )
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
       {isLoading ? <div>Loading Cart</div> : cartDisplay}
+      <div>
+        <Checkout
+          {...props}
+          user={props.user}
+          totalAmount={totalAmount}
+        />
+      </div>
     </div>
   )
 }

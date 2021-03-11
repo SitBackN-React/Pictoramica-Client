@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react'
-// import { loadStripe } from "@stripe/stripe-js"
 import { Link } from 'react-router-dom'
-// import Card from 'react-bootstrap/Card'
-// import CardDeck from 'react-bootstrap/CardDeck'
+
 import axios from 'axios'
-
 import apiUrl from './../../apiConfig'
-import ImageLike from './../shared/ImageLike'
-// import ForSale from './ForSale'
-// import ProductDisplay from './../App/Checkout'
-
 import messages from './../AutoDismissAlert/messages'
-// import Checkout from './Checkout'
 
-// const stripePromise = loadStripe("pk_test_51HobYFEybVIVldfc4QmD3NhroakMWJARBgzjLHf5tKx76TBTEmdcgnHrNFGujESH43KIdVM8xDur1JSCtaHqkQan00qUaWN889")
+import ImageLike from './../shared/ImageLike'
 
 const AllImagesHomePage = (props) => {
   const [setAllImages] = useState([])
@@ -27,7 +19,6 @@ const AllImagesHomePage = (props) => {
       method: 'GET'
     })
       .then(res => {
-        // setAllImages(res.data.images)
         if (res.data.images.length > 0) {
           const firstRecentImage = res.data.images.shift()
           if (res.data.images.length > 0) {

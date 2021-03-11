@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
-// import Pagination from 'react-bootstrap/Pagination'
-import { Link } from 'react-router-dom'
+
 import axios from 'axios'
-
 import apiUrl from './../../apiConfig'
-
 import messages from './../AutoDismissAlert/messages'
 
 const AllBlogsHomePage = (props) => {
   const [setAllBlogs] = useState([])
   const [recentBlogs, setRecentBlogs] = useState([])
+
   // get msgAlerts from props
   const { msgAlert } = props
+
   // GET request to API for all of the blogs
   useEffect(() => {
     axios({
@@ -22,7 +23,7 @@ const AllBlogsHomePage = (props) => {
       method: 'GET'
     })
       .then(res => {
-        // setAllBlogs(res.data.blogs)
+        // get only the first 4 recently made blogs
         if (res.data.blogs.length > 0) {
           const firstRecentBlog = res.data.blogs.shift()
           if (res.data.blogs.length > 0) {

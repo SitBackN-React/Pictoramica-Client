@@ -1,8 +1,8 @@
 import React from 'react'
 
-const AllBlogsPagination = ({ blogsPerPage, totalBlogs, paginate }) => {
+const AllImagesPagination = ({ imagesPerPage, totalImages, paginate }) => {
   const pageNumbers = []
-  for (let i = 1; i <= Math.ceil(totalBlogs / blogsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalImages / imagesPerPage); i++) {
     pageNumbers.push(i)
   }
 
@@ -12,7 +12,7 @@ const AllBlogsPagination = ({ blogsPerPage, totalBlogs, paginate }) => {
         <ul className="pagination">
           {pageNumbers.map(number => (
             <li className="page-item" key={number}>
-              <a onClick={() => paginate(number)} href="#all-blogs" className="page-link">{number}</a>
+              <a onClick={() => paginate(number)} href="#all-images" className="page-link">{number}</a>
             </li>
           ))}
         </ul>
@@ -21,4 +21,4 @@ const AllBlogsPagination = ({ blogsPerPage, totalBlogs, paginate }) => {
   )
 }
 
-export default AllBlogsPagination
+export default AllImagesPagination

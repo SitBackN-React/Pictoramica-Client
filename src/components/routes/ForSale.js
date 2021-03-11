@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
+import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 const ForSale = (props) => {
@@ -47,4 +47,5 @@ const ForSale = (props) => {
     </React.Fragment>
   )
 }
+
 export default ForSale

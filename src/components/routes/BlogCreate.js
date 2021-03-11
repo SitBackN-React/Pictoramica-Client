@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios'
 
+import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import BlogForm from './../shared/BlogForm'
 import messages from './../AutoDismissAlert/messages'
+
+import BlogForm from './../shared/BlogForm'
 
 const BlogCreate = props => {
   const [blog, setBlog] = useState({
@@ -56,11 +57,13 @@ const BlogCreate = props => {
         })
       })
   }
+
   // if blog id was created, go to specific blog
   if (createdBlogId) {
     // return <Redirect to={`/blogs/${createdBlogId}`} />
     return <Redirect to={'/my-blogs'} />
   }
+
   // return data from blogform as well as handle change and handle submit from form
   return (
     <div>

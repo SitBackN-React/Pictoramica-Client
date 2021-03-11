@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
+
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import BlogEditForm from '../shared/BlogEditForm'
 import messages from './../AutoDismissAlert/messages'
+
+import BlogEditForm from '../shared/BlogEditForm'
 
 const BlogEdit = props => {
   const [blog, setBlog] = useState({
@@ -11,7 +13,9 @@ const BlogEdit = props => {
     description: '',
     borderColor: ''
   })
+
   const [updated, setUpdated] = useState(false)
+
   const { msgAlert } = props
 
   useEffect(() => {

@@ -4,12 +4,9 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const CartItemDelete = (props) => {
-  const { cartItem, cartItemId, user, msgAlert } = props
+  const { cartItemId, user, msgAlert } = props
 
   const destroy = () => {
-    console.log('item deleted')
-    console.log(cartItem.item[0])
-    console.log(cartItemId)
     axios({
       url: `${apiUrl}/cartItems/${cartItemId}`,
       method: 'DELETE',

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import AllBlogsPagination from './../shared/AllBlogsPagination'
-import AllBlogsPaginate from './AllBlogsPaginate'
+
 import axios from 'axios'
-
 import apiUrl from './../../apiConfig'
-
 import messages from './../AutoDismissAlert/messages'
+
+import AllBlogsPagination from './../shared/AllBlogsPagination'
+import BlogsPaginate from './../shared/BlogsPaginate'
 
 const AllBlogs = (props) => {
   const [allBlogs, setAllBlogs] = useState([])
@@ -38,7 +38,6 @@ const AllBlogs = (props) => {
           variant: 'danger'
         })
       })
-      .catch(console.error)
   }, [])
 
   // Get current blogs
@@ -52,12 +51,13 @@ const AllBlogs = (props) => {
   return (
     <div className="container mt-5" style={{ textAlign: 'center' }}>
       <h1>All Blogs</h1>
-      <AllBlogsPaginate
+      <BlogsPaginate
         blogs={currentBlogs}
         loading={loading}
       />
       <AllBlogsPagination
-        blogsPerPage={blogsPerPage} totalBlogs={allBlogs.length}
+        blogsPerPage={blogsPerPage}
+        totalBlogs={allBlogs.length}
         paginate={paginate}
       />
     </div>
