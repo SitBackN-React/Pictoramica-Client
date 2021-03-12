@@ -14,9 +14,9 @@ const CommentForm = ({ comment, handleSubmit, handleChange, cancelPath }) => (
       ></textarea>
     </div>
     <br />
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-primary" style={{ margin: '7px' }}>Submit</button>
     <Link to={cancelPath}>
-      <button className="btn btn-danger">Cancel</button>
+      <button className="btn btn-danger" style={{ margin: '7px' }}>Cancel</button>
     </Link>
   </form>
 )

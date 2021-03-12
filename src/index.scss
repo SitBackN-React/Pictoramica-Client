@@ -86,11 +86,11 @@ url {
 }
 
 .like-icon-post {
-  width: 25px;
   height: 25px;
-  margin-left: 10px;
+  justify-content: flex-end;
+  margin-left: 20px;
   margin-right: 10px;
-  justify-content: flex-start;
+  width: 25px;
 }
 
 .like-count {

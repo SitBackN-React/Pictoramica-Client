@@ -87,7 +87,7 @@ const Blog = (props) => {
       }
     }
   }
-  console.log()
+
   // Looks for the postLike id in the post
   // if there is one that the user created, return that 'id'
   // if not, return '0'
@@ -163,8 +163,6 @@ const Blog = (props) => {
     </li>
   ))
 
-  console.log(blog.posts, 'the blog')
-  //  final return
   return (
     <div style={{ textAlign: 'center' }}>
       <h3>Blog Name: {blog.title}</h3>
@@ -180,26 +178,26 @@ const Blog = (props) => {
       <div>
         {props.user._id === blog.owner ? (
           <Link to={`/blogs/${props.match.params.blogId}/create-post`}>
-            <button className="btn btn-primary" style={{ display: 'inline' }}>Create New Post</button>
+            <button className="btn btn-primary" style={{ display: 'inline', margin: '7px' }}>Create New Post</button>
           </Link>
         ) : (
           <button style={{ display: 'none' }}></button>
         )}
         {props.user._id === blog.owner ? (
-          <button className="btn btn-danger" onClick={destroy} style={{ display: 'inline' }}>Delete Blog</button>
+          <button className="btn btn-danger" onClick={destroy} style={{ display: 'inline', margin: '7px' }}>Delete Blog</button>
         ) : (
           <button style={{ display: 'none' }}></button>
         )}
         {props.user._id === blog.owner ? (
           <Link to={`/blogs/${props.match.params.blogId}/edit-blog`}>
-            <button className="button btn btn-warning" style={{ display: 'inline' }}>Edit Blog</button>
+            <button className="button btn btn-warning" style={{ display: 'inline', margin: '7px' }}>Edit Blog</button>
           </Link>
         ) : (
           <button style={{ display: 'none' }}></button>
         )}
       </div>
       <div>
-        <button className="btn btn-success" type="button" onClick={() => props.history.goBack()}>
+        <button className="btn btn-success" type="button" style={{ margin: '7px' }} onClick={() => props.history.goBack()}>
       Go back
         </button>
       </div>

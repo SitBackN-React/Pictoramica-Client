@@ -12,8 +12,6 @@ const Post = props => {
 
   const { msgAlert } = props
 
-  console.log(props)
-
   useEffect(() => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
@@ -22,10 +20,6 @@ const Post = props => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
       .then(res => setPost(res.data.post))
       .then(() => msgAlert({
         heading: 'Showing selected post',
@@ -75,8 +69,6 @@ const Post = props => {
       <Redirect to={`/blogs/${props.match.params.blogId}`} />
     )
   }
-  console.log(post)
-
   // const commentsJsx = post.comments.map(comment => (
   //   <li className="comment-list" key={comment._id}>
   //     <p>Posted By: {comment.commenter}</p>
@@ -99,7 +91,7 @@ const Post = props => {
       }
     }
   }
-  console.log()
+
   // Looks for the postLike id in the post
   // if there is one that the user created, return that 'id'
   // if not, return '0'
@@ -148,16 +140,16 @@ const Post = props => {
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', margin: 20 }}>
-        <button className="btn btn-danger" onClick={destroy}>Delete Post</button>
+        <button className="btn btn-danger" onClick={destroy} style={{ margin: '7px' }}>Delete Post</button>
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/edit-post`}>
-          <button className="button btn btn-warning">Edit Post</button>
+          <button className="button btn btn-warning" style={{ margin: '7px' }}>Edit Post</button>
         </Link>
         <Link to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comment-delete`}>
-          <button className="btn btn-danger">Delete Comment</button>
+          <button className="btn btn-danger" style={{ margin: '7px' }}>Delete Comment</button>
         </Link>
-      </div>
-      <div>
-        <Link to={`/blogs/${props.match.params.blogId}`}>Back to posts</Link>
+        <Link to={`/blogs/${props.match.params.blogId}`}>
+          <button className="btn btn-primary" style={{ margin: '7px' }}>Back to posts</button>
+        </Link>
       </div>
     </div>
   )
