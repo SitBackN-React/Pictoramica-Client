@@ -10,9 +10,6 @@ const CommentDelete = props => {
   const [removed, setRemoved] = useState(false)
 
   const { msgAlert } = props
-
-  console.log(props)
-
   useEffect(() => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
@@ -21,10 +18,6 @@ const CommentDelete = props => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
       .then(res => setPost(res.data.post))
       .then(() => msgAlert({
         heading: 'Showing selected post',
@@ -73,8 +66,6 @@ const CommentDelete = props => {
       <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`} />
     )
   }
-
-  console.log(props)
 
   const commentsJsx = post.comments.map(comment => (
     <li className="comment-list" key={comment._id}>

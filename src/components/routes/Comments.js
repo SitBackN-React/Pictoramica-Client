@@ -38,7 +38,7 @@ const Comments = (props) => {
 
   const commentsJsx = allComments.map(comment => (
     <li className="comment-list" key={comment._id}>
-      <p>Posted By: {comment.commenter}</p>
+      <p>Posted On: {comment.createdAt}</p>
       <p>{comment.remark}</p>
     </li>
   ))

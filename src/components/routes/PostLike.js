@@ -7,12 +7,12 @@ import messages from './../AutoDismissAlert/messages'
 const PostLike = props => {
   // Initial logic of determining if the user has liked the post is being brought in through props
   const { post, userLiked, postLikedId, postLikedCount, user, msgAlert } = props
-  // console.log(userLiked, 'postlike at the start')
+
   // Keeps track of whether or not a user has liked the post
   const [userLike, setUserLike] = useState({
     liked: userLiked
   })
-  // console.log(user, 'finding user of')
+
   // Keeps track of the postLike id if there is one
   // If no postLike id, then it will default to '0'
   const [likeId, setLikeId] = useState({
@@ -29,8 +29,7 @@ const PostLike = props => {
     // Otherwise, go to deleteLike to delete postLike and set userLike.liked false
     userLike.liked ? deleteLike(post) : createLike(post)
   }
-  // console.log(post, 'finding the post')
-  // console.log(post._id, 'postID')
+
   const createLike = post => {
     event.preventDefault()
 
@@ -44,10 +43,7 @@ const PostLike = props => {
         liked: true
       } }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
+
       .then(res => {
         // find the newest postLike's id from the respons
         const updatedpost = res.data.blog.posts.find(updatedpost => updatedpost._id === post._id)

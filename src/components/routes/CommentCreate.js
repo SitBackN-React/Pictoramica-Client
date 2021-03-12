@@ -17,15 +17,10 @@ const CommentCreate = props => {
     setComment(editedComment)
   }
 
-  console.log(props)
-
   const handleSubmit = event => {
     event.preventDefault()
 
     const { msgAlert } = props
-
-    const postId = `${props.match.params.postId}`
-    console.log(postId)
 
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/comments`,
@@ -35,10 +30,6 @@ const CommentCreate = props => {
       },
       data: { comment }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
       .then(() => {
         msgAlert({
           heading: 'Created comment successfully',
@@ -58,7 +49,7 @@ const CommentCreate = props => {
         })
       })
   }
-  console.log(comment)
+
   // if (createdComment) {
   //   return <Redirect to={`/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}/post-public`} />
   // }

@@ -12,8 +12,6 @@ const PostPublic = props => {
 
   const { msgAlert } = props
 
-  console.log(props)
-
   useEffect(() => {
     axios({
       url: `${apiUrl}/blogs/${props.match.params.blogId}/posts/${props.match.params.postId}`,
@@ -22,10 +20,7 @@ const PostPublic = props => {
         'Authorization': `Token token=${props.user.token}`
       }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
+
       .then(res => setPost(res.data.post))
       .then(() => msgAlert({
         heading: 'Showing selected post',
@@ -62,7 +57,6 @@ const PostPublic = props => {
       }
     }
   }
-  console.log()
   // Looks for the postLike id in the post
   // if there is one that the user created, return that 'id'
   // if not, return '0'
@@ -108,8 +102,10 @@ const PostPublic = props => {
           {...props}
         />
       </div>
-      <div>
-        <Link to={`/blogs/${props.match.params.blogId}`}>Back to posts</Link>
+      <div style={{ margin: '7px' }}>
+        <Link to={`/blogs/${props.match.params.blogId}`}>
+          <button className="btn btn-primary" style={{ margin: '7px' }}>Back to posts</button>
+        </Link>
       </div>
     </div>
   )
