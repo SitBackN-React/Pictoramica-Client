@@ -12,7 +12,7 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      email: '',
+      username: '',
       password: ''
     }
   }
@@ -33,7 +33,7 @@ class SignIn extends Component {
         message: messages.signInSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/home-page'))
       .catch(error => {
         this.setState({ email: '', password: '' })
         msgAlert({
@@ -45,14 +45,14 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { username, password } = this.state
 
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId="email">
+            {/* <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
@@ -60,6 +60,17 @@ class SignIn extends Component {
                 name="email"
                 value={email}
                 placeholder="Enter email"
+                onChange={this.handleChange}
+              />
+            </Form.Group> */}
+            <Form.Group controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Enter username"
                 onChange={this.handleChange}
               />
             </Form.Group>
