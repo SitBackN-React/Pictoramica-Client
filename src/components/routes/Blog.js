@@ -114,7 +114,7 @@ const Blog = (props) => {
   // if user owns the post
 
   const postsOwnerJsx = blog.posts.map(post => (
-    <li style={{ width: '100%' }} key={post._id}>
+    <li style={{ width: '100%', listStyle: 'none' }} key={post._id}>
       <Jumbotron fluid>
         <div style={{ width: '100%', padding: 50 }}>
           <h1>{post.title}</h1>

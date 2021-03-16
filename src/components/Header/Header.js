@@ -16,8 +16,6 @@ const authenticatedOptions = (
       <Nav.Link className="nav-link" href="#post-image">Create Image</Nav.Link>
       <Nav.Link className="nav-link" href="#create-blog">Create Blog</Nav.Link>
       <Nav.Link className="nav-link" href="#cart">Cart</Nav.Link>
-    </Nav>
-    <Nav>
       <NavDropdown className="dropdown" alignRight title="Account" id="basic-nav-dropdown">
         {/* <NavDropdown.Item href="#text-editor">Text Editor</NavDropdown.Item> */}
         {/* <NavDropdown.Divider /> */}
