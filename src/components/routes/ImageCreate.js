@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import messages from '../AutoDismissAlert/messages'
 
-import LoadingButton from './../shared/LoadingButton'
+// import LoadingButton from './../shared/LoadingButton'
 
 function UploadS3Image (props) {
   const [caption, setCaption] = useState('')
@@ -129,14 +129,22 @@ function UploadS3Image (props) {
                 size="25"
               />
             </div>
-            <LoadingButton
+            {/* <LoadingButton
               type="submit"
               className="btn btn-primary share"
               isLoading={isLoading}
               onClick={() => setIsLoading(true)}
             >
               Upload
-            </LoadingButton>
+            </LoadingButton> */}
+            <button
+              type="submit"
+              className="btn btn-primary share"
+              isLoading={isLoading}
+              onClick={() => setIsLoading(true)}
+            >
+              Upload
+            </button>
             <Link to='/my-images'>
               <button className="btn btn-danger" style={{ margin: '7px' }}>Cancel</button>
             </Link>
