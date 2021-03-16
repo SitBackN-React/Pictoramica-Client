@@ -46,7 +46,7 @@ function UploadS3Image (props) {
         message: messages.createImageSuccess,
         variant: 'success'
       }))
-      .then(() => history.push((`/images/${link}`)))
+      .then(() => history.push(`/images/${link}`))
       .catch(error => {
         setCaption('')
         setTag('')
@@ -124,7 +124,7 @@ function UploadS3Image (props) {
               <input
                 type='number'
                 value={price}
-                onChange={event => setPrice(+event.target.value)}
+                onChange={event => setPrice(Number(event.target.value))}
                 placeholder='20'
                 size="25"
               />
