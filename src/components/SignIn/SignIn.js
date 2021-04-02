@@ -70,6 +70,7 @@ class SignIn extends Component {
                 type="text"
                 name="username"
                 value={username}
+                autoComplete="username"
                 placeholder="Enter username"
                 onChange={this.handleChange}
               />
@@ -80,6 +81,7 @@ class SignIn extends Component {
                 required
                 name="password"
                 value={password}
+                autoComplete="current-password"
                 type="password"
                 placeholder="Password"
                 onChange={this.handleChange}
