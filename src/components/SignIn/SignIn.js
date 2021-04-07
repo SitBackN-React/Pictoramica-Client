@@ -35,7 +35,7 @@ class SignIn extends Component {
       }))
       .then(() => history.push('/home-page'))
       .catch(error => {
-        this.setState({ email: '', password: '' })
+        this.setState({ username: '', password: '' })
         msgAlert({
           heading: 'Sign In Failed with error: ' + error.message,
           message: messages.signInFailure,

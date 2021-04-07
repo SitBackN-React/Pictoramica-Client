@@ -45,6 +45,7 @@ export const deleteArtwork = (artId, user) => {
   })
 }
 
+// Possibly need s3 PATCH route
 export const editArtwork = (formData, artId, user) => {
   return axios({
     url: apiUrl + `/artworks/${artId}`,
