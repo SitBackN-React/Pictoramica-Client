@@ -63,11 +63,6 @@ After deciding the purpose of our new application, we created a spreadsheet cont
 - Google Sheets
 
 
-## Images
-Wireframes - Home page
-<img width="1083" alt="Screen Shot 2021-01-13 at 7 38 34 AM" src="https://user-images.githubusercontent.com/53062479/104453432-655a9500-5572-11eb-98ba-1b80e14b429b.png">
-
-
 ## Stripe Usage Information
 For Version 1 of this project, you are able to add items to a cart, but the checkout feature will be added in Version 2.
 
