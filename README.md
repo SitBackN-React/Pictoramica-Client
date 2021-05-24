@@ -5,8 +5,8 @@ Pictoramica is a multifaceted application where its features serve various purpo
 - Application: https://sitbackn-react.github.io/pictoramica/#/
 - Frontend Repo (Version 1): https://github.com/SitBackN-React/Pictoramica-Client
 - Backend Repo (Version 1): https://github.com/SitBackN-React/Pictoramica-API
-- Frontend Repo (Version 2): https://github.com/SitBackN-React/pictoramica (Currently in production)
-- Backend Repo (Version 2): https://github.com/SitBackN-React/pictoramica-server (Currently in production)
+- Frontend Repo (Version 2): https://github.com/SitBackN-React/pictoramica (Currently in development)
+- Backend Repo (Version 2): https://github.com/SitBackN-React/pictoramica-server (Currently in development)
 
 ## Planning/Coding Experience - Team Project
 As a team, we first discussed what kind of application we wanted to build next. After working together on Oasis Spaces, we knew that we wanted to further our skills in React as well as add more features. We wanted to create an app that would give users a platform to share their experiences about a specific topic, provide images for their blog or simply share to the world, and have the option to sell items. For example, if a user wanted to create refashion DIY sewing pieces, s/he is able to blog about their sewing experiences, post pictures of their projects, as well as have the option to sell their completed pieces.
